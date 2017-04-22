@@ -4,6 +4,7 @@ import router from './router'
 import store from './store'
 import ApolloClient, { createNetworkInterface } from 'apollo-client'
 import VueApollo from 'vue-apollo'
+import VuePatternfly from 'vue-patternfly'
 
 // connect to GraphQL project
 const networkInterface = createNetworkInterface({
@@ -35,6 +36,8 @@ const apolloClient = new ApolloClient({
 Vue.use(VueApollo, {
   apolloClient,
 })
+
+Vue.use(VuePatternfly)
 
 // Start the app
 new Vue({

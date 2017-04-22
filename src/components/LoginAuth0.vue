@@ -2,7 +2,7 @@
     <div class="login">
 
         <div v-if="authenticated" class="loginButton">
-            <span @click="login()" class="loginText">Log in with Auth0</span>
+            <span @click="showLogin()" class="loginText">Sign In</span>
         </div>
 
         <div v-else class="logoutButton">
@@ -20,7 +20,7 @@ export default {
 
     data: () => ({
         user: {},
-        lock: new Auth0Lock('iBYFD3fZpwKmvINx4Spwm1zjP5M137QH', 'jharmon141.auth0.com', {
+        lock: new Auth0Lock('bOxcfixTEt32BhOrP4Wk5lywFo4r9rV7', 'jharmon141.auth0.com', {
             auth: {
                 responseType: 'token',
             }
@@ -38,6 +38,15 @@ export default {
         showLogin() {
             this.lock.show()
         },
+        logout(){
+            // To log out, we just need to remove the token and profile
+            // from local storage
+            localStorage.removeItem('auth0IdToken')
+            localStorage.removeItem('profile')
+            this.authenticated = false
+            this.user = {}
+
+        }
     },
 
     mounted() {
@@ -65,18 +74,5 @@ export default {
 
 <style>
 
-.login {
-    width: 130px;
-    height: 46px;
-    cursor: pointer;
-    background-color: blue;
-    color: white;
-}
-
-.loginText {
-    font-size: 18px;
-    display: inline-block;
-    vertical-align: center;
-}
 
 </style>
