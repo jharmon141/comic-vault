@@ -104,6 +104,8 @@ export default {
 
 input {
     margin-bottom: 25px;
+    height: 50px;
+    font-size: 18px;
 }
 
 h1 {
@@ -126,6 +128,8 @@ ul {
 
 .button {
     width: 100%;
+    height: 60px;
+    font-size: 20px;
 }
 
 input {

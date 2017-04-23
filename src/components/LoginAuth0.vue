@@ -45,6 +45,7 @@ export default {
             localStorage.removeItem('auth0IdToken')
             localStorage.removeItem('profile')
             this.$store.dispatch('handleLogout')
+            this.$router.push('/')
         }
     },
 
