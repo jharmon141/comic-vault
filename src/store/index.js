@@ -6,32 +6,26 @@ Vue.use(Vuex)
 const store = new Vuex.Store({
 
     state: {
-
-        authenticated:{
-            type: Boolean,
-            default: false
-        },
-
-        user: {
-            type: Object,
-        }
-
+        authenticated: false,
+        user: {}
     },
 
     mutations: {
 
-        login: ()=> {
+        login: (state)=> {
             state.authenticated = true
         },
 
-        logout: ()=> {
+        logout: (state)=> {
             state.authenticated = false
+            state.user = {}
         },
 
-        setUser: (params)=> {
+        setUser: (state, params)=> {
             state.user = {
                 id: params.id,
-                name: params.name,
+                firstName: params.firstName,
+                lastName: params.lastName,
                 email: params.email
             }
         }
@@ -40,17 +34,18 @@ const store = new Vuex.Store({
 
     actions: {
 
-        handleLogin: ()=> {
+        handleLogin: ({state, commit})=> {
             commit('login')
         },
 
-        handleLogout: ()=> {
+        handleLogout: ({state, commit})=> {
             commit('logout')
-        }
+        },
 
-    },
+        handleSetUser: ({state, commit}, params)=> {
+            commit('setUser', params)
+        },
 
-    getters: {
     }
 
 })

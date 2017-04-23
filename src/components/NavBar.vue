@@ -30,10 +30,7 @@ import LoginAuth0 from '../components/LoginAuth0.vue'
 export default {
 
     data: () => ({
-        menuActive: {
-            type: String,
-            default: '',
-        }
+        menuActive: '',
     }),
 
 
@@ -76,7 +73,7 @@ export default {
     color: #00A7E1;
 }
 .nav-item a:hover, a.nav-item:hover{
-    color: #00A7E1;
+    color: #61caef;
 }
 
 .container{

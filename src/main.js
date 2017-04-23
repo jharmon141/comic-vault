@@ -4,11 +4,10 @@ import router from './router'
 import store from './store'
 import ApolloClient, { createNetworkInterface } from 'apollo-client'
 import VueApollo from 'vue-apollo'
-import VuePatternfly from 'vue-patternfly'
 
 // connect to GraphQL project
 const networkInterface = createNetworkInterface({
-  uri: 'https://api.graph.cool/simple/v1/cj19gfbrwlzmw018968p2w6fc',
+  uri: 'https://api.graph.cool/simple/v1/cj1soroyb3hyf019346x05jju',
 })
 
 
@@ -37,7 +36,6 @@ Vue.use(VueApollo, {
   apolloClient,
 })
 
-Vue.use(VuePatternfly)
 
 // Start the app
 new Vue({

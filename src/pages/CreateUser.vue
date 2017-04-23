@@ -1,12 +1,23 @@
 <template>
 
     <div class="createUser">
-        <input v-model="email" placeholder="E-mail Address">
-        <input v-model="name" placeholder="Name">
-        <input v-model="emailSubscription" type="checkbox">
+        <h1>Create a Profile:</h1>
+        <form>
+        <input v-model="firstName" placeholder="First Name" required>
+        <br>
+        <input v-model="lastName" placeholder="Last Name" required>
+        <br>
+        <input v-model="email" placeholder="E-mail Address" required>
+        <br>
         <span>Subscribe to email notifications?</span>
+        <br>
 
-        <button @click="create()">Sign Up</button>
+        <ul class="checkBox">
+            <li>Yes<input type="radio" id="Yes" value=true v-model="emailSubscription"></li>
+            <li>No<input type="radio" id="No" value=false v-model="emailSubscription"></li>
+        </ul>
+        <span type="submit" class="button" @click="create()">Sign Up</span>
+        </form>
 
     </div>
 
@@ -16,8 +27,8 @@
 import gql from 'graphql-tag'
 
 const createUser = gql`
-  mutation ($idToken: String!, $name: String!, $emailAddress: String!, $emailSubscription: Boolean!){
-    createUser(authProvider: {auth0: {idToken: $idToken}}, name: $name, emailAddress: $emailAddress, emailSubscription: $emailSubscription) {
+  mutation ($idToken: String!, $firstName: String!, $lastName: String!, $emailAddress: String!, $emailSubscription: Boolean!){
+    createUser(authProvider: {auth0: {idToken: $idToken}}, firstName: $firstName, lastName: $lastName, emailAddress: $emailAddress, emailSubscription: $emailSubscription) {
       id
     }
   }
@@ -26,11 +37,24 @@ const createUser = gql`
 export default {
 
     data: () => ({
-        email: '',
-        name: '',
-        emailSubscription: false,
+        emailSubscription: true,
         user: {}
     }),
+
+    computed: {
+        email() {
+            let obj = JSON.parse(window.localStorage.profile)
+            return obj.email
+        },
+        firstName() {
+            let obj = JSON.parse(window.localStorage.profile)
+            return obj.given_name
+        },
+        lastName() {
+            let obj = JSON.parse(window.localStorage.profile)
+            return obj.family_name
+        }
+    },
 
 
     methods: {
@@ -39,7 +63,8 @@ export default {
 
             let idToken = window.localStorage.getItem('auth0IdToken')
             let emailAddress = this.email
-            let name = this.name
+            let firstName = this.firstName
+            let lastName = this.lastName
             let emailSubscription = this.emailSubscription
 
             // Mutation
@@ -48,13 +73,14 @@ export default {
                 variables: {
                     idToken,
                     emailAddress,
-                    name,
+                    firstName,
+                    lastName,
                     emailSubscription,
                 },
             }).then((data) => {
                 // Result
                 location.reload()
-                this.$router.push({ name: 'Home' });
+                this.$router.push({ name: 'Collections' });
             }).catch((error) => {
                 // Error
                 console.error(error)
@@ -66,12 +92,45 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 
 .createUser {
-    text-align: center;
     display: flex;
     justify-content: flex-start;
     flex-direction: column;
+    width: 67%;
+    margin-left: 43%;
 }
+
+input {
+    margin-bottom: 25px;
+}
+
+h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+li {
+    float: left;
+    margin-right: 10px;
+}
+
+ul {
+    overflow: hidden;
+}
+.button:hover, .button.is-hovered {
+    background-color: #fe0000;
+    color: whitesmoke;
+}
+
+.button {
+    width: 100%;
+}
+
+input {
+    width: 100%;
+}
+
 </style>
+<style src="bulma/css/bulma.css"></style>

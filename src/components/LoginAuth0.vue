@@ -1,7 +1,7 @@
 <template>
     <div class="login">
 
-        <div v-if="authenticated" class="loginButton">
+        <div v-if="!authenticated" class="loginButton">
             <span @click="showLogin()" class="loginText">Sign In</span>
         </div>
 
@@ -38,14 +38,13 @@ export default {
         showLogin() {
             this.lock.show()
         },
+
         logout(){
             // To log out, we just need to remove the token and profile
             // from local storage
             localStorage.removeItem('auth0IdToken')
             localStorage.removeItem('profile')
-            this.authenticated = false
-            this.user = {}
-
+            this.$store.dispatch('handleLogout')
         }
     },
 
