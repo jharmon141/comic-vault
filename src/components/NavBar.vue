@@ -13,9 +13,7 @@
                     <span></span>
                 </span>
                 <div class="nav-right nav-menu" :class="menuActive">
-                    <a class="nav-item is-tab">
-                        Profile
-                    </a>
+                    <a class="nav-item is-tab" v-if="authenticated">{{firstName}}</a>
                     <a class="nav-item is-tab">
                         <login></login>
                     </a>
@@ -27,12 +25,22 @@
 
 <script>
 import LoginAuth0 from '../components/LoginAuth0.vue'
+import store from '../store/index.js'
+
 export default {
 
     data: () => ({
         menuActive: '',
     }),
 
+    computed: {
+        firstName(){
+            return this.$store.state.user.firstName
+        },
+        authenticated(){
+            return this.$store.state.authenticated
+        }
+    },
 
     components: {
         'login': LoginAuth0,

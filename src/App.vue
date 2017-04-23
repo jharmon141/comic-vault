@@ -2,7 +2,7 @@
     <div id="app">
         <NavBar></NavBar>
         <div class="columns">
-            <div v-if="authenticated" class="column is-one-quarter">
+            <div transition="fadeInRight" v-if="authenticated" class="column is-one-quarter animate fadeRight">
                 <SideNav></SideNav>
             </div>
             <div class="column is-two-thirds">
@@ -98,3 +98,4 @@ input {
 }
 </style>
 <style src="bulma/css/bulma.css"></style>
+<style src="vue-animate/dist/vue-animate.min.css"></style>
