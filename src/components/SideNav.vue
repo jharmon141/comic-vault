@@ -12,7 +12,7 @@
             My Archives
             </p>
             <ul class="menu-list">
-                <li><a>All</a></li>
+                <li><router-link to="/collections"><a>All</a></router-link></li>
                 <li>
                     <a>My Collections</a>
                     <ul>
@@ -23,7 +23,7 @@
                 </li>
             </ul>
             <ul class="menu-list">
-                <li><a>Add Collection</a></li>
+                <li><router-link to="/addcollection"><a>Add Collection</a></router-link></li>
             </ul>
         </aside>
     </div>
@@ -42,7 +42,7 @@ aside {
 }
 
 .menu-list a:hover{
-    color: #00A7E1;
+    color: #fe0000;
 }
 
 .menu-list {

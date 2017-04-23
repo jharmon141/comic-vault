@@ -7,6 +7,7 @@ import Collections from '@/pages/Collections'
 import Search from '@/pages/Search'
 import Profile from '@/pages/Profile'
 import Manual from '@/pages/Manual'
+import AddCollection from '@/pages/AddCollection'
 
 Vue.use(Router)
 
@@ -46,6 +47,11 @@ export default new Router({
       path: '/manual',
       name: 'Manual',
       component: Manual,
+    },
+    {
+      path: '/addcollection',
+      name: 'AddCollection',
+      component: AddCollection,
     }
   ]
 })

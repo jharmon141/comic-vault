@@ -3,20 +3,20 @@
     <div class="profile">
         <h1>Update Your Profile:</h1>
         <form>
-        <input v-model="firstName" placeholder="First Name" required>
-        <br>
-        <input v-model="lastName" placeholder="Last Name" required>
-        <br>
-        <input v-model="email" placeholder="E-mail Address" required>
-        <br>
-        <span>Subscribe to email notifications?</span>
-        <br>
+            <input :value="firstName" placeholder="First Name" required>
+            <br>
+            <input :value="lastName" placeholder="Last Name" required>
+            <br>
+            <input :value="email" placeholder="E-mail Address" required>
+            <br>
+            <span>Subscribe to email notifications?</span>
+            <br>
 
-        <ul class="checkBox">
-            <li>Yes<input type="radio" id="Yes" :value=true v-model="emailSubscription"></li>
-            <li>No<input type="radio" id="No" :value=false v-model="emailSubscription"></li>
-        </ul>
-        <span type="submit" class="button" @click="update()">Update</span>
+            <ul class="checkBox">
+                <li>Yes<input type="radio" id="Yes" :value=true v-model="emailSubscription"></li>
+                <li>No<input type="radio" id="No" :value=false v-model="emailSubscription"></li>
+            </ul>
+            <span type="submit" class="button is-outlined is-danger" @click="update()">Update</span>
         </form>
 
     </div>
@@ -54,6 +54,13 @@ export default {
         id(){
             return this.$store.state.user.id
         }
+    },
+
+    created(){
+        this.email = this.$store.state.user.email
+        this.firstName = this.$store.state.user.firstName
+        this.lastName = this.$store.state.user.lastName
+        this.id = this.$store.state.user.id
     },
 
 
@@ -124,6 +131,15 @@ ul {
 .button:hover, .button.is-hovered {
     background-color: #fe0000;
     color: whitesmoke;
+}
+
+.button.is-danger.is-outlined:hover, .button.is-danger.is-outlined:focus{
+    background-color: #fe0000;
+}
+
+.button.is-danger.is-outlined{
+    border-color: #fe0000;
+    color: #fe0000;
 }
 
 .button {

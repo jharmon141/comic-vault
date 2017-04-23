@@ -16,7 +16,7 @@
             <li>Yes<input type="radio" id="Yes" :value=true v-model="emailSubscription"></li>
             <li>No<input type="radio" id="No" :value=false v-model="emailSubscription"></li>
         </ul>
-        <span type="submit" class="button" @click="create()">Sign Up</span>
+        <span type="submit" class="button is-outlined is-danger" @click="create()">Sign Up</span>
         </form>
 
     </div>
@@ -126,6 +126,14 @@ ul {
     color: whitesmoke;
 }
 
+.button.is-danger.is-outlined:hover, .button.is-danger.is-outlined:focus{
+    background-color: #fe0000;
+}
+
+.button.is-danger.is-outlined{
+    border-color: #fe0000;
+    color: #fe0000;
+}
 .button {
     width: 100%;
     height: 60px;

@@ -3,9 +3,14 @@
         <nav class="nav has-shadow">
             <div class="container">
                 <div class="nav-left">
-                    <a class="nav-item">
+                    <router-link to="/">
+                    <img src="../assets/comicvault_icon.png">
+                    </router-link>
+                    <router-link to="/">
+                    <a class="nav-item is-tab">
                         Comic Vault
                     </a>
+                    </router-link>
                 </div>
                 <span @click="toggleMenu" class="nav-toggle">
                     <span></span>
@@ -62,23 +67,31 @@ export default {
 
 <style scoped>
 
+img {
+    height: 60px;
+}
+
 .nav {
-    background-color: #fe0000;
+    background-color: #c3c3c3;
     font-weight: 500;
     margin-bottom: 75px;
-    height: 50px;
+    height: 60px;
 }
 
 .nav-item {
     color: #f9f4f4;
     font-size: 18px;
+    padding-top: 10px;
+}
+
+.is-tab {
+    height: 100%;
 }
 
 .nav-item a.is-tab:hover, a.nav-item.is-tab:hover{
-    border-bottom-color: whitesmoke;
+    border-bottom-color: lightgrey;
     border-width: 3px;
-    background-color: whitesmoke;
-    color: #00A7E1;
+    color: #fe0000;
 }
 .nav-item a:hover, a.nav-item:hover{
     color: #61caef;
@@ -91,13 +104,13 @@ export default {
 
 @media screen and (max-width: 768px){
     .nav-menu {
-        background-color: slategrey;
+        background-color: lightgrey;
     }
 }
 
 .nav-toggle {
-    height: 50px;
-    width: 50px;
+    height: 60px;
+    width: 60px;
 }
 </style>
 
