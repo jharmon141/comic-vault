@@ -26,7 +26,8 @@ const store = new Vuex.Store({
                 id: params.id,
                 firstName: params.firstName,
                 lastName: params.lastName,
-                email: params.email
+                email: params.email,
+                emailSubscription: params.emailSubscription
             }
         }
 

@@ -5,6 +5,8 @@ import LandingPage from '@/pages/LandingPage'
 import Signin from '@/pages/Signin'
 import Collections from '@/pages/Collections'
 import Search from '@/pages/Search'
+import Profile from '@/pages/Profile'
+import Manual from '@/pages/Manual'
 
 Vue.use(Router)
 
@@ -34,6 +36,16 @@ export default new Router({
       path: '/search',
       name: 'Search',
       component: Search,
+    },
+    {
+      path: '/profile',
+      name: 'Profile',
+      component: Profile,
+    },
+    {
+      path: '/manual',
+      name: 'Manual',
+      component: Manual,
     }
   ]
 })

@@ -12,6 +12,7 @@ const userQuery = gql`
       firstName
       lastName
       emailAddress
+      emailSubscription
     }
   }
 `

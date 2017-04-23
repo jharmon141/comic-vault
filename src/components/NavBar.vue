@@ -13,7 +13,7 @@
                     <span></span>
                 </span>
                 <div class="nav-right nav-menu" :class="menuActive">
-                    <a class="nav-item is-tab" v-if="authenticated">{{firstName}}</a>
+                    <router-link to="/profile"><a class="nav-item is-tab" v-if="authenticated">{{firstName}}</a></router-link>
                     <a class="nav-item is-tab">
                         <login></login>
                     </a>

@@ -25,6 +25,7 @@ const userQuery = gql`
       firstName
       lastName
       emailAddress
+      emailSubscription
     }
   }
 `
@@ -61,6 +62,7 @@ export default {
             params.firstName = response.data.user.firstName
             params.lastName = response.data.user.lastName
             params.email = response.data.user.emailAddress
+            params.emailSubscription = response.data.user.emailSubscription
             if (response.data.user.id) {
                 this.$store.dispatch('handleLogin')
                 this.$store.dispatch('handleSetUser',params) 

@@ -5,8 +5,8 @@
             Add Comics
             </p>
             <ul class="menu-list">
-                <li><a>Search</a></li>
-                <li><a>Add Manual</a></li>
+                <li><router-link to="/search"><a>Search</a></router-link></li>
+                <li><router-link to="/manual"><a>Add Manual</a></router-link></li>
             </ul>
             <p class="menu-label">
             My Archives
