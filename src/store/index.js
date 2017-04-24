@@ -7,7 +7,8 @@ const store = new Vuex.Store({
 
     state: {
         authenticated: false,
-        user: {}
+        user: {},
+        collections: []
     },
 
     mutations: {
@@ -29,6 +30,7 @@ const store = new Vuex.Store({
                 email: params.email,
                 emailSubscription: params.emailSubscription
             }
+            state.collections = params.collections
         }
 
     },

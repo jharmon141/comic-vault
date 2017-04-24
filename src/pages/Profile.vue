@@ -3,11 +3,11 @@
     <div class="profile">
         <h1>Update Your Profile:</h1>
         <form>
-            <input :value="firstName" placeholder="First Name" required>
+            <input v-model="firstName" placeholder="First Name" required>
             <br>
-            <input :value="lastName" placeholder="Last Name" required>
+            <input v-model="lastName" placeholder="Last Name" required>
             <br>
-            <input :value="email" placeholder="E-mail Address" required>
+            <input v-model="email" placeholder="E-mail Address" required>
             <br>
             <span>Subscribe to email notifications?</span>
             <br>
@@ -38,29 +38,19 @@ const updateUser = gql`
 export default {
 
     data: () => ({
-        emailSubscription: true,
+        emailSubscription: '',
+        email: '',
+        firstName: '',
+        lastName: '',
+        id: '',
     }),
 
-    computed: {
-        email() {
-            return this.$store.state.user.email
-        },
-        firstName() {
-            return this.$store.state.user.firstName
-        },
-        lastName() {
-            return this.$store.state.user.lastName
-        },
-        id(){
-            return this.$store.state.user.id
-        }
-    },
-
-    created(){
+    mounted(){
         this.email = this.$store.state.user.email
         this.firstName = this.$store.state.user.firstName
         this.lastName = this.$store.state.user.lastName
         this.id = this.$store.state.user.id
+        this.emailSubscription = this.$store.state.user.emailSubscription
     },
 
 

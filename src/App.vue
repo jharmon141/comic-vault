@@ -2,7 +2,7 @@
     <div id="app">
         <NavBar></NavBar>
         <div class="columns">
-            <div transition="fadeInRight" v-if="authenticated" class="column is-one-quarter animate fadeRight">
+            <div v-if="authenticated" class="column is-one-quarter">
                 <SideNav></SideNav>
             </div>
             <div class="column is-two-thirds">
@@ -26,6 +26,9 @@ const userQuery = gql`
       lastName
       emailAddress
       emailSubscription
+      collections {
+            name
+        }
     }
   }
 `
@@ -63,6 +66,7 @@ export default {
             params.lastName = response.data.user.lastName
             params.email = response.data.user.emailAddress
             params.emailSubscription = response.data.user.emailSubscription
+            params.collections = response.data.user.collections
             if (response.data.user.id) {
                 this.$store.dispatch('handleLogin')
                 this.$store.dispatch('handleSetUser',params) 

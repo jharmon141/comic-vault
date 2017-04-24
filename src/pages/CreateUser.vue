@@ -28,7 +28,7 @@ import gql from 'graphql-tag'
 
 const createUser = gql`
   mutation ($idToken: String!, $firstName: String!, $lastName: String!, $emailAddress: String!, $emailSubscription: Boolean!){
-    createUser(authProvider: {auth0: {idToken: $idToken}}, firstName: $firstName, lastName: $lastName, emailAddress: $emailAddress, emailSubscription: $emailSubscription) {
+createUser(authProvider: {auth0: {idToken: $idToken}}, firstName: $firstName, lastName: $lastName, emailAddress: $emailAddress, emailSubscription: $emailSubscription, collections: {name: "All"}) {
       id
     }
   }
@@ -38,24 +38,18 @@ export default {
 
     data: () => ({
         emailSubscription: true,
-        user: {}
+        user: {},
+        email: '',
+        firstName: '',
+        lastName: '',
     }),
 
-    computed: {
-        email() {
-            let obj = JSON.parse(window.localStorage.profile)
-            return obj.email
-        },
-        firstName() {
-            let obj = JSON.parse(window.localStorage.profile)
-            return obj.given_name
-        },
-        lastName() {
-            let obj = JSON.parse(window.localStorage.profile)
-            return obj.family_name
-        }
+    mounted() {
+        let obj = JSON.parse(window.localStorage.profile)
+        this.email = obj.email
+        this.firstName = obj.given_name
+        this.lastName = obj.family_name
     },
-
 
     methods: {
 

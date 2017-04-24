@@ -79,7 +79,7 @@ img {
 }
 
 .nav-item {
-    color: #f9f4f4;
+    color: white;
     font-size: 18px;
     padding-top: 10px;
 }
@@ -89,12 +89,9 @@ img {
 }
 
 .nav-item a.is-tab:hover, a.nav-item.is-tab:hover{
-    border-bottom-color: lightgrey;
+    border-bottom-color: #1E90FF;
     border-width: 3px;
     color: #fe0000;
-}
-.nav-item a:hover, a.nav-item:hover{
-    color: #61caef;
 }
 
 .container{
@@ -104,7 +101,7 @@ img {
 
 @media screen and (max-width: 768px){
     .nav-menu {
-        background-color: lightgrey;
+        background-color: slategrey;
     }
 }
 
