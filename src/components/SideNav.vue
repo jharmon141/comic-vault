@@ -9,12 +9,14 @@
                 <li><router-link to="/manual"><a>Add Manual</a></router-link></li>
             </ul>
             <p class="menu-label">
-            My Archives
+            Archive
             </p>
             <ul class="menu-list">
                 <li><router-link to="/collections"><a>All</a></router-link></li>
                 <li>
-                    <a>My Collections</a>
+                    <p class="menu-label">
+                    Collections
+                    </p>
                     <ul>
                         <li><a>Marvel</a></li>
                         <li><a>DC</a></li>
@@ -47,6 +49,10 @@ aside {
 
 .menu-list {
     margin-bottom: 40px;
+}
+
+.menu-label {
+    margin-top: 10px;
 }
 
 </style>

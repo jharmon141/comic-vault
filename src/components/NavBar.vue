@@ -1,7 +1,6 @@
 <template>
     <div>
         <nav class="nav has-shadow">
-            <div class="container">
                 <div class="nav-left">
                     <router-link to="/">
                     <img src="../assets/comicvault_icon.png">
@@ -23,7 +22,6 @@
                         <login></login>
                     </a>
                 </div>
-            </div>
         </nav>
     </div>
 </template>
@@ -74,7 +72,7 @@ img {
 .nav {
     background-color: #c3c3c3;
     font-weight: 500;
-    margin-bottom: 75px;
+    margin-bottom: 50px;
     height: 60px;
 }
 
@@ -97,6 +95,8 @@ img {
 .container{
     width: 100%;
     padding-left: 5px;
+    padding-right: 5px;
+    margin: 0;
 }
 
 @media screen and (max-width: 768px){

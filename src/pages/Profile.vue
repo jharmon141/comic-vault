@@ -64,7 +64,6 @@ export default {
             let lastName = this.lastName
             let emailSubscription = this.emailSubscription
 
-
             // Mutation
             this.$apollo.mutate({
                 mutation: updateUser,
@@ -76,11 +75,11 @@ export default {
                     emailSubscription,
                 },
             }).then((data) => {
-                // Result
+                window.localStorage.setItem("Snackbar", true)
+                window.localStorage.setItem("snackMessage", "Profile Updated")
                 location.reload()
                 this.$router.push({ name: 'Collections' });
             }).catch((error) => {
-                // Error
                 console.error(error)
             })
         },

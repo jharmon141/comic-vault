@@ -4,6 +4,9 @@ import router from './router'
 import store from './store'
 import ApolloClient, { createNetworkInterface } from 'apollo-client'
 import VueApollo from 'vue-apollo'
+import Vuetify from 'vuetify'
+
+Vue.use(Vuetify)
 
 // connect to GraphQL project
 const networkInterface = createNetworkInterface({
