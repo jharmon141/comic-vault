@@ -78,7 +78,7 @@ export default {
                 window.localStorage.setItem("Snackbar", true)
                 window.localStorage.setItem("snackMessage", "Profile Updated")
                 location.reload()
-                this.$router.push({ name: 'Collections' });
+                this.$router.push({ path: '/collections/all' })
             }).catch((error) => {
                 console.error(error)
             })
@@ -106,7 +106,7 @@ input {
 
 h1 {
     font-size: 24px;
-    margin-bottom: 10px;
+    margin-bottom: 50px;
 }
 
 li {

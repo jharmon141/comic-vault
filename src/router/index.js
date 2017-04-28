@@ -8,6 +8,7 @@ import Search from '@/pages/Search'
 import Profile from '@/pages/Profile'
 import Manual from '@/pages/Manual'
 import AddCollection from '@/pages/AddCollection'
+import EditCollection from '@/pages/EditCollection'
 
 Vue.use(Router)
 
@@ -29,8 +30,8 @@ export default new Router({
       component: Signin,
     },
     {
-      path: '/collections',
-      name: 'Collections',
+      path: '/collection/:id',
+      name: 'Collection',
       component: Collections,
     },
     {
@@ -49,9 +50,14 @@ export default new Router({
       component: Manual,
     },
     {
-      path: '/addcollection',
+      path: '/add_collection',
       name: 'AddCollection',
       component: AddCollection,
+    },
+    {
+      path: '/edit_collection',
+      name: 'EditCollection',
+      component: EditCollection,
     }
   ]
 })

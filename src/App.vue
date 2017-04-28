@@ -6,7 +6,7 @@
                 <SideNav></SideNav>
             </div>
             <div class="column is-two-thirds">
-                <router-view></router-view>
+                <router-view :key="$route.path"></router-view>
             </div>
         </div>
         <v-snackbar 
@@ -34,9 +34,10 @@ const userQuery = gql`
       lastName
       emailAddress
       emailSubscription
-      collections {
+      collections(orderBy: name_ASC ) {
             name
             id
+            path
         }
     }
   }
@@ -87,6 +88,7 @@ export default {
                 params.email = response.data.user.emailAddress
                 params.emailSubscription = response.data.user.emailSubscription
                 params.collections = response.data.user.collections
+
                 let snack = window.localStorage.getItem("Snackbar")
                 this.snackMessage = window.localStorage.getItem("snackMessage")
                 if (response.data.user.id) {
@@ -94,7 +96,7 @@ export default {
                     this.$store.dispatch('handleLogin')
                 }
                 if (snack){
-                    this.toggleSnackbar()
+                    this.toggleSnackbar(this.snackMessage)
                     window.localStorage.removeItem("Snackbar")
                     window.localStorage.removeItem("snackMessage")
                 }
@@ -138,4 +140,3 @@ input {
 }
 </style>
 <style src="bulma/css/bulma.css"></style>
-<style src="vue-animate/dist/vue-animate.min.css"></style>

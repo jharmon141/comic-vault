@@ -74,7 +74,7 @@ export default {
             }).then((data) => {
                 // Result
                 location.reload()
-                this.$router.push({ name: 'Collections' });
+                this.$router.push({ name: 'LandingPage' });
             }).catch((error) => {
                 // Error
                 console.error(error)
@@ -104,7 +104,7 @@ input {
 
 h1 {
     font-size: 24px;
-    margin-bottom: 10px;
+    margin-bottom: 50px;
 }
 
 li {
@@ -130,7 +130,7 @@ ul {
 }
 .button {
     width: 100%;
-    height: 60px;
+    height: 50px;
     font-size: 20px;
 }
 

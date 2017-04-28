@@ -2,10 +2,10 @@
     <div>
         <nav class="nav has-shadow">
                 <div class="nav-left">
-                    <router-link to="/">
+                    <router-link to="/collection/all">
                     <img src="../assets/comicvault_icon.png">
                     </router-link>
-                    <router-link to="/">
+                    <router-link to="/collection/all">
                     <a class="nav-item is-tab">
                         Comic Vault
                     </a>
@@ -17,7 +17,7 @@
                     <span></span>
                 </span>
                 <div class="nav-right nav-menu" :class="menuActive">
-                    <router-link to="/profile"><a class="nav-item is-tab" v-if="authenticated">{{firstName}}</a></router-link>
+                    <router-link :key="$route.path" to="/profile"><a class="nav-item is-tab" v-if="authenticated">{{firstName}}</a></router-link>
                     <a class="nav-item is-tab">
                         <login></login>
                     </a>
