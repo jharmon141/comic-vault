@@ -16,7 +16,7 @@
 
 <script>
 import gql from 'graphql-tag'
-import store from '../store/index.js'
+import store from '@/store/index.js'
 
 const updateCollection = gql`
     mutation($id: ID!, $name: String!){
@@ -165,7 +165,7 @@ ul {
 }
 
 .button {
-    width: 10%;
+    width: 12.5%;
     height: 50px;
     font-size: 20px;
     margin-bottom: 25px;

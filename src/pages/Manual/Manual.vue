@@ -31,7 +31,7 @@
 
 <script>
 import gql from 'graphql-tag'
-import store from '../store/index.js'
+import store from '@/store/index.js'
 
 
 const createComic = gql`
@@ -141,6 +141,7 @@ textarea {
 h1 {
     font-size: 24px;
     margin-bottom: 50px;
+    margin-top: 10px;
 }
 
 li {
@@ -169,6 +170,8 @@ ul {
     width: 100%;
     height: 50px;
     font-size: 20px;
+    margin-top: 25px;
+    margin-bottom: 50px;
 }
 
 input {

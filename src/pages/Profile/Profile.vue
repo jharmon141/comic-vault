@@ -25,7 +25,7 @@
 
 <script>
 import gql from 'graphql-tag'
-import store from '../store/index.js'
+import store from '@/store/index.js'
 
 const updateUser = gql`
   mutation ($id: ID!, $firstName: String!, $lastName: String!, $emailAddress: String!, $emailSubscription: Boolean!){
@@ -107,6 +107,7 @@ input {
 h1 {
     font-size: 24px;
     margin-bottom: 50px;
+    margin-top: 10px;
 }
 
 li {
@@ -133,7 +134,7 @@ ul {
 
 .button {
     width: 100%;
-    height: 60px;
+    height: 50px;
     font-size: 20px;
 }
 

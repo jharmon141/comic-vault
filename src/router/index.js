@@ -1,14 +1,13 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import CreateUser from '@/pages/CreateUser'
-import LandingPage from '@/pages/LandingPage'
-import Signin from '@/pages/Signin'
-import Collections from '@/pages/Collections'
-import Search from '@/pages/Search'
-import Profile from '@/pages/Profile'
-import Manual from '@/pages/Manual'
-import AddCollection from '@/pages/AddCollection'
-import EditCollection from '@/pages/EditCollection'
+import CreateUser from '@/pages/CreateUser/CreateUser'
+import LandingPage from '@/pages/LandingPage/LandingPage'
+import Signin from '@/pages/Signin/Signin'
+import Collections from '@/pages/Collections/Collections'
+import Search from '@/pages/Search/Search'
+import Profile from '@/pages/Profile/Profile'
+import Manual from '@/pages/Manual/Manual'
+import ManageCollection from '@/pages/ManageCollections/ManageCollections'
 
 Vue.use(Router)
 
@@ -50,14 +49,9 @@ export default new Router({
       component: Manual,
     },
     {
-      path: '/add_collection',
-      name: 'AddCollection',
-      component: AddCollection,
-    },
-    {
-      path: '/edit_collection',
-      name: 'EditCollection',
-      component: EditCollection,
+      path: '/collections',
+      name: 'ManageCollection',
+      component: ManageCollection,
     }
   ]
 })

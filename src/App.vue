@@ -1,7 +1,7 @@
 <template>
-    <div id="app">
+    <div id="app" style="height:100%">
         <NavBar></NavBar>
-        <div class="columns">
+        <div style="min-height:100%" class="columns">
             <div v-if="authenticated" class="column is-one-quarter">
                 <SideNav></SideNav>
             </div>
@@ -9,6 +9,11 @@
                 <router-view :key="$route.path"></router-view>
             </div>
         </div>
+        <footer class="footer">
+                    <a  href="https://github.com/jharmon141/comic-vault">
+                        <img src="./assets/github_icon.png">
+                    </a> 
+        </footer>
         <v-snackbar 
                  :timeout="timeout"
                  :bottom="bottom"
@@ -118,10 +123,11 @@ export default {
     text-align: center;
     display: flex;
     justify-content: center;
-
     padding: 12px;
     margin: auto;
+    height: 100%;
 }
+
 
 .column {
     margin: 10px;
@@ -138,5 +144,22 @@ input {
     border: solid 1px #bbb;
     border-radius: 2px;
 }
+
+.footer {
+    height: 75px;
+    background-color: whitesmoke;
+    color: black;
+    text-align: center;
+}
+
+.footer p {
+    background-color: whitesmoke;
+}
+
+.footer img {
+    width: 30px;
+}
+
+
 </style>
 <style src="bulma/css/bulma.css"></style>

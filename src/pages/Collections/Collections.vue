@@ -6,10 +6,10 @@
 </template>
 
 <script>
-import store from '../store/index.js'
+import store from '@/store/index.js'
 import gql from 'graphql-tag'
-import Thumbs from '@/components/Thumbs'
-import List from '@/components/Thumbs'
+import Thumbs from './components/Thumbs'
+import List from './components/List'
 
 const collectionQuery = gql`
 query($id: ID) {

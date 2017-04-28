@@ -28,7 +28,7 @@
 
 <script>
 import LoginAuth0 from '../components/LoginAuth0.vue'
-import store from '../store/index.js'
+import store from '@/store/index.js'
 
 export default {
 
@@ -70,7 +70,7 @@ img {
 }
 
 .nav {
-    background-color: #c3c3c3;
+    background-color: #D9D9D9;
     font-weight: 500;
     margin-bottom: 50px;
     height: 60px;
