@@ -2,15 +2,15 @@
     <div id="app" style="height:100%">
         <NavBar></NavBar>
         <div style="min-height:100%" class="columns">
-            <div v-if="authenticated" class="column is-one-quarter">
+            <div v-if="authenticated" class="column is-2">
                 <SideNav></SideNav>
             </div>
-            <div class="column is-two-thirds">
+            <div class="column is-10">
                 <router-view :key="$route.path"></router-view>
             </div>
         </div>
         <footer class="footer">
-                    <a  href="https://github.com/jharmon141/comic-vault">
+                    <a target="blank" href="https://github.com/jharmon141/comic-vault">
                         <img src="./assets/github_icon.png">
                     </a> 
         </footer>
@@ -133,6 +133,10 @@ export default {
     margin: 10px;
 }
 
+.is-2 {
+    margin-right: 50px;
+}
+
 input:focus {
     box-shadow: none;
     outline: none;
@@ -159,7 +163,6 @@ input {
 .footer img {
     width: 30px;
 }
-
 
 </style>
 <style src="bulma/css/bulma.css"></style>
