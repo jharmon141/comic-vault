@@ -62,10 +62,20 @@
 
 <style lang="css">
 .box:hover {
-  border: 1px solid #fe0000;
+  border: 1px solid dodgerblue;
 }
 .image{
   width: 6em;
   height: auto;
+}
+.button.is-primary.is-outlined {
+    color: #fe0000 !important;
+    border-color: #fe0000 !important;
+}
+
+.button.is-primary.is-outlined:hover {
+    color: white !important;
+    background-color: #fe0000 !important;
+    border-color: #fe0000 !important;
 }
 </style>

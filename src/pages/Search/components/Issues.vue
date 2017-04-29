@@ -81,5 +81,6 @@
 .button.is-primary.is-outlined:hover {
     color: white;
     background-color: #fe0000;
+    border-color: #fe0000;
 }
 </style>

@@ -13,10 +13,11 @@
 
 </script>
 
-<style>
+<style scoped>
 
 img {
     max-height: 500px;
+    margin-left: 30px;
 }
 
 </style>
