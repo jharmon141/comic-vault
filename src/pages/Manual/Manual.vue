@@ -62,7 +62,7 @@ export default {
             this.title = this.$store.state.newComic.name
             this.series = this.$store.state.newComic.volume.name
             this.issueNumber = this.$store.state.newComic.issue_number
-            this.artUrl = this.$store.state.newComic.image.medium_url
+            this.artUrl = this.$store.state.newComic.image.small_url
             this.description = this.$store.state.newComic.description
             this.pubYear = this.$store.state.newComic.cover_date
         }
