@@ -1,7 +1,7 @@
 <template>
 
-    <div class="manual">
-        <h1>Add New Comic:</h1>
+    <div class="editComic">
+        <h1>Edit Comic:</h1>
         <form>
             <input v-model="title" placeholder="Title" required>
             <br>
@@ -21,7 +21,7 @@
             <br>
             <input v-model="artist" placeholder="Art By" required>
             <br>
-            <span type="submit" class="button is-outlined is-danger" @click="submit()">Submit</span>
+            <span type="submit" class="button is-outlined is-danger" @click="updateComic()">Submit</span>
         </form>
 
 
@@ -31,17 +31,35 @@
 
 <script>
 import gql from 'graphql-tag'
-import store from '@/store/index.js'
+    
+const comicQuery = gql`
+  query ($id: ID!) {
+    Comic(id: $id) {
+        title,
+        series,
+        issueNumber,
+        artUrl,
+        description,
+        pubYear,
+        publisher,
+        writer,
+        artist,
 
-
-const createComic = gql`
-    mutation($collectionsIds: [ID!], $title: String, $series: String, $issueNumber: String, $artUrl: String, $description: String, $pubYear: String, $publisher: String, $writer: String, $artist: String){
-createComic(title: $title, series: $series, issueNumber: $issueNumber, artUrl: $artUrl, description: $description, pubYear: $pubYear, publisher: $publisher, writer: $writer, artist: $artist, collectionsIds: $collectionsIds){
+      collections(orderBy: name_ASC ) {
+            name
             id
         }
     }
+  }
 `
 
+const updateComic = gql`
+  mutation ($id: ID!, $title: String!, $series: String!, $issueNumber: String!, $artUrl: String!, $description: String!, $pubYear: String!, $publisher: String!, $writer: String!, $artist: String!){
+    updateComic(id: $id, title: $title, series: $series, issueNumber: $issueNumber, artUrl: $artUrl, description: $description, pubYear: $pubYear, publisher: $publisher, writer: $writer, artist: $artist) {
+     id
+    }
+  }
+`
 export default {
 
     data: () => ({
@@ -56,66 +74,88 @@ export default {
         artist: '',
     }),
 
-    computed: {
-        collectionsIds() {
-            let collections = this.$store.state.collections
-            let collectionsArr = []
-            let allCollection = collections.find(collection => {
-                return collection.name === "All"
-            })
-            collectionsArr.push(allCollection.id)
-            return collectionsArr
-        }
+    props: {
+        comic: '',
     },
 
     methods: {
 
-        submit() {
+        comicQuery(){
 
-            let title = this.title 
-            let series = this.series
-            let issueNumber = this.issueNumber
+            let id = this.comic
+
+            this.$apollo.query({
+                query: comicQuery,
+                variables: {
+                    id
+                }
+            }).then((response) => {
+                console.log(response)
+                this.title = response.data.Comic.title
+                this.artUrl = response.data.Comic.artUrl
+                this.artist = response.data.Comic.artist
+                this.description = response.data.Comic.description
+                this.issueNumber = response.data.Comic.issueNumber
+                this.pubYear = response.data.Comic.pubYear
+                this.publisher = response.data.Comic.publisher
+                this.series = response.data.Comic.series
+                this.writer = response.data.Comic.writer
+            })
+
+        },
+
+        updateComic(){
+
+            let id = this.comic 
+            let title = this.title
             let artUrl = this.artUrl
+            let artist = this.artist 
             let description = this.description
-            let pubYear = this.pubYear
-            let publisher = this.publisher
-            let writer = this.writer
-            let artist = this.artist
-            let collectionsIds = this.collectionsIds
-            let name = "All"
-
+            let issueNumber = this.issueNumber 
+            let pubYear = this.pubYear 
+            let publisher = this.publisher 
+            let series = this.series 
+            let writer = this.writer 
 
             // Mutation
             this.$apollo.mutate({
-                mutation: createComic,
+                mutation: updateComic,
                 variables: {
+                    id,
                     title,
-                    series,
-                    issueNumber,
                     artUrl,
+                    artist,
                     description,
+                    issueNumber,
                     pubYear,
                     publisher,
-                    writer,
-                    artist,
-                    collectionsIds
+                    series,
+                    writer
                 },
             }).then((data) => {
-                this.$parent.toggleSnackbar("Comic Added!")
-                this.$router.push({ path: '/' });
+                window.localStorage.setItem("Snackbar", true)
+                window.localStorage.setItem("snackMessage", "Comic Updated")
+                location.reload()
+                this.$router.push({ path: '/' })
             }).catch((error) => {
                 console.error(error)
             })
         },
+
     },
 
+    mounted() {
+        this.comicQuery()
+        document.body.scrollTop = document.documentElement.scrollTop = 0;
+    }
 
 }
+
 </script>
 
 <style scoped>
 
-.manual {
+.editComic {
     display: flex;
     justify-content: flex-start;
     flex-direction: column;
@@ -180,4 +220,3 @@ input {
 
 </style>
 <style src="bulma/css/bulma.css"></style>
-

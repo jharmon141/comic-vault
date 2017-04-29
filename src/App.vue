@@ -2,7 +2,7 @@
     <div id="app" style="height:100%">
         <NavBar></NavBar>
         <div style="min-height:100%" class="columns">
-            <div v-if="authenticated" class="column is-2">
+            <div  class="column is-2">
                 <SideNav></SideNav>
             </div>
             <div class="column is-10">
@@ -128,13 +128,8 @@ export default {
     height: 100%;
 }
 
-
-.column {
-    margin: 10px;
-}
-
-.is-2 {
-    margin-right: 50px;
+.is-10 {
+    margin-left: 70px;
 }
 
 input:focus {
@@ -163,6 +158,7 @@ input {
 .footer img {
     width: 30px;
 }
+
 
 </style>
 <style src="bulma/css/bulma.css"></style>

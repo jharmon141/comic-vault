@@ -1,12 +1,16 @@
 <template>
     <div>
+        <div v-if="!auth">
+        </div>
+
+        <div v-else>
         <aside class="menu">
             <p class="menu-label">
             Add Comics
             </p>
             <ul class="menu-list">
                 <router-link to="/search" tag="li"><a>Search</a></router-link>
-                <router-link to="/manual" tag="li"><a>Add Manual</a></router-link>
+                <router-link to="/manual" tag="li"><a>Manual Add</a></router-link>
             </ul>
             <p class="menu-label">
             <router-link to="/collections">Collections</router-link>
@@ -22,6 +26,7 @@
                 </li>
             </ul>
         </aside>
+        </div>
     </div>
 </template>
 
@@ -40,12 +45,10 @@ export default {
                 return obj.name.toLowerCase() !== "all"
             })
         },
+        auth() {
+            return this.$store.state.authenticated
+        }
     },
-
-    mounted(){
-        console.log(this.$route.params)
-    }
-        
 }
 
 </script>
@@ -67,10 +70,6 @@ aside {
 
 .collections a {
     padding: 5px;
-}
-
-.menu-label {
-    margin-top: 10px;
 }
 
 .menu-label a {

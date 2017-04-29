@@ -15,22 +15,11 @@ import gql from 'graphql-tag'
 import store from '@/store/index.js'
 import UpdateCollection from './UpdateCollection'
 
-const updateCollection = gql`
-    mutation($collectionId: ID, $name: String!, $path: String!){
-        createCollection(name: $name, userId: $userId, path: $path){
-            id
-        }
-    }
-`
-
 export default {
 
     components: {
         'updateCollection': UpdateCollection,
     },
-
-    data: () => ({
-    }),
 
     computed: {
 
@@ -42,64 +31,6 @@ export default {
 
     },
 
-    methods: {
-
-        submitUpdateCollection() {
-
-            let name = this.name 
-            let collectionId = this.collectionId 
-            let path = getUrlParams(name) 
-
-            // Mutation
-            this.$apollo.mutate({
-                mutation: updateCollection,
-                variables: {
-                    name,
-                    userId,
-                    path
-                },
-            }).then((data) => {
-                window.localStorage.setItem("Snackbar", true)
-                window.localStorage.setItem("snackMessage", "Collection Updated")
-                location.reload()
-                this.$router.push({ path: '/collections/all' });
-            }).catch((error) => {
-                console.error(error)
-            })
-        },
-
-        submitDeleteCollection() {
-
-            let name = this.name 
-            let userId = this.userId
-
-            // Mutation
-            this.$apollo.mutate({
-                mutation: createCollection,
-                variables: {
-                    name,
-                    userId,
-                    path
-                },
-            }).then((data) => {
-                window.localStorage.setItem("Snackbar", true)
-                window.localStorage.setItem("snackMessage", "Collection Added")
-                location.reload()
-                this.$router.push({ path: '/collections/all' });
-            }).catch((error) => {
-                console.error(error)
-            })
-        },
-    },
-
-    methods: {
-        getUrlParams(name) {
-            let basePath = "/collection/"
-            let lowerName = name.toLowerCase()
-            let params =  lowerName.replace(/\s/g, '+')
-            return basePath + params
-        }
-    }
 
 }
 </script>

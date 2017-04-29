@@ -1,7 +1,10 @@
 <template>
 
-    <HomeAuth v-if="viewType === 'list'"></HomeAuth>
-    <HomeUnAuth v-else-if="viewType === 'thumbs'"></HomeUnAuth>
+    <div>
+
+        <img src="../../assets/comicvault.png">
+
+    </div>
 
 </template>
 
@@ -11,5 +14,9 @@
 </script>
 
 <style>
+
+img {
+    max-height: 500px;
+}
 
 </style>

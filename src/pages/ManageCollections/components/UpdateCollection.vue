@@ -19,8 +19,8 @@ import gql from 'graphql-tag'
 import store from '@/store/index.js'
 
 const updateCollection = gql`
-    mutation($id: ID!, $name: String!){
-        updateCollection(id: $id, name: $name){
+    mutation($id: ID!, $name: String! $path: String!){
+        updateCollection(id: $id, name: $name, path: $path){
             id
         }
     }
@@ -68,7 +68,7 @@ export default {
                 window.localStorage.setItem("Snackbar", true)
                 window.localStorage.setItem("snackMessage", "Collection Updated")
                 location.reload()
-                this.$router.push({ path: '/collections/all' });
+                this.$router.push({ path: '/' });
             }).catch((error) => {
                 console.error(error)
             })
@@ -88,7 +88,7 @@ export default {
                 window.localStorage.setItem("Snackbar", true)
                 window.localStorage.setItem("snackMessage", "Collection Deleted")
                 location.reload()
-                this.$router.push({ path: '/collections/all' });
+                this.$router.push({ path: '/' });
             }).catch((error) => {
                 console.error(error)
             })

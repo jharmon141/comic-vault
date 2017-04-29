@@ -1,0 +1,67 @@
+<template>
+  <div>
+    <!-- <modal v-if="showIssueModal" :response="response"></modal> -->
+    <!-- <a @click="toggleModal"> -->
+      <div class="box">
+        <article class="media">
+          <div class="media-left">
+            <figure class="image">
+              <img v-if="volume.image" :src="volume.image.small_url" alt="cover">
+            </figure>
+          </div>
+          <div class="media-content">
+            <div class="content">
+              <p>
+                <strong v-if="volume.name">{{volume.name}}</strong> <small>Published by</small> <small v-if="volume.publisher.name"><strong>{{volume.publisher.name}}</strong></small>
+                <br>
+                <div>
+                  <small v-if="volume.start_year">Released: <strong>{{volume.start_year}}</strong></small>
+                  <br>
+                  <small v-if="volume.count_of_issues">Issues: <strong>{{volume.count_of_issues}}</strong></small>
+                </div>
+              </p>
+            </div>
+            <nav class="level is-mobile">
+              <div class="level-left">
+                <a class="button is-small is-primary is-outlined">{{volume.name}}</a>
+              </div>
+            </nav>
+          </div>
+        </article>
+      </div>
+    <!-- </a> -->
+  </div>
+</template>
+
+<script>
+  // import Modal from './Modal.vue'
+  export default {
+    name: 'volumes',
+    props: {
+      volume: {}
+    }
+    // data: () => ({
+    //   showIssueModal: false
+    // }),
+    // methods: {
+    //   toggleModal() {
+    //     if (this.showIssueModal == false) {
+    //       this.showIssueModal = true
+    //     } else {
+    //       this.showIssueModal = false
+    //     }
+    //   }
+    // }
+  }
+</script>
+
+
+<style scoped>
+.box:hover {
+  border: 1px solid #fe0000;
+}
+.image{
+  width: 6em;
+  height: auto;
+}
+</style>

@@ -1,11 +1,11 @@
 <template>
     <div>
-        <nav class="nav has-shadow">
+        <nav id="nav" class="nav has-shadow">
                 <div class="nav-left">
-                    <router-link to="/collection/all">
+                    <router-link to="/">
                     <img src="../assets/comicvault_icon.png">
                     </router-link>
-                    <router-link to="/collection/all">
+                    <router-link to="/">
                     <a class="nav-item is-tab">
                         Comic Vault
                     </a>
@@ -72,7 +72,7 @@ img {
 .nav {
     background-color: #D9D9D9;
     font-weight: 500;
-    margin-bottom: 50px;
+    margin-bottom: 75px;
     height: 60px;
 }
 

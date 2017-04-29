@@ -8,10 +8,12 @@ import Search from '@/pages/Search/Search'
 import Profile from '@/pages/Profile/Profile'
 import Manual from '@/pages/Manual/Manual'
 import ManageCollection from '@/pages/ManageCollections/ManageCollections'
+import EditComic from '@/pages/EditComic/EditComic'
 
 Vue.use(Router)
 
-export default new Router({
+const router =   new Router({
+  mode: 'history',
   routes: [
     {
       path: '/',
@@ -34,6 +36,12 @@ export default new Router({
       component: Collections,
     },
     {
+      path: '/edit/:comic',
+      name: 'EditComic',
+      component: EditComic,
+      props: true,
+    },
+    {
       path: '/search',
       name: 'Search',
       component: Search,
@@ -53,5 +61,10 @@ export default new Router({
       name: 'ManageCollection',
       component: ManageCollection,
     }
-  ]
+  ],
+    scrollBehavior (to, from, savedPosition) {
+        return { x: 0, y: 0 }
+    }
 })
+
+export default router

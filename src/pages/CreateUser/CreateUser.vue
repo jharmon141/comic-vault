@@ -45,10 +45,12 @@ export default {
     }),
 
     mounted() {
-        let obj = JSON.parse(window.localStorage.profile)
-        this.email = obj.email
-        this.firstName = obj.given_name
-        this.lastName = obj.family_name
+        if (window.localStorage.profile){
+            let obj = JSON.parse(window.localStorage.profile)
+            this.email = obj.email
+            this.firstName = obj.given_name
+            this.lastName = obj.family_name
+        }
     },
 
     methods: {

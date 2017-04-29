@@ -13,9 +13,10 @@ const userQuery = gql`
       lastName
       emailAddress
       emailSubscription
-      collections {
+      collections(orderBy: name_ASC ) {
             name
             id
+            path
         }
     }
   }
