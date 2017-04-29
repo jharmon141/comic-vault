@@ -47,6 +47,7 @@ import axios from 'axios'
 import Tabs from './components/Tabs.vue'
 import Tab from './components/Tab.vue'
 import Results from './components/Results.vue'
+import store from '../../store/index.js'
 export default {
     name: 'search',
     components: {

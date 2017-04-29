@@ -56,6 +56,19 @@ export default {
         artist: '',
     }),
 
+    mounted() {
+
+        if (this.$store.state.newComic !== {}){
+            this.title = this.$store.state.newComic.name
+            this.series = this.$store.state.newComic.volume.name
+            this.issueNumber = this.$store.state.newComic.issue_number
+            this.artUrl = this.$store.state.newComic.image.medium_url
+            this.description = this.$store.state.newComic.description
+            this.pubYear = this.$store.state.newComic.cover_date
+        }
+
+    },
+
     computed: {
         collectionsIds() {
             let collections = this.$store.state.collections
@@ -101,7 +114,9 @@ export default {
                     collectionsIds
                 },
             }).then((data) => {
-                this.$parent.toggleSnackbar("Comic Added!")
+                window.localStorage.setItem("Snackbar", true)
+                window.localStorage.setItem("snackMessage", "Comice Added!")
+                location.reload()
                 this.$router.push({ path: '/' });
             }).catch((error) => {
                 console.error(error)

@@ -8,7 +8,8 @@ const store = new Vuex.Store({
     state: {
         authenticated: false,
         user: {},
-        collections: []
+        collections: [],
+        newComic: {}
     },
 
     mutations: {
@@ -31,6 +32,10 @@ const store = new Vuex.Store({
                 emailSubscription: params.emailSubscription
             }
             state.collections = params.collections
+        },
+
+        setNewComic: (state, params) => {
+            state.newComic = params
         }
 
     },
@@ -47,6 +52,10 @@ const store = new Vuex.Store({
 
         handleSetUser: ({state, commit}, params)=> {
             commit('setUser', params)
+        },
+
+        handleSetNewComic: ({state, commit}, params)=> {
+            commit('setNewComic', params)
         },
 
     }

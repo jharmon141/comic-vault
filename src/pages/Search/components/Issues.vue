@@ -27,8 +27,8 @@
             </div>
             <nav class="level is-mobile">
               <div class="level-left">
-                <a v-if="issue.name" class="button is-small is-primary is-outlined">{{issue.name}}</a>
-                <a v-else class="button is-small is-primary is-outlined">{{issue.volume.name}}</a>
+                <a @click="handleCreate()" v-if="issue.name" class="button is-small is-primary is-outlined">{{issue.name}}</a>
+                <a @click="handleCreate()" v-else class="button is-small is-primary is-outlined">{{issue.volume.name}}</a>
               </div>
             </nav>
           </div>
@@ -40,25 +40,37 @@
 
 
 <script>
-  // import Modal from './Modal.vue'
-  export default {
-    name: 'issues',
-    props: {
-      issue: {}
+import store from '../../../store/index.js'
+    // import Modal from './Modal.vue'
+    export default {
+        name: 'issues',
+        store,
+        props: {
+            issue: {}
+        },
+        // data: () => ({
+        //   showIssueModal: false
+        // }),
+        // methods: {
+        //   toggleModal() {
+        //     if (this.showIssueModal == false) {
+        //       this.showIssueModal = true
+        //     } else {
+        //       this.showIssueModal = false
+        //     }
+        //   }
+        // }
+
+        methods: {
+            handleCreate(){
+                let comic = this.issue
+                console.log(comic)
+                this.$store.dispatch('handleSetNewComic', comic)
+                this.$router.push('/manual')
+            }
+        },
+
     }
-    // data: () => ({
-    //   showIssueModal: false
-    // }),
-    // methods: {
-    //   toggleModal() {
-    //     if (this.showIssueModal == false) {
-    //       this.showIssueModal = true
-    //     } else {
-    //       this.showIssueModal = false
-    //     }
-    //   }
-    // }
-  }
 </script>
 
 
