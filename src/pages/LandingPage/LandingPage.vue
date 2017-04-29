@@ -19,7 +19,6 @@
 
 img {
     max-height: 500px;
-    margin-left: 6%;
 }
 
 </style>
