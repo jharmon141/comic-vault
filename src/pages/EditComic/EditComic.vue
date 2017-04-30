@@ -87,6 +87,10 @@ export default {
         comic: '',
     },
 
+    components: {
+        'loading': Loading,
+    },
+
     methods: {
 
         comicQuery(){
@@ -100,7 +104,6 @@ export default {
                     id
                 }
             }).then((response) => {
-                console.log(response)
                 this.title = response.data.Comic.title
                 this.artUrl = response.data.Comic.artUrl
                 this.artist = response.data.Comic.artist
@@ -167,7 +170,6 @@ export default {
 
     mounted() {
         this.comicQuery()
-        document.body.scrollTop = document.documentElement.scrollTop = 0;
     }
 
 }

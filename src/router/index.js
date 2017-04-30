@@ -52,7 +52,7 @@ const router =   new Router({
       component: Profile,
     },
     {
-      path: '/manual',
+      path: '/new',
       name: 'Manual',
       component: Manual,
     },

@@ -66,7 +66,7 @@ import store from '../../../store/index.js'
                 let comic = this.issue
                 console.log(comic)
                 this.$store.dispatch('handleSetNewComic', comic)
-                this.$router.push('/manual')
+                this.$router.push('/new')
             }
         },
 

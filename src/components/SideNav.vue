@@ -10,7 +10,7 @@
             </p>
             <ul class="menu-list">
                 <router-link to="/search" tag="li"><a>Search</a></router-link>
-                <router-link to="/manual" tag="li"><a>Manual Add</a></router-link>
+                <router-link to="/new" tag="li"><a>Manual Add</a></router-link>
             </ul>
             <p class="menu-label">
             <router-link to="/collections">Collections</router-link>

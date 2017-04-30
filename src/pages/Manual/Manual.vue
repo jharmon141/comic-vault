@@ -59,6 +59,7 @@ export default {
     mounted() {
 
         if (this.$store.state.newComic !== {}){
+            console.log(this.$store.state.newComic)
             this.title = this.$store.state.newComic.name
             this.series = this.$store.state.newComic.volume.name
             this.issueNumber = this.$store.state.newComic.issue_number
@@ -67,6 +68,10 @@ export default {
             this.pubYear = this.$store.state.newComic.cover_date
         }
 
+    },
+
+    beforeDestroy(){
+        this.$store.dispatch('handleSetNewComic', {})
     },
 
     computed: {

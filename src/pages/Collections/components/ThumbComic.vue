@@ -39,8 +39,7 @@
 <style scoped>
 
 img {
-    max-height: 250px;
-    max-width: 250px;
+    max-width: 75%;
 }
 
 .thumbView {

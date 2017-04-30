@@ -23,7 +23,14 @@ export default {
         lock: new Auth0Lock('bOxcfixTEt32BhOrP4Wk5lywFo4r9rV7', 'jharmon141.auth0.com', {
             auth: {
                 responseType: 'token',
-            }
+            },
+            theme: {
+                logo: "/static/img/comicvault_icon.17958c4.png",
+                primaryColor: '#fe0000',
+            },
+            languageDictionary: {
+                title: "Comic Vault"
+            },
         }),
     }),
 

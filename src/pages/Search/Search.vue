@@ -99,6 +99,7 @@ https://comicvine.gamespot.com/api/search/?api_key=276d60fcc927f730c4acdca149b54
 `
             var that = this.queryParams.field
             axios.get(queryURL).then((response) => {
+                console.log(response)
                 let filteredResponse = []
                 for (let i = 0; i < response.data.results.length; i++) {
                     if (that == 'issue,volume') {

@@ -123,7 +123,7 @@ export default {
 
     },
 
-    mounted() {
+    created() {
         this.queryUser()
     }
 }
