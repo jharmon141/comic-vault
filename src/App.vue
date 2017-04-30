@@ -1,27 +1,32 @@
 <template>
     <div id="app" style="height:100%">
-        <NavBar></NavBar>
-        <div style="min-height:100%" class="columns">
-            <div  class="column is-2">
-                <SideNav></SideNav>
+        <template v-if="loadingStatus">
+            <loading></loading>
+        </template>
+        <template v-else>
+            <NavBar></NavBar>
+            <div style="min-height:100%" class="columns">
+                <div  class="column is-2">
+                    <SideNav></SideNav>
+                </div>
+                <div class="column is-10">
+                    <router-view :key="$route.path"></router-view>
+                </div>
             </div>
-            <div class="column is-10">
-                <router-view :key="$route.path"></router-view>
-            </div>
-        </div>
-        <footer class="footer">
-                    <a target="blank" href="https://github.com/jharmon141/comic-vault">
-                        <img src="./assets/github_icon.png">
-                    </a> 
-        </footer>
-        <v-snackbar 
-                 :timeout="timeout"
-                 :bottom="bottom"
-                 v-model="snackbar"
-                 >
-                 {{snackMessage}} 
-                 <v-btn flat class="pink--text" @click.native="snackbar = false">OK</v-btn>
-        </v-snackbar>
+            <footer class="footer">
+                <a target="blank" href="https://github.com/jharmon141/comic-vault">
+                    <img src="./assets/github_icon.png">
+                </a> 
+            </footer>
+            <v-snackbar 
+                         :timeout="timeout"
+                         :bottom="bottom"
+                         v-model="snackbar"
+                         >
+                         {{snackMessage}} 
+                         <v-btn flat class="pink--text" @click.native="snackbar = false">OK</v-btn>
+            </v-snackbar>
+        </template>
     </div>
 </template>
 
@@ -29,6 +34,7 @@
 import store from './store/index.js'
 import SideNav from './components/SideNav.vue'
 import NavBar from './components/NavBar.vue'
+import Loading from './components/Loading.vue'
 import gql from 'graphql-tag'
 
 const userQuery = gql`
@@ -55,6 +61,7 @@ export default {
         bottom: true,
         timeout: 5000,
         snackMessage: '',
+        loadingStatus: false,
     }),
     computed: {
         authenticated() {
@@ -65,6 +72,7 @@ export default {
     components: {
         'SideNav': SideNav,
         'NavBar': NavBar,
+        'loading': Loading,
     },
 
     apollo: {
@@ -81,6 +89,7 @@ export default {
         },
 
         queryUser(){
+            this.loadingStatus = true
             this.$apollo.query({
                 query: userQuery,
             }).then((response) => {
@@ -105,7 +114,11 @@ export default {
                     window.localStorage.removeItem("Snackbar")
                     window.localStorage.removeItem("snackMessage")
                 }
-                
+                this.loadingStatus = false
+            }).catch((error) => {
+                // Error
+                console.error(error)
+                this.loadingStatus = false
             })
         }
 

@@ -1,9 +1,15 @@
 <template>
     <div class="collections">
 
-        <h1>Collection: {{collection.name}}</h1>
-        <list :comics="comics" v-if="viewType === 'list'"></list>
-        <thumbs :comics="comics" v-else-if="viewType === 'thumbs'"></thumbs>
+        <template v-if="loadingStatus">
+            <loading></loading>
+        </template>
+
+        <template v-else>
+            <h1>Collection: {{collection.name}}</h1>
+            <list :comics="comics" v-if="viewType === 'list'"></list>
+            <thumbs :comics="comics" v-else-if="viewType === 'thumbs'"></thumbs>
+        </template>
 
     </div>
 </template>
@@ -13,6 +19,7 @@ import store from '@/store/index.js'
 import gql from 'graphql-tag'
 import Thumbs from './components/Thumbs'
 import List from './components/List'
+import Loading from '../../components/Loading.vue'
 
 const collectionQuery = gql`
 query($id: ID) {
@@ -38,11 +45,13 @@ export default {
     store,
     components: {
         'thumbs': Thumbs,
-        'list': List
+        'list': List,
+        'loading': Loading
     },
     data: () => ({
         comics: [],
-        viewType: "list"
+        viewType: "list",
+        loadingStatus: false
     }),
     computed: {
         collection() {
@@ -55,6 +64,7 @@ export default {
 
     methods: {
         queryCollection(){
+            this.loadingStatus = true
             let id = this.collection.id
             this.$apollo.query({
                 query: collectionQuery,
@@ -63,6 +73,11 @@ export default {
                 }
             }).then((response) => {
                 this.comics = response.data.Collection.comics
+                this.loadingStatus = false
+            }).catch((error) => {
+                // Error
+                console.error(error)
+                this.loadingStatus = false
             })
         },
 

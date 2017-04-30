@@ -42,8 +42,7 @@ export default {
         logout(){
             // To log out, we just need to remove the token and profile
             // from local storage
-            localStorage.removeItem('auth0IdToken')
-            localStorage.removeItem('profile')
+            localStorage.clear()
             this.$store.dispatch('handleLogout')
             this.$router.push('/')
         }
@@ -60,11 +59,12 @@ export default {
                 }
                 // Set the token and user profile in local storage
                 localStorage.setItem('profile', JSON.stringify(profile))
+                this.$router.push({ name: 'Signin' });
             })
-            this.$router.push({ name: 'Signin' });
         })
         this.lock.on('authorization_error', (error) => {
             // handle error when authorizaton fails
+            console.log(error)
         })
     },
 }

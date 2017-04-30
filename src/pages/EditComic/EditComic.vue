@@ -1,29 +1,36 @@
 <template>
 
     <div class="editComic">
-        <h1>Edit Comic:</h1>
-        <form>
-            <input v-model="title" placeholder="Title" required>
-            <br>
-            <input v-model="series" placeholder="Series" required>
-            <br>
-            <input v-model="issueNumber" placeholder="Issue Number" required>
-            <br>
-            <input v-model="artUrl" placeholder="Cover Art Url" required>
-            <br>
-            <textarea v-model="description" placeholder="Description" required></textarea>
-            <br>
-            <input v-model="pubYear" placeholder="Year Published" required>
-            <br>
-            <input v-model="publisher" placeholder="Publisher" required>
-            <br>
-            <input v-model="writer" placeholder="Written By" required>
-            <br>
-            <input v-model="artist" placeholder="Art By" required>
-            <br>
-            <span type="submit" class="button is-outlined is-danger" @click="updateComic()">Submit</span>
-        </form>
 
+        <template v-if="loadingStatus">
+            <loading></loading>
+        </template>
+
+        <template v-else>
+            <h1>Edit Comic:</h1>
+            <form>
+                <input v-model="title" placeholder="Title" required>
+                <br>
+                <input v-model="series" placeholder="Series" required>
+                <br>
+                <input v-model="issueNumber" placeholder="Issue Number" required>
+                <br>
+                <input v-model="artUrl" placeholder="Cover Art Url" required>
+                <br>
+                <textarea v-model="description" placeholder="Description" required></textarea>
+                <br>
+                <input v-model="pubYear" placeholder="Year Published" required>
+                <br>
+                <input v-model="publisher" placeholder="Publisher" required>
+                <br>
+                <input v-model="writer" placeholder="Written By" required>
+                <br>
+                <input v-model="artist" placeholder="Art By" required>
+                <br>
+                <span type="submit" class="button is-outlined is-danger" @click="updateComic()">Submit</span>
+            </form>
+
+        </template>
 
     </div>
 
@@ -31,6 +38,7 @@
 
 <script>
 import gql from 'graphql-tag'
+import Loading from '../../components/Loading.vue'
     
 const comicQuery = gql`
   query ($id: ID!) {
@@ -72,6 +80,7 @@ export default {
         publisher: '',
         writer: '',
         artist: '',
+        loadingStatus: false,
     }),
 
     props: {
@@ -82,6 +91,7 @@ export default {
 
         comicQuery(){
 
+            this.loadingStatus = true
             let id = this.comic
 
             this.$apollo.query({
@@ -100,11 +110,18 @@ export default {
                 this.publisher = response.data.Comic.publisher
                 this.series = response.data.Comic.series
                 this.writer = response.data.Comic.writer
+                this.loadingStatus = false
+            }).catch((error) => {
+                // Error
+                console.error(error)
+                alert(error)
+                this.loadingStatus = false
             })
 
         },
 
         updateComic(){
+            this.loadingStatus = true
 
             let id = this.comic 
             let title = this.title
@@ -137,8 +154,12 @@ export default {
                 window.localStorage.setItem("snackMessage", "Comic Updated")
                 location.reload()
                 this.$router.push({ path: '/' })
+                this.loadingStatus = false
             }).catch((error) => {
+                // Error
                 console.error(error)
+                alert(error)
+                this.loadingStatus = false
             })
         },
 

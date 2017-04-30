@@ -1,42 +1,47 @@
 <template>
     <div>
-        <h1>Search For Comics:</h1>
-        <div class="columns">
-            <div class="container column is-8">
-                <tabs>
-                <tab name="Series" :selected="true">
-                <div class="column is-12">
-                    <div class="field">
-                        <p class="control">
-                        <input @keyup.enter="clicked" type="text" placeholder="Series Name" v-model="seriesName">
-                        </p>
+        <div v-if="loadingStatus">
+            <loading></loading>
+        </div>
+        <div v-else>
+            <h1>Search For Comics:</h1>
+            <div class="columns">
+                <div class="container column is-8">
+                    <tabs>
+                    <tab name="Series" :selected="true">
+                    <div class="column is-12">
+                        <div class="field">
+                            <p class="control">
+                            <input @keyup.enter="clicked" type="text" placeholder="Series Name" v-model="seriesName">
+                            </p>
+                        </div>
                     </div>
-                </div>
-                </tab>
-                <tab name="Issue">
-                <div class="column is-12">
-                    <div class="field">
-                        <p class="control">
-                        <input @keyup.enter="clicked" type="text" placeholder="Issue Name" v-model="issueName">
-                        <input @keyup.enter="clicked" type="text" placeholder="Volume Number" v-model="volumeNumber">
-                        </p>
+                    </tab>
+                    <tab name="Issue">
+                    <div class="column is-12">
+                        <div class="field">
+                            <p class="control">
+                            <input @keyup.enter="clicked" type="text" placeholder="Issue Name" v-model="issueName">
+                            <input @keyup.enter="clicked" type="text" placeholder="Volume Number" v-model="volumeNumber">
+                            </p>
+                        </div>
                     </div>
-                </div>
-                </tab>
-                <tab name="Character">
-                <div class="column is-12">
-                    <div class="field">
-                        <p class="control">
-                        <input @keyup.enter="clicked" type="text" placeholder="Character Name" v-model="characterName">
-                        </p>
+                    </tab>
+                    <tab name="Character">
+                    <div class="column is-12">
+                        <div class="field">
+                            <p class="control">
+                            <input @keyup.enter="clicked" type="text" placeholder="Character Name" v-model="characterName">
+                            </p>
+                        </div>
                     </div>
+                    </tab>
+                    <br>
+                    <span class="button is-danger is-outlined" @click="clicked">Search</span>
+                    </tabs>
+                    <br>
+                    <results :responses="queryResponse"></results>
                 </div>
-                </tab>
-                <br>
-                <span class="button is-danger is-outlined" @click="clicked">Search</span>
-                </tabs>
-                <br>
-                <results :responses="queryResponse"></results>
             </div>
         </div>
     </div>
@@ -48,12 +53,15 @@ import Tabs from './components/Tabs.vue'
 import Tab from './components/Tab.vue'
 import Results from './components/Results.vue'
 import store from '../../store/index.js'
+import Loading from '../../components/Loading.vue'
+
 export default {
     name: 'search',
     components: {
         'tabs': Tabs,
         'tab': Tab,
-        'results': Results
+        'results': Results,
+        'loading': Loading
     },
     data: () => ({
         seriesName: '',
@@ -62,52 +70,54 @@ export default {
         volumeNumber: '',
         queryResponse: [],
         queryParams: {},
-        showIssueModal: false
+        showIssueModal: false,
+        loadingStatus: false
     }),
     methods: {
-      clicked() {
-        this.queryParams.field = ''
-        this.queryParams.name = ''
-        this.queryParams.series = this.seriesName
-        this.queryParams.issue = this.issueName
-        this.queryParams.character = this.characterName
-        if (this.queryParams.series !== ''){
-          this.queryParams.field = 'volume'
-          this.queryParams.name = this.seriesName
-        } else if (this.queryParams.issue !== ''){
-          this.queryParams.field = 'issue,volume'
-          this.queryParams.name = this.issueName
-          this.queryParams.volume = this.volumeNumber
-      } else if (this.queryParams.character !== ''){
-          this.queryParams.field = 'character'
-          this.queryParams.name = this.characterName
-        } else {
-          alert('error')
+        clicked() {
+            this.loadingStatus = true
+            this.queryParams.field = ''
+            this.queryParams.name = ''
+            this.queryParams.series = this.seriesName
+            this.queryParams.issue = this.issueName
+            this.queryParams.character = this.characterName
+            if (this.queryParams.series !== ''){
+                this.queryParams.field = 'volume'
+                this.queryParams.name = this.seriesName
+            } else if (this.queryParams.issue !== ''){
+                this.queryParams.field = 'issue,volume'
+                this.queryParams.name = this.issueName
+                this.queryParams.volume = this.volumeNumber
+            } else if (this.queryParams.character !== ''){
+                this.queryParams.field = 'character'
+                this.queryParams.name = this.characterName
+            } else {
+                alert('error')
+            }
+            let queryURL = `
+https://comicvine.gamespot.com/api/search/?api_key=276d60fcc927f730c4acdca149b5411bac84023c&query=${this.queryParams.name}${','+this.queryParams.volume}&resources=${this.queryParams.field}&limit=10&format=json
+`
+            var that = this.queryParams.field
+            axios.get(queryURL).then((response) => {
+                let filteredResponse = []
+                for (let i = 0; i < response.data.results.length; i++) {
+                    if (that == 'issue,volume') {
+                        that = 'issue'
+                    }
+                    if (response.data.results[i].resource_type == that) {
+                        filteredResponse.push(response.data.results[i])
+                    }
+                }
+                this.queryResponse = filteredResponse
+                this.loadingStatus = false
+            })
+            this.queryParams = {}
+            this.seriesName = ''
+            this.issueName = ''
+            this.characterName = ''
+            this.volumeNumber = ''
+            this.queryResponse = []
         }
-        let queryURL = `
-        https://comicvine.gamespot.com/api/search/?api_key=276d60fcc927f730c4acdca149b5411bac84023c&query=${this.queryParams.name}${','+this.queryParams.volume}&resources=${this.queryParams.field}&limit=10&format=json
-        `
-        var that = this.queryParams.field
-        axios.get(queryURL).then((response) => {
-          let filteredResponse = []
-          for (let i = 0; i < response.data.results.length; i++) {
-            if (that == 'issue,volume') {
-              that = 'issue'
-            }
-            console.log(that);
-            if (response.data.results[i].resource_type == that) {
-              filteredResponse.push(response.data.results[i])
-            }
-          }
-          this.queryResponse = filteredResponse
-        })
-        this.queryParams = {}
-        this.seriesName = ''
-        this.issueName = ''
-        this.characterName = ''
-        this.volumeNumber = ''
-        this.queryResponse = []
-      }
     }
 }
 

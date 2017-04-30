@@ -1,23 +1,29 @@
 <template>
 
     <div class="createUser">
-        <h1>Create a Profile:</h1>
-        <form>
-        <input v-model="firstName" placeholder="First Name" required>
-        <br>
-        <input v-model="lastName" placeholder="Last Name" required>
-        <br>
-        <input v-model="email" placeholder="E-mail Address" required>
-        <br>
-        <span>Subscribe to email notifications?</span>
-        <br>
+        <template v-if="loadingStatus">
+            <loading></loading>
+        </template>
 
-        <ul class="checkBox">
-            <li>Yes<input type="radio" id="Yes" :value=true v-model="emailSubscription"></li>
-            <li>No<input type="radio" id="No" :value=false v-model="emailSubscription"></li>
-        </ul>
-        <span type="submit" class="button is-outlined is-danger" @click="create()">Sign Up</span>
-        </form>
+        <template v-else>
+            <h1>Create a Profile:</h1>
+            <form>
+                <input v-model="firstName" placeholder="First Name" required>
+                <br>
+                <input v-model="lastName" placeholder="Last Name" required>
+                <br>
+                <input v-model="email" placeholder="E-mail Address" required>
+                <br>
+                <span>Subscribe to email notifications?</span>
+                <br>
+
+                <ul class="checkBox">
+                    <li>Yes<input type="radio" id="Yes" :value=true v-model="emailSubscription"></li>
+                    <li>No<input type="radio" id="No" :value=false v-model="emailSubscription"></li>
+                </ul>
+                <span type="submit" class="button is-outlined is-danger" @click="create()">Sign Up</span>
+            </form>
+        </template>
 
     </div>
 
@@ -25,6 +31,7 @@
 
 <script>
 import gql from 'graphql-tag'
+import Loading from '../../components/Loading.vue'
 
 const createUser = gql`
   mutation ($idToken: String!, $firstName: String!, $lastName: String!, $emailAddress: String!, $emailSubscription: Boolean!){
@@ -42,7 +49,12 @@ export default {
         email: '',
         firstName: '',
         lastName: '',
+        loadingStatus: false
     }),
+
+    components: {
+        'loading': Loading
+    },
 
     mounted() {
         if (window.localStorage.profile){
@@ -56,6 +68,7 @@ export default {
     methods: {
 
         create() {
+            this.loadingStatus = true
 
             let idToken = window.localStorage.getItem('auth0IdToken')
             let emailAddress = this.email
@@ -77,9 +90,12 @@ export default {
                 // Result
                 location.reload()
                 this.$router.push({ name: 'LandingPage' });
+                this.loadingStatus = false
             }).catch((error) => {
                 // Error
                 console.error(error)
+                alert(error)
+                this.loadingStatus = false
             })
         },
     },
@@ -95,7 +111,6 @@ export default {
     justify-content: flex-start;
     flex-direction: column;
     width: 67%;
-    margin-left: 43%;
 }
 
 input {
