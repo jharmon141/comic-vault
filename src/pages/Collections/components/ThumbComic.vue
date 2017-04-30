@@ -40,13 +40,12 @@
 
 img {
     max-height: 250px;
+    max-width: 250px;
 }
 
 .thumbView {
-    width: 30%;
+    width: 25%;
     float: left;
-    margin-left: 10px;
-    margin-top: 20px;
     margin-bottom: 20px;
 }
 

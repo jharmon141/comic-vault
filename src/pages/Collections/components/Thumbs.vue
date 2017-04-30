@@ -16,7 +16,7 @@
         </div>
 
         <div class="columns">
-            <div class="column is-10">
+            <div class="column is-12">
 
                 <div v-for="comic in comics" class="comicList">
 
@@ -53,7 +53,7 @@ export default {
 
 <style scoped>
 .tabs {
-    margin-left: 20%;
+    margin-left: 25%;
 }
 
 .tabs.is-toggle{

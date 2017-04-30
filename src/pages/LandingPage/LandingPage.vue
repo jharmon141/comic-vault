@@ -1,6 +1,6 @@
 <template>
 
-    <div class="columns">
+    <div class="column is-9">
 
         <img src="../../assets/comicvault.png">
 
@@ -19,7 +19,6 @@
 
 img {
     max-height: 500px;
-    margin-left: 6%;
 }
 
 </style>

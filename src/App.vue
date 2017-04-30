@@ -18,6 +18,7 @@
                     <img src="./assets/github_icon.png">
                 </a> 
             </footer>
+        </template>
             <v-snackbar 
                          :timeout="timeout"
                          :bottom="bottom"
@@ -26,7 +27,6 @@
                          {{snackMessage}} 
                          <v-btn flat class="pink--text" @click.native="snackbar = false">OK</v-btn>
             </v-snackbar>
-        </template>
     </div>
 </template>
 
@@ -102,7 +102,7 @@ export default {
                 params.email = response.data.user.emailAddress
                 params.emailSubscription = response.data.user.emailSubscription
                 params.collections = response.data.user.collections
-
+                this.loadingStatus = false
                 let snack = window.localStorage.getItem("Snackbar")
                 this.snackMessage = window.localStorage.getItem("snackMessage")
                 if (response.data.user.id) {
@@ -114,7 +114,6 @@ export default {
                     window.localStorage.removeItem("Snackbar")
                     window.localStorage.removeItem("snackMessage")
                 }
-                this.loadingStatus = false
             }).catch((error) => {
                 // Error
                 console.error(error)

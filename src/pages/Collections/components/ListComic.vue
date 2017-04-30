@@ -3,10 +3,10 @@
 
         <div class="comic" >
             <div class="columns">
-                <div class="column is-2">
+                <div class="column is-3">
                     <img :src="comic.artUrl">
                 </div>
-                <div class="column is-6">
+                <div class="column is-7">
                     <div class="columns">
                         <div class="column is-7">
                             <p><em>Title</em>: {{comic.title}}</p>
@@ -22,7 +22,7 @@
                     </div>
 
                     <div class="columns">
-                        <div class="column is-9">
+                        <div class="column is-12">
                             <p v-if="showMore"><em>Description</em>: {{comic.description}}</p>
                         </div>
                     </div>
@@ -72,7 +72,7 @@
 
 <style scoped>
 img {
-    max-height: 200px;
+    max-height: 250px;
 }
 
 .comic {
