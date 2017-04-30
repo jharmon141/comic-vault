@@ -35,7 +35,7 @@ import Loading from '../../components/Loading.vue'
 
 const createUser = gql`
   mutation ($idToken: String!, $firstName: String!, $lastName: String!, $emailAddress: String!, $emailSubscription: Boolean!){
-createUser(authProvider: {auth0: {idToken: $idToken}}, firstName: $firstName, lastName: $lastName, emailAddress: $emailAddress, emailSubscription: $emailSubscription, collections: {name: "All"}) {
+createUser(authProvider: {auth0: {idToken: $idToken}}, firstName: $firstName, lastName: $lastName, emailAddress: $emailAddress, emailSubscription: $emailSubscription, collections: {name: "All", path: "/collection/all"}) {
       id
     }
   }
