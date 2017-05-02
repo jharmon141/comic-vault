@@ -5,11 +5,11 @@
         </template>
         <template v-else>
             <NavBar></NavBar>
-            <div style="min-height:100%" class="columns">
+            <div style="min-height:100vh" class="columns">
                 <div  class="column is-2">
                     <SideNav></SideNav>
                 </div>
-                <div class="column is-10">
+                <div class="column is-10 is-offset-1">
                     <router-view :key="$route.path"></router-view>
                 </div>
             </div>
@@ -18,7 +18,6 @@
                     <img src="./assets/github_icon.png">
                 </a> 
             </footer>
-        </template>
             <v-snackbar 
                          :timeout="timeout"
                          :bottom="bottom"
@@ -27,6 +26,7 @@
                          {{snackMessage}} 
                          <v-btn flat class="pink--text" @click.native="snackbar = false">OK</v-btn>
             </v-snackbar>
+        </template>
     </div>
 </template>
 
@@ -53,6 +53,7 @@ const userQuery = gql`
     }
   }
 `
+
 export default {
     name: 'app',
     store,
@@ -123,7 +124,7 @@ export default {
 
     },
 
-    created() {
+    mounted() {
         this.queryUser()
     }
 }
@@ -131,23 +132,16 @@ export default {
 
 <style>
 
-.app {
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    padding: 12px;
-    margin: auto;
-    height: 100%;
-}
-
-.is-10 {
-    margin-left: 70px;
-}
-
 input:focus {
     box-shadow: none;
     outline: none;
     border-color: #40b883;
+}
+
+textarea:focus {
+    outline: none;
+    box-shadow: none;
+    border-color: #40b883 !important;
 }
 
 input {

@@ -14,6 +14,9 @@ Vue.use(Router)
 
 const router =   new Router({
   mode: 'history',
+    scrollBehavior (to, from, savedPosition) {
+        return { x: 0, y: 0 }
+    },
   routes: [
     {
       path: '/',
@@ -62,9 +65,6 @@ const router =   new Router({
       component: ManageCollection,
     }
   ],
-    scrollBehavior (to, from, savedPosition) {
-        return { x: 0, y: 0 }
-    }
 })
 
 export default router

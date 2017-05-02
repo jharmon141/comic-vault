@@ -1,6 +1,6 @@
 <template>
 
-    <div class="column is-9">
+    <div class="img">
 
         <img src="../../assets/comicvault.png">
 
@@ -18,7 +18,18 @@
 <style scoped>
 
 img {
-    max-height: 500px;
+    max-height: 400px;
 }
 
+.img {
+    width: 60%;
+} 
+
+div {
+    display: flex;
+    justify-content: center;
+    /* align horizontal */
+    align-items: center;
+    /* align vertical */
+}
 </style>

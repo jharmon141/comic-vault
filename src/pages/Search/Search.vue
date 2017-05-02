@@ -98,7 +98,7 @@ export default {
 https://comicvine.gamespot.com/api/search/?api_key=276d60fcc927f730c4acdca149b5411bac84023c&query=${this.queryParams.name}${','+this.queryParams.volume}&resources=${this.queryParams.field}&limit=10&format=json
 `
             var that = this.queryParams.field
-            axios.get(queryURL).then((response) => {
+            axios.get(`/api/${this.queryParams.name}/${this.queryParams.volume}/${this.queryParams.field}`).then((response) => {
                 console.log(response)
                 let filteredResponse = []
                 for (let i = 0; i < response.data.results.length; i++) {

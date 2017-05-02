@@ -39,15 +39,20 @@
 <style scoped>
 
 img {
-    max-width: 75%;
+    max-width: 85%;
 }
 
 .thumbView {
-    width: 25%;
+    width: 150px;
+    height: 300px;
     float: left;
     margin-bottom: 20px;
 }
 
+.thumbView p{
+    word-wrap: break-word;
+    padding-right: 15px;
+}
 .button:hover, .button.is-hovered {
     background-color: #1E90FF;
     color: whitesmoke;
