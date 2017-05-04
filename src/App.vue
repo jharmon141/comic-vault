@@ -9,7 +9,7 @@
                 <div  class="column is-2">
                     <SideNav></SideNav>
                 </div>
-                <div class="column is-10 is-offset-1">
+                <div class="column is-10">
                     <router-view :key="$route.path"></router-view>
                 </div>
             </div>
@@ -87,6 +87,7 @@ export default {
         toggleSnackbar(message){
             this.snackbar = true
             this.snackMessage = message
+            setTimeout(()=> {this.snackbar = false}, 3000)
         },
 
         queryUser(){
@@ -131,6 +132,10 @@ export default {
 </script>
 
 <style>
+
+.is-10 {
+    margin-left: 3%;
+}
 
 input:focus {
     box-shadow: none;

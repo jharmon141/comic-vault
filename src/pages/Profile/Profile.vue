@@ -76,7 +76,7 @@ export default {
                 },
             }).then((data) => {
                 window.localStorage.setItem("Snackbar", true)
-                window.localStorage.setItem("snackMessage", "Profile Updated")
+                window.localStorage.setItem("snackMessage", "Profile updated")
                 location.reload()
                 this.$router.push({ path: '/' })
             }).catch((error) => {

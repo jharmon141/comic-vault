@@ -154,7 +154,7 @@ export default {
                 },
             }).then((data) => {
                 window.localStorage.setItem("Snackbar", true)
-                window.localStorage.setItem("snackMessage", "Comic Updated")
+                window.localStorage.setItem("snackMessage", "Comic updated")
                 location.reload()
                 this.$router.push({ path: '/' })
                 this.loadingStatus = false

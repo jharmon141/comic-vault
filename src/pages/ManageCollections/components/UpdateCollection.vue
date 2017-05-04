@@ -27,11 +27,11 @@ const updateCollection = gql`
 `
 
 const deleteCollection = gql`
-mutation deleteCollection($id: ID!) {
-    deleteCollection(id: $id){
-        id
+    mutation($id: ID!) {
+         deleteCollection(id: $id){
+             id
+        }
     }
-}
 `
 
 export default {
@@ -66,7 +66,7 @@ export default {
                 },
             }).then((data) => {
                 window.localStorage.setItem("Snackbar", true)
-                window.localStorage.setItem("snackMessage", "Collection Updated")
+                window.localStorage.setItem("snackMessage", "Collection updated")
                 location.reload()
                 this.$router.push({ path: '/' });
             }).catch((error) => {
@@ -86,7 +86,7 @@ export default {
                 },
             }).then((data) => {
                 window.localStorage.setItem("Snackbar", true)
-                window.localStorage.setItem("snackMessage", "Collection Deleted")
+                window.localStorage.setItem("snackMessage", "Collection deleted")
                 location.reload()
                 this.$router.push({ path: '/' });
             }).catch((error) => {

@@ -22,7 +22,7 @@
                         <div class="field">
                             <p class="control">
                             <input @keyup.enter="clicked" type="text" placeholder="Issue Name" v-model="issueName">
-                            <input @keyup.enter="clicked" type="text" placeholder="Volume Number" v-model="volumeNumber">
+                            <input @keyup.enter="clicked" type="text" placeholder="Issue Number" v-model="volumeNumber">
                             </p>
                         </div>
                     </div>
@@ -94,12 +94,9 @@ export default {
             } else {
                 alert('error')
             }
-            let queryURL = `
-https://comicvine.gamespot.com/api/search/?api_key=276d60fcc927f730c4acdca149b5411bac84023c&query=${this.queryParams.name}${','+this.queryParams.volume}&resources=${this.queryParams.field}&limit=10&format=json
-`
+
             var that = this.queryParams.field
             axios.get(`/api/${this.queryParams.name}/${this.queryParams.volume}/${this.queryParams.field}`).then((response) => {
-                console.log(response)
                 let filteredResponse = []
                 for (let i = 0; i < response.data.results.length; i++) {
                     if (that == 'issue,volume') {

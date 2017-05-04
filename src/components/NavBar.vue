@@ -66,14 +66,14 @@ export default {
 <style scoped>
 
 img {
-    height: 60px;
+    height: 50px;
 }
 
 .nav {
     background-color: #D9D9D9;
     font-weight: 500;
     margin-bottom: 75px;
-    height: 60px;
+    height: 50px;
 }
 
 .nav-item {

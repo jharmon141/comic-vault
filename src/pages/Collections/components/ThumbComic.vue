@@ -3,7 +3,7 @@
     <div class="thumbView">
 
         <img :src="comic.artUrl">
-        <p><em>{{comic.title}}</em></p>
+        <p><em>{{comic.series}}</em></p>
         <p>Issue: {{comic.issueNumber}}</p>
 
     </div>
@@ -43,10 +43,10 @@ img {
 }
 
 .thumbView {
-    width: 150px;
+    width: 25%;
     height: 300px;
     float: left;
-    margin-bottom: 20px;
+    margin-bottom: 14%;
 }
 
 .thumbView p{

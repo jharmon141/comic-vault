@@ -53,7 +53,7 @@ export default {
 
 <style scoped>
 .tabs {
-    margin-left: 25%;
+    margin-left: 28%;
 }
 
 .tabs.is-toggle{

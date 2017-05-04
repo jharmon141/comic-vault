@@ -22,7 +22,8 @@ img {
 }
 
 .img {
-    width: 60%;
+    width: 74%;
+    margin-top: 5%;
 } 
 
 div {

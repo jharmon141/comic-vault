@@ -6,15 +6,15 @@
                 <div class="column is-3">
                     <img :src="comic.artUrl">
                 </div>
-                <div class="column is-6">
+                <div class="column is-7">
                     <div class="columns">
-                        <div class="column is-7">
+                        <div class="column is-6">
                             <p><em>Title</em>: {{comic.title}}</p>
                             <p><em>Series</em>: {{comic.series}}</p>
                             <p><em>Issue #</em>: {{comic.issueNumber}}</p>
                             <p><em>Publisher</em>: {{comic.publisher}}</p>
                         </div>
-                        <div class="column is-5">
+                        <div class="column is-6">
                             <p><em>Year</em>: {{comic.pubYear}}</p>
                             <p><em>Written By</em>: {{comic.writer}}</p>
                             <p><em>Art By</em>: {{comic.artist}}</p>
