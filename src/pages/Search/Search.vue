@@ -40,7 +40,9 @@
                     <span class="button is-danger is-outlined" @click="clicked">Search</span>
                     </tabs>
                     <br>
+                    <div id="results">
                     <results :responses="queryResponse"></results>
+                    </div>
                 </div>
             </div>
         </div>
@@ -96,7 +98,7 @@ export default {
             }
 
             var that = this.queryParams.field
-            axios.get(`/api/${this.queryParams.name}/${this.queryParams.volume}/${this.queryParams.field}`).then((response) => {
+            axios.get(`http://localhost:5000/api/${this.queryParams.name}/${this.queryParams.volume}/${this.queryParams.field}`).then((response) => {
                 let filteredResponse = []
                 for (let i = 0; i < response.data.results.length; i++) {
                     if (that == 'issue,volume') {
