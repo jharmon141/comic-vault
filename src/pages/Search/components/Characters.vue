@@ -1,11 +1,11 @@
 <template>
   <div>
-    <!-- <modal v-if="showIssueModal" :response="response"></modal> -->
-    <!-- <a @click="toggleModal"> -->
+      <cover-modal v-if="showIssueModal" :response="character"></cover-modal>
+      <info-modal v-if="showInfoIssueModal" :response="character"></info-modal>
       <div class="box">
         <article class="media">
           <div class="media-left">
-            <figure class="image">
+            <figure @click="toggleCoverModal" class="image">
               <img v-if="character.image" :src="character.image.small_url" alt="cover">
             </figure>
           </div>
@@ -27,36 +27,49 @@
             </div>
             <nav class="level is-mobile">
               <div class="level-left">
-                <a v-if="character.name" class="button is-small is-primary is-outlined">{{character.name}}</a>
-                <a v-else class="button is-small is-primary is-outlined">{{character.volume.name}}</a>
+                <a v-if="character.name" @click="toggleInfoModal" class="button is-small is-primary is-outlined">{{character.name}}</a>
+                <a v-else @click="toggleInfoModal" class="button is-small is-primary is-outlined">{{character.volume.name}}</a>
               </div>
             </nav>
           </div>
         </article>
       </div>
-    <!-- </a> -->
   </div>
 </template>
 
 <script>
-  // import Modal from './Modal.vue'
-  export default {
+import CoverModal from '../../../components/CoverModal.vue'
+import InfoModal from './InfoModal.vue'
+
+export default {
     name: 'characters',
+    components: {
+      'cover-modal': CoverModal,
+      'info-modal': InfoModal
+    },
     props: {
       character: {}
+    },
+    data: () => ({
+      showIssueModal: false,
+      showInfoIssueModal: false
+    }),
+    methods: {
+      toggleCoverModal() {
+        if (this.showIssueModal == false) {
+          this.showIssueModal = true
+        } else {
+          this.showIssueModal = false
+        }
+      },
+      toggleInfoModal() {
+        if (this.showInfoIssueModal == false) {
+          this.showInfoIssueModal = true
+        } else {
+          this.showInfoIssueModal = false
+        }
+      }
     }
-    // data: () => ({
-    //   showIssueModal: false
-    // }),
-    // methods: {
-    //   toggleModal() {
-    //     if (this.showIssueModal == false) {
-    //       this.showIssueModal = true
-    //     } else {
-    //       this.showIssueModal = false
-    //     }
-    //   }
-    // }
   }
 </script>
 
@@ -77,5 +90,8 @@
     color: white !important;
     background-color: #fe0000 !important;
     border-color: #fe0000 !important;
+}
+.image img{
+    cursor: pointer;
 }
 </style>

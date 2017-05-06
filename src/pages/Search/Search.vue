@@ -52,6 +52,7 @@
 <script>
 import axios from 'axios'
 import Tabs from './components/Tabs.vue'
+import NewComicList from './components/NewComicList.vue'
 import Tab from './components/Tab.vue'
 import Results from './components/Results.vue'
 import store from '../../store/index.js'
@@ -63,7 +64,8 @@ export default {
         'tabs': Tabs,
         'tab': Tab,
         'results': Results,
-        'loading': Loading
+        'loading': Loading,
+        'new-comic-list': NewComicList
     },
     data: () => ({
         seriesName: '',

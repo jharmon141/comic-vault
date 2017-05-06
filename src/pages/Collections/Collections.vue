@@ -7,7 +7,7 @@
 
         <template v-else>
             <h1>Collection: {{collection.name}}</h1>
-            <list :comics="comics" v-if="viewType === 'list'"></list>
+            <list :collection="collection" :comics="comics" v-if="viewType === 'list'"></list>
             <thumbs :comics="comics" v-else-if="viewType === 'thumbs'"></thumbs>
         </template>
 
@@ -109,5 +109,8 @@ h1 {
     margin-top: 10px;
 }
 
+img {
+    cursor: pointer;
+}
 </style>
 

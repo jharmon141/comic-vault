@@ -1,10 +1,12 @@
 <template>
     <div class="listView">
 
+      <cover-modal :comic="true" v-if="showCoverModal" :response="comic"></cover-modal>
+      <add-to-collection-modal :comic="comic" v-if="showAddCollectionModal"></add-to-collection-modal>
         <div class="comic" >
             <div class="columns">
                 <div class="column is-3">
-                    <img :src="comic.artUrl">
+                    <img @click="toggleCoverModal" :src="comic.artUrl">
                 </div>
                 <div class="column is-7">
                     <div class="columns">
@@ -35,6 +37,10 @@
                     <span @click="toggleView()" class="button edit is-outlined"><v-icon>expand_less</v-icon></span>
                     <br>
                     <router-link :comic="comic" :to="{name: 'EditComic', params: {comic: comic.id}}"><span  class="button is-danger is-outlined"><v-icon>edit</v-icon></span></router-link>
+                    <br>
+                    <span @click="toggleAddCollectionModal" class="button is-danger is-outlined"><v-icon>add</v-icon></span>
+                    <br>
+                    <span @click="handleDelete" class="button is-danger is-outlined"><v-icon>clear</v-icon></span>
                 </div>
 
             </div>
@@ -44,29 +50,60 @@
 </template>
 
 <script>
+import CoverModal from '../../../components/CoverModal.vue'
+import AddToCollectionModal from './AddToCollectionModal.vue'
 
-    export default {
+export default {
 
-        data: () => ({
-            showMore: false 
-        }),
+    data: () => ({
+        showMore: false,
+        showCoverModal: false,
+        showAddCollectionModal: false
+    }),
 
-        props: {
-            comic: {}
+    components: {
+        'cover-modal': CoverModal,
+        'add-to-collection-modal': AddToCollectionModal
+    },
+
+    props: {
+        comic: {}
+    },
+
+    methods: {
+
+        toggleView(){
+            if (this.showMore === true){
+                this.showMore = false
+            } else {
+                this.showMore = true
+            }
         },
 
-        methods: {
-
-            toggleView(){
-                if (this.showMore === true){
-                    this.showMore = false
-                } else {
-                    this.showMore = true
-                }
+        toggleCoverModal(){
+            if (this.showCoverModal == false) {
+                this.showCoverModal = true
+            } else {
+                this.showCoverModal = false
             }
-        }
+        },
+
+        toggleAddCollectionModal(){
+            if (this.showAddCollectionModal == false) {
+                this.showAddCollectionModal = true
+            } else {
+                this.showAddCollectionModal = false
+            }
+        },
+
+        handleDelete(){
+            this.$parent.delete(this.comic)
+        },
+
 
     }
+
+}
 
 </script>
 
@@ -89,7 +126,6 @@ img {
 .button.is-danger.is-outlined{
     border-color: red;
     color: red;
-    float: left;
 }
 
 .button.edit.is-outlined{
@@ -107,5 +143,9 @@ img {
     height: 35px;
     font-size: 20px;
     margin-bottom: 25px;
+}
+
+img {
+    cursor: pointer;
 }
 </style>

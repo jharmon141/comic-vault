@@ -1,12 +1,12 @@
 <template>
   <div>
-    <!-- <modal v-if="showIssueModal" :response="response"></modal> -->
-    <!-- <a @click="toggleModal"> -->
+    <cover-modal v-if="showIssueModal" :response="volume"></cover-modal>
+    <info-modal v-if="showInfoIssueModal" :response="volume"></info-modal>
       <div class="box">
         <article class="media">
           <div class="media-left">
-            <figure class="image">
-              <img v-if="volume.image" :src="volume.image.small_url" alt="cover">
+            <figure @click="toggleCoverModal" class="image">
+                <img v-if="volume.image" :src="volume.image.small_url" alt="cover">
             </figure>
           </div>
           <div class="media-content">
@@ -23,35 +23,47 @@
             </div>
             <nav class="level is-mobile">
               <div class="level-left">
-                <a class="button is-small is-primary is-outlined">{{volume.name}}</a>
+                <a @click="toggleInfoModal" class="button is-small is-primary is-outlined">{{volume.name}}</a>
               </div>
             </nav>
           </div>
         </article>
       </div>
-    <!-- </a> -->
   </div>
 </template>
 
 <script>
-  // import Modal from './Modal.vue'
+  import CoverModal from '../../../components/CoverModal.vue'
+  import InfoModal from './InfoModal.vue'
   export default {
     name: 'volumes',
+    components: {
+      'cover-modal': CoverModal,
+      'info-modal': InfoModal
+    },
     props: {
       volume: {}
+    },
+    data: () => ({
+      showIssueModal: false,
+      showInfoIssueModal: false
+    }),
+    methods: {
+      toggleCoverModal() {
+        if (this.showIssueModal == false) {
+          this.showIssueModal = true
+        } else {
+          this.showIssueModal = false
+        }
+      },
+      toggleInfoModal() {
+        if (this.showInfoIssueModal == false) {
+          this.showInfoIssueModal = true
+        } else {
+          this.showInfoIssueModal = false
+        }
+      }
     }
-    // data: () => ({
-    //   showIssueModal: false
-    // }),
-    // methods: {
-    //   toggleModal() {
-    //     if (this.showIssueModal == false) {
-    //       this.showIssueModal = true
-    //     } else {
-    //       this.showIssueModal = false
-    //     }
-    //   }
-    // }
   }
 </script>
 
@@ -73,5 +85,8 @@
     color: white !important;
     background-color: #fe0000 !important;
     border-color: #fe0000 !important;
+}
+.image img{
+    cursor: pointer;
 }
 </style>

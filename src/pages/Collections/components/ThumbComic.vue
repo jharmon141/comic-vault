@@ -2,7 +2,8 @@
 
     <div class="thumbView">
 
-        <img :src="comic.artUrl">
+        <cover-modal :comic="true" v-if="showCoverModal" :response="comic"></cover-modal>
+        <img @click="toggleCoverModal" :src="comic.artUrl">
         <p><em>{{comic.series}}</em></p>
         <p>Issue: {{comic.issueNumber}}</p>
 
@@ -11,12 +12,17 @@
 </template>
 
 <script>
+    import CoverModal from '../../../components/CoverModal.vue'
 
     export default {
 
         data: () => ({
-            showMore: false 
+            showCoverModal: false
         }),
+
+        components: {
+            'cover-modal': CoverModal,
+        },
 
         props: {
             comic: {}
@@ -24,13 +30,13 @@
 
         methods: {
 
-            toggleView(){
-                if (this.showMore === true){
-                    this.showMore = false
+            toggleCoverModal(){
+                if (this.showCoverModal == false) {
+                    this.showCoverModal = true
                 } else {
-                    this.showMore = true
+                    this.showCoverModal = false
                 }
-            }
+            },
         }
 }
 
@@ -87,4 +93,7 @@ img {
     border-color: #1E90FF;
 }
 
+img {
+    cursor: pointer;
+}
 </style>
