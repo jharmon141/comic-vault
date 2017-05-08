@@ -3,6 +3,7 @@
     <div class="thumbView">
 
         <cover-modal :comic="true" v-if="showCoverModal" :response="comic"></cover-modal>
+
         <img @click="toggleCoverModal" :src="comic.artUrl">
         <p><em>{{comic.series}}</em></p>
         <p>Issue: {{comic.issueNumber}}</p>

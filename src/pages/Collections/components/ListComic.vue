@@ -3,6 +3,7 @@
 
       <cover-modal :comic="true" v-if="showCoverModal" :response="comic"></cover-modal>
       <add-to-collection-modal :comic="comic" v-if="showAddCollectionModal"></add-to-collection-modal>
+
         <div class="comic" >
             <div class="columns">
                 <div class="column is-3">
@@ -25,7 +26,8 @@
 
                     <div class="columns">
                         <div class="column is-12">
-                            <p v-if="showMore"><em>Description</em>: {{comic.description}}</p>
+                            <p v-if="showMore"><em>Description:</em></p>
+                            <div v-html="comic.description" v-if="showMore"></div>
                         </div>
                     </div>
 
@@ -38,8 +40,10 @@
                     <br>
                     <router-link :comic="comic" :to="{name: 'EditComic', params: {comic: comic.id}}"><span  class="button is-danger is-outlined"><v-icon>edit</v-icon></span></router-link>
                     <br>
-                    <span @click="toggleAddCollectionModal" class="button is-danger is-outlined"><v-icon>add</v-icon></span>
+                    <div v-if="collection.name === 'All'">
+                    <span  @click="toggleAddCollectionModal" class="button is-danger is-outlined"><v-icon>add</v-icon></span>
                     <br>
+                    </div>
                     <span @click="handleDelete" class="button is-danger is-outlined"><v-icon>clear</v-icon></span>
                 </div>
 
@@ -67,7 +71,8 @@ export default {
     },
 
     props: {
-        comic: {}
+        comic: {},
+        collection: '',
     },
 
     methods: {

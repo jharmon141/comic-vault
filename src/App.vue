@@ -170,6 +170,5 @@ input {
     width: 30px;
 }
 
-
 </style>
 <style src="bulma/css/bulma.css"></style>

@@ -29,9 +29,7 @@
               </div>
             </div>
           </article>
-          <p>
-            <div>{{response.description.replace(/"/g, '')}}</div>
-          </p>
+          <div v-html="response.description"></div>
         </section>
         <footer class="modal-card-foot">
           <a class="button is-danger">Save</a>
@@ -67,9 +65,7 @@
               </div>
             </div>
           </article>
-          <p>
-            <div>{{response.description}}</div>
-          </p>
+          <div v-html="response.description"></div>
         </section>
         <footer class="modal-card-foot">
           <a @click="save" class="button is-danger">Save</a>
@@ -105,9 +101,7 @@
               </div>
             </div>
           </article>
-          <p>
-            <div>{{response.description}}</div>
-          </p>
+          <div v-html="response.description"></div>
         </section>
         <footer class="modal-card-foot">
           <a class="button is-danger">Save</a>
@@ -126,7 +120,6 @@ export default {
     methods: {
 
         changeBack() {
-            console.log(this.response)
             this.$parent.toggleInfoModal()
         },
 

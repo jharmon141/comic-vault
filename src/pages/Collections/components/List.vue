@@ -17,7 +17,7 @@
 
         <div v-for="comic in comics" class="comicList">
 
-            <list-comic :comic="comic"></list-comic>
+            <list-comic :collection="collection" :comic="comic"></list-comic>
 
         </div>
 
