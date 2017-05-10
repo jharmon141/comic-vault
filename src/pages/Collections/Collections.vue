@@ -7,8 +7,10 @@
 
         <template v-else>
             <h1>Collection: {{collection.name}}</h1>
+            <transition name="component-fade" mode="out-in">
             <list :collection="collection" :comics="comics" v-if="viewType === 'list'"></list>
             <thumbs :comics="comics" v-else-if="viewType === 'thumbs'"></thumbs>
+            </transition>
         </template>
 
     </div>
@@ -112,5 +114,6 @@ h1 {
 img {
     cursor: pointer;
 }
+
 </style>
 

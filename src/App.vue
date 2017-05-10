@@ -10,7 +10,9 @@
                     <SideNav></SideNav>
                 </div>
                 <div class="column is-10">
+                    <transition name="component-fade" mode="out-in">
                     <router-view :key="$route.path"></router-view>
+                    </transition>
                 </div>
             </div>
             <footer class="footer">
@@ -171,5 +173,12 @@ input {
     width: 30px;
 }
 
+.component-fade-enter-active, .component-fade-leave-active {
+  transition: opacity .2s ease;
+}
+.component-fade-enter, .component-fade-leave-to
+/* .component-fade-leave-active for <2.1.8 */ {
+  opacity: 0;
+}
 </style>
 <style src="bulma/css/bulma.css"></style>
