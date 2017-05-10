@@ -135,6 +135,7 @@ export default {
 
 .is-10 {
     margin-left: 3%;
+    margin-top: 100px;
 }
 
 input:focus {

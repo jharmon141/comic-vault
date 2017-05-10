@@ -57,7 +57,8 @@ export default {
 
 aside {
     margin-left: 10px;
-
+    margin-top: 100px;
+    position: fixed;
 }
 
 .menu-list a:hover{

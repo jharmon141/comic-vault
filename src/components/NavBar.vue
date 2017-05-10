@@ -73,7 +73,10 @@ img {
     background-color: #D9D9D9;
     font-weight: 500;
     margin-bottom: 75px;
-    height: 50px;
+    height: 64px;
+    position: fixed;
+    padding-top: 13px;
+    width: 100%;
 }
 
 .nav-item {
