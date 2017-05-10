@@ -1,9 +1,10 @@
 <template>
-<div>
 
-    <loading></loading>
+    <div>
 
-</div>
+        <loading></loading>
+
+    </div>
 
 </template>
 
@@ -64,7 +65,7 @@ export default {
     },
 
     mounted() {
-        setTimeout(this.queryUser, 2000)
+        setTimeout(this.queryUser, 1000)
     }
 
 }

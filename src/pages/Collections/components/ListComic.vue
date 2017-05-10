@@ -32,6 +32,7 @@
                     </div>
 
                 </div>
+
                 <div v-if="!showMore" class="column is-2">
                     <span @click="toggleView()" class="button edit is-outlined"><v-icon>expand_more</v-icon></span>
                 </div>
@@ -121,6 +122,8 @@ img {
     margin-left: 10px;
     margin-top: 20px;
     margin-bottom: 20px;
+    border-top: 1px solid #dbdbdb;
+    padding-top: 20px;
 }
 
 
