@@ -16,11 +16,11 @@
             <router-link to="/collections">Collections</router-link>
             </p>
             <ul class="menu-list">
-                <li><router-link to="/collection/all"><a>All</a></router-link></li>
+                <li><router-link to="/collection/all"><a>All ({{all.comics.length}})</a></router-link></li>
                 <li>
                     <ul>
                         <li class="collections" v-for="collection in collections">
-                            <router-link :to="collection.path"><a>{{collection.name}}</a></router-link>
+                            <router-link :to="collection.path"><a>{{collection.name}} ({{collection.comics.length}})</a></router-link>
                         </li>
                     </ul>
                 </li>
@@ -47,6 +47,11 @@ export default {
         },
         auth() {
             return this.$store.state.authenticated
+        },
+        all() {
+            return this.$store.state.collections.find(obj => {
+                return obj.name === "All"
+            })
         }
     },
 }

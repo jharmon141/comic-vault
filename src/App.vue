@@ -51,6 +51,9 @@ const userQuery = gql`
             name
             id
             path
+            comics {
+                title
+            }
         }
     }
   }
