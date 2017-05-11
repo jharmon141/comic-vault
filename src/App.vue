@@ -139,7 +139,7 @@ export default {
 <style>
 
 .is-10 {
-    margin-left: 3%;
+    margin-left: 4.5%;
     margin-top: 100px;
 }
 

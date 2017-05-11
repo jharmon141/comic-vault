@@ -7,10 +7,26 @@
 
         <template v-else>
             <h1>Collection: {{collection.name}} </h1>
+            <div class="tabs is-toggle">
+                <ul>
+                    <li :class="{ 'is-active': listView }" @click="toggleView()">
+                        <a>
+                            <v-icon>list</v-icon>
+                        </a>
+                    </li>
+                    <li :class="{ 'is-active': thumbView }" @click="toggleView()">
+                        <a >
+                            <v-icon>view_module</v-icon>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
             <transition name="component-fade" mode="out-in">
-            <list :collection="collection" :comics="comics" v-if="viewType === 'list'"></list>
-            <thumbs :comics="comics" v-else-if="viewType === 'thumbs'"></thumbs>
+            <list :collection="collection" :comics="comics" v-if="listView"></list>
+            <thumbs :comics="comics" v-if="thumbView"></thumbs>
             </transition>
+
         </template>
 
     </div>
@@ -45,16 +61,21 @@ query($id: ID) {
 
 export default {
     store,
+
     components: {
         'thumbs': Thumbs,
         'list': List,
         'loading': Loading
     },
+
     data: () => ({
         comics: [],
         viewType: "list",
-        loadingStatus: false
+        loadingStatus: false,
+        thumbView: false,
+        listView: true
     }),
+
     computed: {
         collection() {
             return  this.$store.state.collections.find(obj => {
@@ -83,8 +104,14 @@ export default {
             })
         },
 
-        toggleView(newViewType){
-             this.viewType = newViewType
+        toggleView(){
+            if (this.listView) {
+                this.listView = false
+                this.thumbView = true
+            } else {
+                this.listView = true
+                this.thumbView = false
+            }
         }
 
     },
@@ -115,5 +142,35 @@ img {
     cursor: pointer;
 }
 
-</style>
+.tabs {
+    margin-left: 28%;
+}
 
+.tabs.is-toggle{
+    margin-bottom: 100px;
+}
+
+.tabs.is-toggle li a{
+    border-color: #fe0000;
+    color: #fe0000;
+}
+
+.tabs.is-toggle li.is-active a{
+    border-color: #fe0000;
+    background-color: #fe0000;
+    color: white;
+}
+
+.tabs li {
+    width: 20%;
+}
+
+v-icon {
+    margin-left: 0px;
+}
+
+.tabs.is-toggle a:hover{
+    background-color: white;
+}
+
+</style>

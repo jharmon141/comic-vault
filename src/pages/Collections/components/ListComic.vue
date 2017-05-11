@@ -121,9 +121,9 @@ img {
 .comic {
     margin-left: 10px;
     margin-top: 20px;
-    margin-bottom: 40px;
+    margin-bottom: 60px;
     border-top: 1px solid #dbdbdb;
-    padding-top: 20px;
+    padding-top: 30px;
 }
 
 
