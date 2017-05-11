@@ -6,8 +6,6 @@
 
     </div>
 
-    </div>
-
 </template>
 
 <script>
@@ -29,8 +27,6 @@ img {
 div {
     display: flex;
     justify-content: center;
-    /* align horizontal */
     align-items: center;
-    /* align vertical */
 }
 </style>

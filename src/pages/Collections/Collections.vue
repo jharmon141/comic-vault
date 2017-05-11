@@ -23,8 +23,10 @@
             </div>
 
             <transition name="component-fade" mode="out-in">
-            <list :collection="collection" :comics="comics" v-if="listView"></list>
-            <thumbs :comics="comics" v-if="thumbView"></thumbs>
+            <keep-alive>
+                <list :collection="collection" :comics="comics" v-if="listView"></list>
+                <thumbs :comics="comics" v-if="thumbView"></thumbs>
+            </keep-alive>
             </transition>
 
         </template>

@@ -56,7 +56,7 @@ export default {
         artist: '',
     }),
 
-    mounted() {
+    created() {
 
         if (this.$store.state.newComic !== {}){
             console.log(this.$store.state.newComic)

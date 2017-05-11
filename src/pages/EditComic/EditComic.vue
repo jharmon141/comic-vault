@@ -168,7 +168,7 @@ export default {
 
     },
 
-    mounted() {
+    created() {
         this.comicQuery()
     }
 

@@ -45,7 +45,7 @@ export default {
         id: '',
     }),
 
-    mounted(){
+    created(){
         this.email = this.$store.state.user.email
         this.firstName = this.$store.state.user.firstName
         this.lastName = this.$store.state.user.lastName

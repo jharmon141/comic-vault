@@ -11,7 +11,9 @@
                 </div>
                 <div class="column is-10">
                     <transition name="component-fade" mode="out-in">
-                    <router-view :key="$route.path"></router-view>
+                    <keep-alive>
+                        <router-view :key="$route.path"></router-view>
+                    </keep-alive>
                     </transition>
                 </div>
             </div>
@@ -130,7 +132,7 @@ export default {
 
     },
 
-    mounted() {
+    created() {
         this.queryUser()
     }
 }
@@ -139,7 +141,7 @@ export default {
 <style>
 
 .is-10 {
-    margin-left: 4.5%;
+    margin-left: 3%;
     margin-top: 100px;
 }
 

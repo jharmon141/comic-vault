@@ -56,7 +56,7 @@ export default {
         'loading': Loading
     },
 
-    mounted() {
+    created() {
         if (window.localStorage.profile){
             let obj = JSON.parse(window.localStorage.profile)
             this.email = obj.email

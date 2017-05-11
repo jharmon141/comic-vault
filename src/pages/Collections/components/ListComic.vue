@@ -122,7 +122,6 @@ img {
     margin-left: 10px;
     margin-top: 20px;
     margin-bottom: 60px;
-    border-top: 1px solid #dbdbdb;
     padding-top: 30px;
 }
 

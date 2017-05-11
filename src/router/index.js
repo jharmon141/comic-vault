@@ -15,56 +15,60 @@ Vue.use(Router)
 const router =   new Router({
     mode: 'history',
     scrollBehavior (to, from, savedPosition) {
-        return { x: 0, y: 0 }
+        if (savedPosition) {
+            return savedPosition
+        } else {
+            return { x: 0, y: 0 }
+        }
     },
-  routes: [
-    {
-      path: '/',
-      name: 'LandingPage',
-      component: LandingPage
-    },
-    {
-      path: '/signup',
-      name: 'CreateUser',
-      component: CreateUser,
-    },
-    {
-      path: '/signin',
-      name: 'Signin',
-      component: Signin,
-    },
-    {
-      path: '/collection/:id',
-      name: 'Collection',
-      component: Collections,
-    },
-    {
-      path: '/edit/:comic',
-      name: 'EditComic',
-      component: EditComic,
-      props: true,
-    },
-    {
-      path: '/search',
-      name: 'Search',
-      component: Search,
-    },
-    {
-      path: '/profile',
-      name: 'Profile',
-      component: Profile,
-    },
-    {
-      path: '/new',
-      name: 'Manual',
-      component: Manual,
-    },
-    {
-      path: '/collections',
-      name: 'ManageCollection',
-      component: ManageCollection,
-    }
-  ],
+    routes: [
+        {
+            path: '/',
+            name: 'LandingPage',
+            component: LandingPage
+        },
+        {
+            path: '/signup',
+            name: 'CreateUser',
+            component: CreateUser,
+        },
+        {
+            path: '/signin',
+            name: 'Signin',
+            component: Signin,
+        },
+        {
+            path: '/collection/:id',
+            name: 'Collection',
+            component: Collections,
+        },
+        {
+            path: '/edit/:comic',
+            name: 'EditComic',
+            component: EditComic,
+            props: true,
+        },
+        {
+            path: '/search',
+            name: 'Search',
+            component: Search,
+        },
+        {
+            path: '/profile',
+            name: 'Profile',
+            component: Profile,
+        },
+        {
+            path: '/new',
+            name: 'Manual',
+            component: Manual,
+        },
+        {
+            path: '/collections',
+            name: 'ManageCollection',
+            component: ManageCollection,
+        }
+    ],
 })
 
 export default router
