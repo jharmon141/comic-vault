@@ -7,10 +7,12 @@
             <NavBar></NavBar>
             <div style="min-height:100vh" class="columns">
                 <div  class="column is-2">
+                    <transition name="component-fade" mode="out-in">
                     <SideNav></SideNav>
+                    </transition>
                 </div>
                 <div class="column is-10">
-                    <transition name="component-fade" mode="out-in">
+                    <transition name="component-fade" >
                     <keep-alive>
                         <router-view :key="$route.path"></router-view>
                     </keep-alive>
