@@ -88,7 +88,7 @@ export default {
                 },
             }).then((data) => {
                 // Result
-                this.$router.push({ name: 'Collection', params: {id: 'all'} })
+                this.$router.push({ path: '/' })
                 location.reload()
             }).catch((error) => {
                 // Error

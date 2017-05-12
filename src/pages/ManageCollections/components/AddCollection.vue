@@ -64,7 +64,7 @@ export default {
             }).then((data) => {
                 window.localStorage.setItem("Snackbar", true)
                 window.localStorage.setItem("snackMessage", "Collection added")
-                this.$router.push({ name: 'Collection', params: {id: 'all'} })
+                this.$router.push({ path: '/' })
                 location.reload()
             }).catch((error) => {
                 console.error(error)
