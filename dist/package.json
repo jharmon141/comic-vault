@@ -1,9 +1,8 @@
 {
-    "name": "project_name",
+    "name": "comic_vault",
     "version": "1.0.0",
-    "description": "project",
-    "author": "Awesome Author",
-    "private": true,
+    "description": "A Vuejs project",
+    "author": "jharmon141",
     "scripts": {
         "postinstall": "npm install express"
     },

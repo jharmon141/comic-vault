@@ -13,7 +13,7 @@
                 </div>
                 <div class="column is-10">
                     <transition name="component-fade" >
-                    <keep-alive>
+                    <keep-alive exclude="manual">
                         <router-view :key="$route.path"></router-view>
                     </keep-alive>
                     </transition>
@@ -41,6 +41,7 @@ import store from './store/index.js'
 import SideNav from './components/SideNav.vue'
 import NavBar from './components/NavBar.vue'
 import Loading from './components/Loading.vue'
+import Manual from './pages/Manual/Manual.vue'
 import gql from 'graphql-tag'
 
 const userQuery = gql`
@@ -83,6 +84,7 @@ export default {
         'SideNav': SideNav,
         'NavBar': NavBar,
         'loading': Loading,
+        'manual': Manual,
     },
 
     apollo: {
@@ -105,7 +107,6 @@ export default {
                 query: userQuery,
             }).then((response) => {
                 // Result
-                console.log(response)
                 let params = {}
                 params.id = response.data.user.id
                 params.firstName = response.data.user.firstName
