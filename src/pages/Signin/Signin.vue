@@ -55,7 +55,7 @@ export default {
                 // redirect if user is logged in or did not finish Auth0 Lock dialog
                 if (response.data.user.id ||  window.localStorage.getItem('auth0IdToken') !== null) {
                     console.warn('not a new user or already logged in')
-                    this.$router.push({ name: 'LandingPage' })
+                    this.$router.push({ name: 'Collection', params: {id: 'all'} })
                     location.reload()
                 } 
             }).catch((error) => {
@@ -68,7 +68,6 @@ export default {
     },
 
     created() {
-        console.log("blah")
         setTimeout(this.queryUser, 1000)
     }
 
