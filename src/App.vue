@@ -12,9 +12,7 @@
                     </transition>
                 </div>
                 <div class="column is-10">
-                    <transition name="component-fade" >
-                        <router-view :key="$route.path"></router-view>
-                    </transition>
+                    <router-view :key="$route.path"></router-view>
                 </div>
             </div>
             <footer class="footer">
