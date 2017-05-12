@@ -63,6 +63,7 @@ export default {
                 if (error) {
                     // Handle error
                     return
+                    console.log(error)
                 }
                 // Set the token and user profile in local storage
                 localStorage.setItem('profile', JSON.stringify(profile))

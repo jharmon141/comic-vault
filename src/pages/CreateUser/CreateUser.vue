@@ -88,9 +88,8 @@ export default {
                 },
             }).then((data) => {
                 // Result
+                this.$router.push({ name: 'Collection', params: {id: 'all'} })
                 location.reload()
-                this.$router.push({ name: 'LandingPage' });
-                this.loadingStatus = false
             }).catch((error) => {
                 // Error
                 console.error(error)

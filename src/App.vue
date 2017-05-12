@@ -118,7 +118,7 @@ export default {
                     this.$store.dispatch('handleSetUser',params) 
                     this.$store.dispatch('handleLogin')
                 }
-                if (snack){
+                if (snack) {
                     this.toggleSnackbar(this.snackMessage)
                     window.localStorage.removeItem("Snackbar")
                     window.localStorage.removeItem("snackMessage")
