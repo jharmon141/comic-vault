@@ -13,7 +13,7 @@
                 </div>
                 <div class="column is-10">
                     <transition name="component-fade" >
-                    <keep-alive :exclude="manual">
+                    <keep-alive exclude="manual">
                         <router-view :key="$route.path"></router-view>
                     </keep-alive>
                     </transition>
