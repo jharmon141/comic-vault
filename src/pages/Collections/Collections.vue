@@ -90,7 +90,7 @@ export default {
     methods: {
         queryCollection(){
             this.loadingStatus = true
-            let id = this.collection.id
+            let id = this.$route.params.id.toLowerCase()
             this.$apollo.query({
                 query: collectionQuery,
                 variables:{
