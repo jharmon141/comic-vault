@@ -6,7 +6,7 @@
                     <img src="../assets/comicvault_icon.png">
                     </router-link>
                     <router-link to="/">
-                    <a class="nav-item is-tab">
+                    <a :class="{ 'active': landingActive } " class="nav-item is-tab">
                         Comic Vault
                     </a>
                     </router-link>
@@ -17,8 +17,8 @@
                     <span></span>
                 </span>
                 <div class="nav-right nav-menu" :class="menuActive">
-                    <router-link :key="$route.path" to="/profile"><a class="nav-item is-tab" v-if="authenticated">{{firstName}}</a></router-link>
-                    <a class="nav-item is-tab">
+                    <router-link  :key="$route.path" to="/profile"><a :class="{ 'active': profileActive } "class="nav-item is-tab" v-if="authenticated">{{firstName}}</a></router-link>
+                    <a :class="{ 'active': loginActive }" class="nav-item is-tab">
                         <login></login>
                     </a>
                 </div>
@@ -42,6 +42,15 @@ export default {
         },
         authenticated(){
             return this.$store.state.authenticated
+        },
+        profileActive(){
+            return this.$route.path === '/profile'
+        },
+        landingActive(){
+            return this.$route.path === '/' && this.authenticated
+        },
+        loginActive(){
+            return this.$store.state.authenticated === false
         }
     },
 
@@ -83,6 +92,12 @@ img {
     color: white;
     font-size: 18px;
     padding-top: 10px;
+}
+
+a.nav-item.active {
+    border-bottom-color: #1E90FF;
+    border-width: 3px;
+    color: #fe0000;
 }
 
 .is-tab {
