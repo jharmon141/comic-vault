@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div v-if="response.resource_type === 'volume'" class="modal is-active">
+    <div v-if="response.resource_type === 'volume'" :class="{ 'slideOutUp': active }" class="animated slideInUp modal is-active">
       <div class="modal-background"></div>
       <div class="modal-card">
         <header class="modal-card-head">
@@ -115,13 +115,19 @@
 <script>
 export default {
     name: 'info-modal',
+
+    data: () => ({
+        active: false,
+    }),
+
     props: ['response'],
 
     methods: {
 
-        changeBack() {
-            this.$parent.toggleInfoModal()
-        },
+      changeBack() {
+        this.active = true
+        setTimeout(this.$parent.toggleInfoModal, 1000)
+      },
 
         save(){
             this.$parent.handleCreate()
@@ -177,6 +183,5 @@ small {
 .modal-card-head, .modal-card-foot {
     justify-content: flex-end;
 }
-
 
 </style>
