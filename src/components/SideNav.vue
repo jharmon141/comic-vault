@@ -9,21 +9,20 @@
             Add Comics
             </p>
             <ul class="menu-list">
-                <router-link to="/search" tag="li"><a>Search</a></router-link>
-                <router-link to="/new" tag="li"><a>Manual Add</a></router-link>
+                <SideItem :isCollection="false" text="Search" path="/search" ></SideItem>
+                <SideItem :isCollection="false" text="Manual Add" path="/new" ></SideItem>
             </ul>
             <p class="menu-label">
-            <router-link to="/collections">Collections</router-link>
+            Collections
             </p>
             <ul class="menu-list">
-                <li><router-link to="/collection/all"><a>All ({{all.comics.length}})</a></router-link></li>
+                <li><SideItem  :isCollection="true" :collection="all" text="All" path="/collection/all" ></SideItem></li>
                 <li>
-                    <ul>
-                        <li class="collections" v-for="collection in collections">
-                            <router-link :to="collection.path"><a>{{collection.name}} ({{collection.comics.length}})</a></router-link>
-                        </li>
+                    <ul class="menu-list">
+                            <SideItem v-for="collection in collections" class="collections" :isCollection="true" :collection="collection" :text="collection.name" :path="collection.path" ></SideItem>
                     </ul>
                 </li>
+                <li><SideItem  :isCollection="false" text="Manage Collections" path="/collections" ></SideItem></li>
             </ul>
         </aside>
         </div>
@@ -33,21 +32,31 @@
     
 <script>
 import store from '@/store/index.js'
+import SideItem from './SideItem.vue'
 
 export default {
     store,
+
     data: () => ({
         navUrls: [],
     }),
+
+    components: {
+        'SideItem': SideItem
+    },
+
     computed: {
+
         collections() {
             return this.$store.state.collections.filter(obj => {
                 return obj.name.toLowerCase() !== "all"
             })
         },
+
         auth() {
             return this.$store.state.authenticated
         },
+
         all() {
             return this.$store.state.collections.find(obj => {
                 return obj.name === "All"

@@ -6,7 +6,6 @@
         </template>
 
         <template v-else>
-            <h1>Collection: {{collection.name}} </h1>
             <div class="tabs is-toggle">
                 <ul>
                     <li :class="{ 'is-active': listView }" @click="toggleView()">
@@ -63,6 +62,8 @@ query($id: ID) {
 
 export default {
     store,
+
+    name: 'Collections',
 
     components: {
         'thumbs': Thumbs,
@@ -150,6 +151,7 @@ img {
 
 .tabs.is-toggle{
     margin-bottom: 100px;
+    margin-top: 25px;
 }
 
 .tabs.is-toggle li a{

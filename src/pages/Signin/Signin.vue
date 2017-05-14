@@ -33,6 +33,8 @@ const userQuery = gql`
 `
 export default {
 
+    name: 'SignIn',
+
     components: {
         'loading': Loading,
     },

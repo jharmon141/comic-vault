@@ -43,6 +43,8 @@ createUser(authProvider: {auth0: {idToken: $idToken}}, firstName: $firstName, la
 
 export default {
 
+    name: 'CreateUser',
+
     data: () => ({
         emailSubscription: true,
         user: {},

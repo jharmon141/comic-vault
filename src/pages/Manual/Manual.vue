@@ -44,7 +44,7 @@ createComic(title: $title, series: $series, issueNumber: $issueNumber, artUrl: $
 
 export default {
 
-    name: 'manual',
+    name: 'Manual',
 
     data: () => ({
         title: '',

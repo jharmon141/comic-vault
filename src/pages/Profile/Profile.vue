@@ -37,6 +37,8 @@ const updateUser = gql`
 
 export default {
 
+    name: 'Profile',
+
     data: () => ({
         emailSubscription: '',
         email: '',

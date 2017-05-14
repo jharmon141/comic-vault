@@ -70,6 +70,8 @@ const updateComic = gql`
 `
 export default {
 
+    name: 'EditComic',
+
     data: () => ({
         title: '',
         series: '',

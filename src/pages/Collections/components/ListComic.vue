@@ -120,9 +120,7 @@ img {
 
 .comic {
     margin-left: 10px;
-    margin-top: 20px;
     margin-bottom: 60px;
-    padding-top: 30px;
 }
 
 

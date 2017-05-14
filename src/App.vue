@@ -12,11 +12,9 @@
                     </transition>
                 </div>
                 <div class="column is-10">
-                    <transition name="component-fade" >
-                    <keep-alive exclude="manual">
+                    <keep-alive include="Collections, Search">
                         <router-view :key="$route.path"></router-view>
                     </keep-alive>
-                    </transition>
                 </div>
             </div>
             <footer class="footer">
@@ -144,8 +142,9 @@ export default {
 <style>
 
 .is-10 {
-    margin-left: 3%;
+    margin-left: 4%;
     margin-top: 100px;
+    min-height: 100%;
 }
 
 input:focus {
@@ -182,11 +181,12 @@ input {
 }
 
 .component-fade-enter-active, .component-fade-leave-active {
-  transition: opacity .2s ease;
+  transition: opacity .2s;
 }
 .component-fade-enter, .component-fade-leave-to
 /* .component-fade-leave-active for <2.1.8 */ {
   opacity: 0;
+  min-height: 100%;
 }
 </style>
 <style src="bulma/css/bulma.css"></style>

@@ -9,7 +9,7 @@ const store = new Vuex.Store({
         authenticated: false,
         user: {},
         collections: [],
-        newComic: {}
+        newComic: {},
     },
 
     mutations: {
@@ -36,7 +36,7 @@ const store = new Vuex.Store({
 
         setNewComic: (state, params) => {
             state.newComic = params
-        }
+        },
 
     },
 

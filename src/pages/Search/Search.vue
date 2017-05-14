@@ -59,7 +59,8 @@ import store from '../../store/index.js'
 import Loading from '../../components/Loading.vue'
 
 export default {
-    name: 'search',
+    name: 'Search',
+
     components: {
         'tabs': Tabs,
         'tab': Tab,
@@ -67,6 +68,7 @@ export default {
         'loading': Loading,
         'new-comic-list': NewComicList
     },
+
     data: () => ({
         seriesName: '',
         issueName: '',
@@ -77,7 +79,9 @@ export default {
         showIssueModal: false,
         loadingStatus: false
     }),
+
     methods: {
+
         clicked() {
             this.loadingStatus = true
             this.queryParams.field = ''
@@ -99,7 +103,7 @@ export default {
                 alert('error')
             }
 
-            var that = this.queryParams.field
+            let that = this.queryParams.field
             axios.get(`/api/${this.queryParams.name}/${this.queryParams.volume}/${this.queryParams.field}`).then((response) => {
                 let filteredResponse = []
                 for (let i = 0; i < response.data.results.length; i++) {
