@@ -126,7 +126,7 @@ export default {
 
 img {
     cursor: pointer;
-    box-shadow: 5px 5px 2.5px #888888;
+    box-shadow: 10px 10px 5px #888888;
     max-height: 250px;
 }
 
