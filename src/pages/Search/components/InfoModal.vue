@@ -36,7 +36,7 @@
         </footer>
       </div>
     </div>
-    <div v-if="response.resource_type === 'issue'" class="modal is-active">
+    <div v-if="response.resource_type === 'issue'" :class="{ 'slideOutUp': active }" class="animated slideInUp modal is-active">
       <div class="modal-background"></div>
       <div class="modal-card">
         <header class="modal-card-head">
@@ -72,7 +72,7 @@
         </footer>
       </div>
     </div>
-    <div v-if="response.resource_type === 'character'" class="modal is-active">
+    <div v-if="response.resource_type === 'character'" :class="{ 'slideOutUp': active }" class="animated slideInUp modal is-active">
       <div class="modal-background"></div>
       <div class="modal-card">
         <header class="modal-card-head">
