@@ -1,5 +1,5 @@
 <template>
-    <div class="manageCollections">
+    <div class="animated bounceInUp manageCollections">
 
         <add-collection></add-collection>
         <edit-collections></edit-collections>

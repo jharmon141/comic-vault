@@ -1,6 +1,6 @@
 <template>
 
-    <div class="manual">
+    <div class="animated fadeIn manual">
         <h1>Add New Comic:</h1>
         <form>
             <input v-model="title" placeholder="Title" required>
