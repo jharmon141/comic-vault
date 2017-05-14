@@ -2,7 +2,7 @@
 
     <div class="img">
 
-        <img src="../../assets/comicvault.png">
+        <img class="animated flipInY" src="../../assets/comicvault.png">
 
     </div>
 

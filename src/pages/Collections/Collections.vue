@@ -5,10 +5,10 @@
             <loading></loading>
         </template>
 
-        <template v-else>
+        <template  v-else>
             <h1>Collection: {{collection.name}} </h1>
             <div class="tabs is-toggle">
-                <ul>
+                <ul class="tabList">
                     <li :class="{ 'is-active': listView }" @click="toggleView()">
                         <a>
                             <v-icon>list</v-icon>

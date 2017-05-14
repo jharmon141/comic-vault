@@ -1,6 +1,6 @@
 <template>
 
-    <div class="animated bounceInDown profile">
+    <div class="animated slideInDown profile">
         <h1>Update Your Profile:</h1>
         <form>
             <input v-model="firstName" placeholder="First Name" required>

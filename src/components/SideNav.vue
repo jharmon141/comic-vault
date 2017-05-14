@@ -4,7 +4,7 @@
         </div>
 
         <div v-else>
-        <aside class="animated slideInLeft menu">
+            <aside :class="{ 'slideOutLeft': fadeOut }"  class="animated slideInLeft menu">
             <p class="menu-label">
             Add Comics
             </p>
@@ -19,7 +19,7 @@
                 <li><SideItem  :isCollection="true" :collection="all" text="All" path="/collection/all" ></SideItem></li>
                 <li>
                     <ul class="menu-list">
-                            <SideItem v-for="collection in collections" class="collections" :isCollection="true" :collection="collection" :text="collection.name" :path="collection.path" ></SideItem>
+                            <SideItem v-for="collection in collections" :key="collection.id" class="collections" :isCollection="true" :collection="collection" :text="collection.name" :path="collection.path" ></SideItem>
                     </ul>
                 </li>
                 <li><SideItem  :isCollection="false" text="Manage Collections" path="/collections" ></SideItem></li>
@@ -39,6 +39,7 @@ export default {
 
     data: () => ({
         navUrls: [],
+        fadeOut: false
     }),
 
     components: {
@@ -63,6 +64,11 @@ export default {
             })
         }
     },
+
+    beforeDestroy() {
+        setTimeout(1000)
+        this.fadeOut = true
+    }
 }
 
 </script>

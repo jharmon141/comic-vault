@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div :class="{ 'slideOutDown': active }" class="animated slideInDown modal is-active">
+        <div :class="{ 'slideOutUp': active }" class="animated slideInDown modal is-active">
             <div class="modal-background"></div>
             <div class="modal-content">
                 <div class="box">
