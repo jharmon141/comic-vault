@@ -4,7 +4,7 @@
         </div>
 
         <div v-else>
-        <aside class="menu">
+        <aside class="animated slideInLeft menu">
             <p class="menu-label">
             Add Comics
             </p>
@@ -70,7 +70,7 @@ export default {
 <style scoped>
 
 aside {
-    margin-left: 10px;
+    margin-left: 15px;
     margin-top: 110px;
     position: fixed;
     overflow-y: auto;

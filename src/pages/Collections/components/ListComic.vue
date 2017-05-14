@@ -123,8 +123,11 @@ export default {
 </script>
 
 <style scoped>
+
 img {
-    max-height: 225px;
+    cursor: pointer;
+    box-shadow: 5px 5px 2.5px #888888;
+    max-height: 250px;
 }
 
 .comic {
@@ -159,14 +162,11 @@ img {
     margin-bottom: 25px;
 }
 
-img {
-    cursor: pointer;
-}
 .fade-enter-active, .fade-leave-active {
     transition: all .3s ease;
 }
+
 .fade-enter, .fade-leave-active {
     opacity: 0;
 }
 </style>
-<style src="animate.css/animate.min.css"></style>

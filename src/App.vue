@@ -190,3 +190,4 @@ input {
 }
 </style>
 <style src="bulma/css/bulma.css"></style>
+<style src="animate.css/animate.min.css"></style>

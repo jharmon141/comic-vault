@@ -47,8 +47,10 @@
 
 img {
     max-width: 85%;
+    cursor: pointer;
+    box-shadow: 5px 5px 2.5px #888888;
+    margin-bottom: 10px;
 }
-
 .thumbView {
     width: 25%;
     height: 300px;
@@ -60,6 +62,7 @@ img {
     word-wrap: break-word;
     padding-right: 15px;
 }
+
 .button:hover, .button.is-hovered {
     background-color: #1E90FF;
     color: whitesmoke;
@@ -94,7 +97,4 @@ img {
     border-color: #1E90FF;
 }
 
-img {
-    cursor: pointer;
-}
 </style>
