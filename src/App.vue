@@ -12,7 +12,7 @@
                     </transition>
                 </div>
                 <div class="column is-10">
-                    <keep-alive include="Collections">
+                    <keep-alive include="Collections,Search">
                         <router-view :key="$route.path"></router-view>
                     </keep-alive>
                 </div>
@@ -187,6 +187,10 @@ input {
 /* .component-fade-leave-active for <2.1.8 */ {
   opacity: 0;
   min-height: 100%;
+}
+
+.modal.is-active {
+    z-index: 5000 !important;
 }
 </style>
 <style src="bulma/css/bulma.css"></style>

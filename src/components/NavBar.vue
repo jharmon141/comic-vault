@@ -128,5 +128,3 @@ a.nav-item.active {
     width: 50px;
 }
 </style>
-
-<style src="bulma/css/bulma.css"></style>

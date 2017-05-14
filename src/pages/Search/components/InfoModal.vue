@@ -141,12 +141,13 @@ export default {
     width: 50%;
 }
 
+
 small {
     font-size: 16px;
 }
 
 .modal-card {
-    height: 95%;
+    height: 85%;
 }
 
 .modal-card-head {

@@ -1,5 +1,5 @@
 <template>
-    <div class="animated fadeIn">
+    <div class="search animated fadeIn">
         <div v-if="loadingStatus">
             <loading></loading>
         </div>
@@ -132,6 +132,11 @@ export default {
 
 <style scoped>
 
+.search{
+    display: initial;
+    justify-content: flex-start;
+    flex-direction: column;
+}
 .column.is-8 {
     margin-left: 0px !important;
     margin-right: 0px !important;
