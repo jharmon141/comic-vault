@@ -12,7 +12,7 @@
                     </transition>
                 </div>
                 <div class="column is-10">
-                    <keep-alive include="Collections,Search">
+                    <keep-alive include="Collections">
                         <router-view :key="$route.path"></router-view>
                     </keep-alive>
                 </div>
