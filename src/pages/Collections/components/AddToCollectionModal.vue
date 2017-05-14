@@ -2,7 +2,7 @@
   <div>
     <div class="modal is-active">
       <div class="modal-background"></div>
-      <div class="modal-card">
+      <div :class="{ 'slideOutDown': active }" class="animated slideInUp modal-card">
         <header class="modal-card-head">
           <p class="modal-card-title"><strong>Add to Collection:</strong></p>
           <button @click="changeBack" class="delete"></button>
@@ -40,6 +40,10 @@ const createCollectionOnComic = gql`
 `
 
 export default {
+    data: () => ({
+        active: false,
+    }),
+
     props: {
         comic: {},
     },
@@ -55,7 +59,8 @@ export default {
     methods: {
 
         changeBack() {
-            this.$parent.toggleAddCollectionModal()
+            this.active = true
+            setTimeout(this.$parent.toggleAddCollectionModal, 800)
         },
 
         addToCollection(collection){
@@ -101,7 +106,7 @@ small {
 }
 
 .modal-card-head {
-    background-color: dodgerblue;
+    background-color: #fe0000;
 }
 
 .modal-card-title strong {
@@ -114,21 +119,21 @@ small {
 
 .button.is-danger.is-outlined {
     background-color: white;
-    border-color: #fe0000;
-    color: #fe0000;
+    border-color: dodgerblue;
+    color: dodgerblue;
     float: right;
     width: 100%;
     height: auto;
 }
 
 .button.is-danger.is-outlined:hover, .button.is-danger.is-outlined.is-hovered {
-    background-color: #fe0000;
+    background-color: dodgerblue;
+    border-color: dodgerblue;
     color: white;
 }
 
 .modal-card-head, .modal-card-foot {
     justify-content: flex-end;
 }
-
 
 </style>

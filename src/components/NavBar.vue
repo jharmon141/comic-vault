@@ -18,7 +18,7 @@
                 </span>
                 <div class="nav-right nav-menu" :class="menuActive">
                     <router-link  :key="$route.path" to="/profile"><a :class="{ 'active': profileActive } "class="nav-item is-tab" v-if="authenticated">{{firstName}}</a></router-link>
-                    <a :class="{ 'active': loginActive }" class="nav-item is-tab">
+                    <a class="nav-item is-tab">
                         <login></login>
                     </a>
                 </div>
