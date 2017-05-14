@@ -25,19 +25,19 @@
                     </div>
 
                     <div class="columns">
-                        <div class="column is-12">
-                            <p v-if="showMore"><em>Description:</em></p>
-                            <div v-html="comic.description" v-if="showMore"></div>
+                        <div class="column is-12 ">
+                            <p :class="{ 'fadeOutUp': active, 'fadeInDown': inActive}" class="animated" v-if="showMore"><em>Description:</em></p>
+                            <div :class="{ 'fadeOutUp': active, 'fadeInDown': inActive}" class="animated" v-html="comic.description" v-if="showMore"></div>
                         </div>
                     </div>
 
                 </div>
 
                 <div v-if="!showMore" class="column is-2">
-                    <span @click="toggleView()" class="button edit is-outlined"><v-icon>expand_more</v-icon></span>
+                    <span @click="toggleView()" class=" button edit is-outlined"><v-icon>expand_more</v-icon></span>
                 </div>
                 <div v-else="showMore" class="column is-2">
-                    <span @click="toggleView()" class="button edit is-outlined"><v-icon>expand_less</v-icon></span>
+                    <span @click="handleToggleView()" class="button edit is-outlined"><v-icon>expand_less</v-icon></span>
                     <br>
                     <router-link :comic="comic" :to="{name: 'EditComic', params: {comic: comic.id}}"><span  class="button is-danger is-outlined"><v-icon>edit</v-icon></span></router-link>
                     <br>
@@ -63,7 +63,9 @@ export default {
     data: () => ({
         showMore: false,
         showCoverModal: false,
-        showAddCollectionModal: false
+        showAddCollectionModal: false,
+        active: false,
+        inActive: true
     }),
 
     components: {
@@ -78,10 +80,17 @@ export default {
 
     methods: {
 
+        handleToggleView(){
+            this.active = true
+            this.inActive = false
+            setTimeout(this.toggleView, 600)
+        },
+
         toggleView(){
             if (this.showMore === true){
                 this.showMore = false
             } else {
+                this.inActive = true
                 this.showMore = true
             }
         },
@@ -115,7 +124,7 @@ export default {
 
 <style scoped>
 img {
-    max-height: 250px;
+    max-height: 225px;
 }
 
 .comic {
@@ -153,4 +162,11 @@ img {
 img {
     cursor: pointer;
 }
+.fade-enter-active, .fade-leave-active {
+    transition: all .3s ease;
+}
+.fade-enter, .fade-leave-active {
+    opacity: 0;
+}
 </style>
+<style src="animate.css/animate.min.css"></style>

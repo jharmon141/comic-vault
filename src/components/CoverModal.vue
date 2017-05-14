@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="modal is-active">
+        <div :class="{ 'slideOutUp': active }" class="animated slideInDown modal is-active">
             <div class="modal-background"></div>
             <div class="modal-content">
                 <div class="box">
@@ -17,6 +17,11 @@
 <script>
   export default {
       name: 'cover-modal',
+
+      data: () => ({
+          active: false,
+      }),
+      
       props: {
           response: [],
           comic: false
@@ -24,8 +29,8 @@
 
     methods: {
       changeBack() {
-        console.log(this.response)
-        this.$parent.toggleCoverModal()
+        this.active = true
+        setTimeout(this.$parent.toggleCoverModal, 1000)
       }
     }
   }

@@ -181,7 +181,7 @@ input {
 }
 
 .component-fade-enter-active, .component-fade-leave-active {
-  transition: opacity .2s;
+  transition: opacity .3s;
 }
 .component-fade-enter, .component-fade-leave-to
 /* .component-fade-leave-active for <2.1.8 */ {

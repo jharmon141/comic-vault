@@ -6,6 +6,7 @@
         </template>
 
         <template v-else>
+            <h1>Collection: {{collection.name}} </h1>
             <div class="tabs is-toggle">
                 <ul>
                     <li :class="{ 'is-active': listView }" @click="toggleView()">
@@ -151,7 +152,6 @@ img {
 
 .tabs.is-toggle{
     margin-bottom: 100px;
-    margin-top: 25px;
 }
 
 .tabs.is-toggle li a{

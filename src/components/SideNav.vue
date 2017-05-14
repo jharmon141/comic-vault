@@ -71,12 +71,11 @@ export default {
 
 aside {
     margin-left: 10px;
-    margin-top: 100px;
+    margin-top: 110px;
     position: fixed;
-}
-
-.menu-list a:hover{
-    color: #fe0000;
+    overflow-y: auto;
+    top: 10px;
+    bottom: 10px;
 }
 
 .menu-list {
@@ -89,10 +88,6 @@ aside {
 
 .menu-label a {
     color: #7a7a7a;
-}
-
-.menu-label a:hover{
-    color: #fe0000;
 }
 
 </style>
