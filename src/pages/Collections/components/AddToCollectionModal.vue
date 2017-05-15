@@ -123,7 +123,7 @@ small {
     color: dodgerblue;
     float: right;
     width: 100%;
-    height: auto;
+    height: 50px;
 }
 
 .button.is-danger.is-outlined:hover, .button.is-danger.is-outlined.is-hovered {

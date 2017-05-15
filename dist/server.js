@@ -7,8 +7,8 @@ var app = express();
 var path = require('path');
 var requestify = require('requestify');
 var history = require('connect-history-api-fallback');
-app.use(serveStatic(__dirname));
 app.use(history());
+app.use(serveStatic(__dirname));
 var port = process.env.PORT || 5000;
 
 app.use(bodyParser.urlencoded({
