@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div v-if="response.resource_type === 'volume'" :class="{ 'slideOutUp': active }" class="animated slideInUp modal is-active">
+    <div v-if="response.resource_type === 'volume'" :class="{ 'slideOutDown': active }" class="animated slideInUp modal is-active">
       <div class="modal-background"></div>
       <div class="modal-card">
         <header class="modal-card-head">

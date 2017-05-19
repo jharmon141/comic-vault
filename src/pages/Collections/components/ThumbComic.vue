@@ -51,6 +51,14 @@ img {
     box-shadow: 5px 5px 2.5px #888888;
     margin-bottom: 10px;
 }
+
+img:hover {
+    max-width: 87%;
+    cursor: pointer;
+    box-shadow: 10px 10px 5px #888888;
+    margin-bottom: 10px;
+}
+
 .thumbView {
     width: 25%;
     height: 300px;

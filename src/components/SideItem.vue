@@ -1,8 +1,8 @@
 <template>
 
-        <router-link v-if="isCollection" :to="collection.path" tag="li" ><a :class="{ 'is-active': active }">{{collection.name}} ({{collection.comics.length}})</a></router-link>
+        <router-link  v-if="isCollection" :to="collection.path" tag="li" ><a :class="{ 'is-active': active }">{{collection.name}} ({{collection.comics.length}})</a></router-link>
 
-        <router-link v-else :to="path" tag="li" ><a :class="{ 'is-active': active }">{{text}}</a></router-link>
+        <router-link  v-else :to="path" tag="li" ><a :class="{ 'is-active': active }">{{text}}</a></router-link>
 
 </template>
 

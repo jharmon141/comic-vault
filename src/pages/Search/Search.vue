@@ -1,5 +1,5 @@
 <template>
-    <div class="search animated fadeIn">
+    <div class="search">
         <div v-if="loadingStatus">
             <loading></loading>
         </div>
@@ -12,7 +12,7 @@
                     <div class="column is-12">
                         <div class="field">
                             <p class="control">
-                            <input @keyup.enter="clicked" type="text" placeholder="Series Name" v-model="seriesName">
+                            <input  @keyup.enter="clicked" type="text" placeholder="Series Name" v-model="seriesName">
                             </p>
                         </div>
                     </div>
@@ -37,7 +37,7 @@
                     </div>
                     </tab>
                     <br>
-                    <span class="button is-danger is-outlined" @click="clicked">Search</span>
+                    <span  class="button is-danger is-outlined" @click="clicked">Search</span>
                     </tabs>
                     <br>
                     <div id="results">

@@ -9,12 +9,12 @@
             <h1>Collection: {{collection.name}} </h1>
             <div class="tabs is-toggle">
                 <ul class="tabList">
-                    <li :class="{ 'is-active': listView }" @click="toggleView()">
+                    <li :class="{ 'is-active': listView }" @click="setListView()">
                         <a>
                             <v-icon>list</v-icon>
                         </a>
                     </li>
-                    <li :class="{ 'is-active': thumbView }" @click="toggleView()">
+                    <li :class="{ 'is-active': thumbView }" @click="setThumbView()">
                         <a >
                             <v-icon>view_module</v-icon>
                         </a>
@@ -108,14 +108,14 @@ export default {
             })
         },
 
-        toggleView(){
-            if (this.listView) {
-                this.listView = false
-                this.thumbView = true
-            } else {
-                this.listView = true
-                this.thumbView = false
-            }
+        setListView(){
+            this.listView = true
+            this.thumbView = false
+        },
+
+        setThumbView(){
+            this.thumbView = true
+            this.listView = false
         }
 
     },
