@@ -1,6 +1,6 @@
 <template>
 
-    <div class="createUser">
+    <div class="animated slideInDown createUser">
         <template v-if="loadingStatus">
             <loading></loading>
         </template>

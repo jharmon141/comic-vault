@@ -12,6 +12,7 @@ import AddCollection from './components/AddCollection'
 import EditCollection from './components/EditCollection'
 
 export default {
+    name: 'ManageCollections',
     components: {
         'add-collection': AddCollection,
         'edit-collections': EditCollection

@@ -15,25 +15,23 @@
 
 
 <script>
-  export default {
-      name: 'cover-modal',
+    export default {
+        name: 'cover-modal',
 
-      data: () => ({
-          active: false,
-      }),
-      
-      props: {
-          response: [],
-          comic: false
-      },
+        data: () => ({
+            active: false,
+        }),
 
-    methods: {
-      changeBack() {
-        this.active = true
-        setTimeout(this.$parent.toggleCoverModal, 1000)
-      }
+        props: ['toggleCoverModal', 'response', 'comic'],
+
+        methods: {
+            changeBack() {
+                this.active = true
+                setTimeout(this.toggleCoverModal, 1000)
+            }
+        }
     }
-  }
+
 </script>
 
 

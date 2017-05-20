@@ -39,7 +39,8 @@ import store from './store/index.js'
 import SideNav from './components/SideNav.vue'
 import NavBar from './components/NavBar.vue'
 import Loading from './components/Loading.vue'
-import Manual from './pages/Manual/Manual.vue'
+import Collections from './pages/Collections/Collections.vue'
+import Search from './pages/Search/Search.vue'
 import gql from 'graphql-tag'
 
 const userQuery = gql`
@@ -82,7 +83,8 @@ export default {
         'SideNav': SideNav,
         'NavBar': NavBar,
         'loading': Loading,
-        'manual': Manual,
+        'Collections': Collections,
+        'Search': Search,
     },
 
     apollo: {

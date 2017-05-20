@@ -40,13 +40,12 @@ const createCollectionOnComic = gql`
 `
 
 export default {
+
     data: () => ({
         active: false,
     }),
 
-    props: {
-        comic: {},
-    },
+    props: ['toggleAddCollectionModal', 'comic'],
 
     computed: {
         collections() {
@@ -60,12 +59,13 @@ export default {
 
         changeBack() {
             this.active = true
-            setTimeout(this.$parent.toggleAddCollectionModal, 800)
+            setTimeout(this.toggleAddCollectionModal, 800)
         },
 
         addToCollection(collection){
             let comicId = this.comic.id
             let collectionId = collection.id
+
 
             this.$apollo.mutate({
                 mutation: createCollectionOnComic,
@@ -76,7 +76,6 @@ export default {
             }).then((data) => {
                 window.localStorage.setItem("Snackbar", true)
                 window.localStorage.setItem("snackMessage", "Comic added to collection")
-                this.$router.push({ path: '/' })
                 location.reload()
             }).catch((error) => {
                 console.error(error)
@@ -135,5 +134,4 @@ small {
 .modal-card-head, .modal-card-foot {
     justify-content: flex-end;
 }
-
 </style>

@@ -17,19 +17,13 @@
 import ThumbComic from './ThumbComic.vue'
 
 export default {
-    props:{
-        comics: []
-    },
+    name: 'thumbs',
+
+    props: ['comics'],
 
     components: {
         'thumb-comic': ThumbComic
     },
-
-    methods: {
-        viewListView(){
-            this.$parent.toggleView("list")
-        }
-    }
 
 }
 

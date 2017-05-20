@@ -66,7 +66,6 @@ export default {
             let lastName = this.lastName
             let emailSubscription = this.emailSubscription
 
-            // Mutation
             this.$apollo.mutate({
                 mutation: updateUser,
                 variables: {

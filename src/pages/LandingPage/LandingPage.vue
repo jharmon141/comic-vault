@@ -1,17 +1,18 @@
 <template>
 
     <div class="img">
-
         <img class="animated flipInY" src="../../assets/comicvault.png">
-
     </div>
 
 </template>
 
+
 <script>
-
-
+    export default {
+        name: 'LandingPage'
+    }
 </script>
+
 
 <style scoped>
 

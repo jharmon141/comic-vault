@@ -1,6 +1,6 @@
 <template>
   <div>
-    <cover-modal v-if="showIssueModal" :response="issue"></cover-modal>
+    <cover-modal :toggleCoverModal="toggleCoverModal" v-if="showIssueModal" :response="issue"></cover-modal>
     <info-modal v-if="showInfoIssueModal" :response="issue"></info-modal>
       <div class="box">
         <article class="media">

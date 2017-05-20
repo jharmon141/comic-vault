@@ -1,8 +1,9 @@
 <template>
     <div class="listView">
 
-      <cover-modal :comic="true" v-if="showCoverModal" :response="comic"></cover-modal>
-      <add-to-collection-modal :comic="comic" v-if="showAddCollectionModal"></add-to-collection-modal>
+        <confirm-modal text="Delete comic from this collection?" :actionFunction="deleteComic" :toggleConfirmModal="toggleConfirmModal" v-if="showConfirmModal"></confirm-modal>
+        <cover-modal :toggleCoverModal="toggleCoverModal" :comic="true" v-if="showCoverModal" :response="comic"></cover-modal>
+        <add-to-collection-modal :toggleAddCollectionModal="toggleAddCollectionModal" :comic="comic" v-if="showAddCollectionModal"></add-to-collection-modal>
 
         <div class="comic" >
             <div class="columns">
@@ -45,7 +46,7 @@
                     <span  @click="toggleAddCollectionModal" class="button is-danger is-outlined"><v-icon>add</v-icon></span>
                     <br>
                     </div>
-                    <span @click="handleDelete" class="button is-danger is-outlined"><v-icon>clear</v-icon></span>
+                    <span @click="toggleConfirmModal" class="button is-danger is-outlined"><v-icon>clear</v-icon></span>
                 </div>
 
             </div>
@@ -57,12 +58,14 @@
 <script>
 import CoverModal from '../../../components/CoverModal.vue'
 import AddToCollectionModal from './AddToCollectionModal.vue'
+import ConfirmModal from '../../../components/ConfirmModal.vue'
 
 export default {
 
     data: () => ({
         showMore: false,
         showCoverModal: false,
+        showConfirmModal: false,
         showAddCollectionModal: false,
         active: false,
         inActive: true
@@ -70,13 +73,11 @@ export default {
 
     components: {
         'cover-modal': CoverModal,
-        'add-to-collection-modal': AddToCollectionModal
+        'add-to-collection-modal': AddToCollectionModal,
+        'confirm-modal': ConfirmModal
     },
 
-    props: {
-        comic: {},
-        collection: '',
-    },
+    props: ['handleDelete', 'comic', 'collection'],
 
     methods: {
 
@@ -103,6 +104,14 @@ export default {
             }
         },
 
+        toggleConfirmModal(){
+            if (this.showConfirmModal == false) {
+                this.showConfirmModal = true
+            } else {
+                this.showConfirmModal = false
+            }
+        },
+
         toggleAddCollectionModal(){
             if (this.showAddCollectionModal == false) {
                 this.showAddCollectionModal = true
@@ -111,10 +120,10 @@ export default {
             }
         },
 
-        handleDelete(){
-            this.$parent.delete(this.comic)
+        deleteComic(){
+            this.toggleConfirmModal()
+            this.handleDelete(this.comic)
         },
-
 
     }
 

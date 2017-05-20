@@ -36,9 +36,7 @@ const deleteCollection = gql`
 
 export default {
 
-    props: {
-        collection: {},
-    },
+    props: ['collection'],
 
     data: () => ({
         updateName: '',

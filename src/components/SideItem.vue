@@ -11,12 +11,8 @@ import store from '../store'
 
 export default {
     store,
-    props: {
-        isCollection: false,
-        collection: {},
-        text: '',
-        path: '',
-    },
+
+    props: ['isCollection', 'collection', 'text', 'path'],
 
     computed: {
         active() {

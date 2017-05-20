@@ -7,7 +7,7 @@ import Collections from '@/pages/Collections/Collections'
 import Search from '@/pages/Search/Search'
 import Profile from '@/pages/Profile/Profile'
 import Manual from '@/pages/Manual/Manual'
-import ManageCollection from '@/pages/ManageCollections/ManageCollections'
+import ManageCollections from '@/pages/ManageCollections/ManageCollections'
 import EditComic from '@/pages/EditComic/EditComic'
 
 Vue.use(Router)
@@ -65,8 +65,8 @@ const router =   new Router({
         },
         {
             path: '/collections',
-            name: 'ManageCollection',
-            component: ManageCollection,
+            name: 'ManageCollections',
+            component: ManageCollections,
         }
     ],
 })

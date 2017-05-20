@@ -3,7 +3,7 @@
 
         <div v-for="comic in comics" class="comicList">
 
-            <list-comic :collection="collection" :comic="comic"></list-comic>
+            <list-comic :handleDelete="handleDelete" :collection="collection" :comic="comic"></list-comic>
 
         </div>
 
@@ -36,21 +36,19 @@ const deleteCollectionOnComic = gql`
     }
 `
 export default {
-    props:{
-        comics:'', 
-        collection: '',
-    },
+    name: 'list',
+
+    props: ['setLoading', 'comics', 'collection'],
     
     components: {
         "list-comic": ListComic
     },
 
     methods: {
-        viewThumbView(){
-             this.$parent.toggleView("thumbs")
-        },
 
-        delete(comic) {
+        handleDelete(comic) {
+            this.setLoading(true) 
+            
             if (this.collection.name === "All"){
 
             let id = comic.id
@@ -64,7 +62,6 @@ export default {
             }).then((data) => {
                 window.localStorage.setItem("Snackbar", true)
                 window.localStorage.setItem("snackMessage", "Comic deleted")
-                this.$router.push({ path: '/' })
                 location.reload()
             }).catch((error) => {
                 console.error(error)
@@ -81,10 +78,18 @@ export default {
                         comicId,
                         collectionId
                     },
+                    updateQueries: {
+                        currectCollection: (prev, { mutationResult }) => {
+                            return {
+                                currectCollection: prev.allArticles.filter(( obj )=> {
+                                    return obj.id !== mutationResult.data.deleteArticle.id;
+                                })
+                            }
+                        }
+                    }
                 }).then((data) => {
                     window.localStorage.setItem("Snackbar", true)
                     window.localStorage.setItem("snackMessage", "Comic removed from collection")
-                    this.$router.push({ path: '/' })
                     location.reload()
                 }).catch((error) => {
                     console.error(error)

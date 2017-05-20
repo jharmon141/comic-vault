@@ -85,9 +85,7 @@ export default {
         loadingStatus: false,
     }),
 
-    props: {
-        comic: '',
-    },
+    props: ['comic'],
 
     components: {
         'loading': Loading,

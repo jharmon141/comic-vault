@@ -1,31 +1,19 @@
 <template>
     <div class="collections">
 
-        <template v-if="loadingStatus">
+        <template v-if="loading">
             <loading></loading>
         </template>
 
         <template  v-else>
             <h1>Collection: {{collection.name}} </h1>
-            <div class="tabs is-toggle">
-                <ul class="tabList">
-                    <li :class="{ 'is-active': listView }" @click="setListView()">
-                        <a>
-                            <v-icon>list</v-icon>
-                        </a>
-                    </li>
-                    <li :class="{ 'is-active': thumbView }" @click="setThumbView()">
-                        <a >
-                            <v-icon>view_module</v-icon>
-                        </a>
-                    </li>
-                </ul>
-            </div>
+
+            <tabs :setListView="setListView" :setThumbView="setThumbView" :thumbView="thumbView" :listView="listView"></tabs>
 
             <transition name="slide-fade"  mode="out-in">
             <keep-alive>
-                <list :collection="collection" :comics="comics" v-if="listView"></list>
-                <thumbs :comics="comics" v-if="thumbView"></thumbs>
+                <list :setLoading="setLoading" :collection="collection" :comics="comics" v-if="listView && !thumbView"></list>
+                <thumbs :comics="comics" v-else-if="thumbView && !listView"></thumbs>
             </keep-alive>
             </transition>
 
@@ -40,9 +28,10 @@ import gql from 'graphql-tag'
 import Thumbs from './components/Thumbs'
 import List from './components/List'
 import Loading from '../../components/Loading.vue'
+import Tabs from './components/Tabs.vue'
 
 const collectionQuery = gql`
-query($id: ID) {
+query currectCollection($id: ID) {
     Collection (id: $id) {
       name
       comics (orderBy: series_ASC) {
@@ -63,19 +52,19 @@ query($id: ID) {
 
 export default {
     store,
-
     name: 'Collections',
 
     components: {
         'thumbs': Thumbs,
         'list': List,
-        'loading': Loading
+        'loading': Loading,
+        'tabs': Tabs
     },
 
     data: () => ({
         comics: [],
-        viewType: "list",
-        loadingStatus: false,
+        viewType: 'list',
+        loading: false,
         thumbView: false,
         listView: true
     }),
@@ -91,7 +80,7 @@ export default {
 
     methods: {
         queryCollection(){
-            this.loadingStatus = true
+            this.loading = true
             let id = this.collection.id
             this.$apollo.query({
                 query: collectionQuery,
@@ -100,11 +89,10 @@ export default {
                 }
             }).then((response) => {
                 this.comics = response.data.Collection.comics
-                this.loadingStatus = false
+                this.loading = false
             }).catch((error) => {
-                // Error
                 console.error(error)
-                this.loadingStatus = false
+                this.loading = false
             })
         },
 
@@ -116,13 +104,17 @@ export default {
         setThumbView(){
             this.thumbView = true
             this.listView = false
-        }
+        },
+
+        setLoading(state){
+            this.loading = state
+        },
 
     },
 
-    beforeMount() {
+    mounted() {
         this.queryCollection()
-    }
+    },
 
 }
 </script>
@@ -146,45 +138,15 @@ img {
     cursor: pointer;
 }
 
-.tabs {
-    margin-left: 28%;
-}
-
-.tabs.is-toggle{
-    margin-bottom: 100px;
-}
-
-.tabs.is-toggle li a{
-    border-color: #fe0000;
-    color: #fe0000;
-}
-
-.tabs.is-toggle li.is-active a{
-    border-color: #fe0000;
-    background-color: #fe0000;
-    color: white;
-}
-
-.tabs li {
-    width: 20%;
-}
-
-v-icon {
-    margin-left: 0px;
-}
-
-.tabs.is-toggle a:hover{
-    background-color: white;
-}
-
 .slide-fade-enter-active {
   transition: all .3s ease;
 }
+
 .slide-fade-leave-active {
   transition: all .3s cubic-bezier(1.0, 0.5, 0.8, 1.0);
 }
-.slide-fade-enter, .slide-fade-leave-to
-/* .slide-fade-leave-active for <2.1.8 */ {
+
+.slide-fade-enter, .slide-fade-leave-to {
   transform: translateX(10px);
   opacity: 0;
 }

@@ -5,8 +5,6 @@ import store from './store'
 import ApolloClient, { createNetworkInterface } from 'apollo-client'
 import VueApollo from 'vue-apollo'
 import Vuetify from 'vuetify'
-import Ripple from 'vue-ripple-directive'
-Vue.directive('ripple', Ripple)
 
 Vue.use(Vuetify)
 

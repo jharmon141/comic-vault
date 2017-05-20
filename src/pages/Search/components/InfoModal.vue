@@ -120,17 +120,17 @@ export default {
         active: false,
     }),
 
-    props: ['response'],
+    props: ['toggleInfoModal', 'handleCreate', 'response'],
 
     methods: {
 
       changeBack() {
         this.active = true
-        setTimeout(this.$parent.toggleInfoModal, 1000)
+        setTimeout(this.toggleInfoModal, 1000)
       },
 
         save(){
-            this.$parent.handleCreate()
+            this.handleCreate()
         }
     }
 }

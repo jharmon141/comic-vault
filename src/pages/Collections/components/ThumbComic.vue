@@ -2,7 +2,7 @@
 
     <div class="thumbView">
 
-        <cover-modal :comic="true" v-if="showCoverModal" :response="comic"></cover-modal>
+        <cover-modal :toggleCoverModal="toggleCoverModal" :comic="true" v-if="showCoverModal" :response="comic"></cover-modal>
 
         <img @click="toggleCoverModal" :src="comic.artUrl">
         <p><em>{{comic.series}}</em></p>
@@ -25,9 +25,7 @@
             'cover-modal': CoverModal,
         },
 
-        props: {
-            comic: {}
-        },
+        props: ['comic'],
 
         methods: {
 

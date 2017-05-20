@@ -1,7 +1,7 @@
 <template>
   <div>
-      <cover-modal v-if="showIssueModal" :response="character"></cover-modal>
-      <info-modal v-if="showInfoIssueModal" :response="character"></info-modal>
+      <cover-modal :toggleCoverModal="toggleCoverModal" v-if="showIssueModal" :response="character"></cover-modal>
+      <info-modal :toggleInfoModal="toggleInfoModal" :handleCreate="handleCreate" v-if="showInfoIssueModal" :response="character"></info-modal>
       <div class="box">
         <article class="media">
           <div class="media-left">

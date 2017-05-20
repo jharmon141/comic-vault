@@ -1,48 +1,42 @@
 <template>
     <div class="search">
+
         <div v-if="loadingStatus">
             <loading></loading>
         </div>
+
         <div v-else>
             <h1>Search For Comics:</h1>
+
             <div class="columns">
                 <div class="container column is-8">
                     <tabs>
+
                     <tab name="Series" :selected="true">
-                    <div class="column is-12">
-                        <div class="field">
-                            <p class="control">
                             <input  @keyup.enter="clicked" type="text" placeholder="Series Name" v-model="seriesName">
-                            </p>
-                        </div>
-                    </div>
                     </tab>
+
                     <tab name="Issue">
-                    <div class="column is-12">
-                        <div class="field">
-                            <p class="control">
                             <input @keyup.enter="clicked" type="text" placeholder="Issue Name" v-model="issueName">
                             <input @keyup.enter="clicked" type="text" placeholder="Issue Number" v-model="volumeNumber">
-                            </p>
-                        </div>
-                    </div>
                     </tab>
+
                     <tab name="Character">
-                    <div class="column is-12">
-                        <div class="field">
-                            <p class="control">
                             <input @keyup.enter="clicked" type="text" placeholder="Character Name" v-model="characterName">
-                            </p>
-                        </div>
-                    </div>
                     </tab>
+
                     <br>
+
                     <span  class="button is-danger is-outlined" @click="clicked">Search</span>
+
                     </tabs>
+
                     <br>
+
                     <div id="results">
                     <results :responses="queryResponse"></results>
                     </div>
+
                 </div>
             </div>
         </div>
@@ -84,11 +78,13 @@ export default {
 
         clicked() {
             this.loadingStatus = true
+
             this.queryParams.field = ''
             this.queryParams.name = ''
             this.queryParams.series = this.seriesName
             this.queryParams.issue = this.issueName
             this.queryParams.character = this.characterName
+
             if (this.queryParams.series !== ''){
                 this.queryParams.field = 'volume'
                 this.queryParams.name = this.seriesName
@@ -104,6 +100,7 @@ export default {
             }
 
             let that = this.queryParams.field
+
             axios.get(`/api/${this.queryParams.name}/${this.queryParams.volume}/${this.queryParams.field}`).then((response) => {
                 let filteredResponse = []
                 for (let i = 0; i < response.data.results.length; i++) {
@@ -117,6 +114,7 @@ export default {
                 this.queryResponse = filteredResponse
                 this.loadingStatus = false
             })
+
             this.queryParams = {}
             this.seriesName = ''
             this.issueName = ''
@@ -128,7 +126,6 @@ export default {
 }
 
 </script>
-
 
 <style scoped>
 
