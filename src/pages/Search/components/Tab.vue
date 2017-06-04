@@ -1,8 +1,6 @@
 <template>
     <div v-show="isActive">
-        <transition name="fade">
         <slot></slot>
-        </transition>
     </div>
 </template>
 

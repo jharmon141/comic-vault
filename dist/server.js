@@ -30,7 +30,7 @@ router.use(function(req, res, next) {
 
 app.route('/api/:name/:volume/:field').get(function(req,res) {
     let queryUrl = `
-https://comicvine.gamespot.com/api/search/?api_key=276d60fcc927f730c4acdca149b5411bac84023c&query=${req.params.name}${','+req.params.volume}&resources=${req.params.field}&limit=10&format=json
+https://comicvine.gamespot.com/api/search/?api_key=276d60fcc927f730c4acdca149b5411bac84023c&query=${req.params.name}${','+req.params.volume}&resources=${req.params.field}&format=json
 `
     requestify.get(queryUrl).then(function(response) {
         var data = (response.getBody());

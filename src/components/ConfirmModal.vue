@@ -52,7 +52,7 @@ export default {
 }
 
 h1 {
-    font-size: 36px;
+    font-size: 34px;
     margin-bottom: 75px;
     margin-top: 30px;
 }

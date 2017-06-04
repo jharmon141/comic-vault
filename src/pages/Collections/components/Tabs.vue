@@ -1,20 +1,20 @@
 <template>
     <div class="tabs">
 
-            <div class="tabs is-toggle">
-                <ul class="tabList">
-                    <li :class="{ 'is-active': listView }" v-on:click="setListView">
-                        <a>
-                            <v-icon>list</v-icon>
-                        </a>
-                    </li>
-                    <li :class="{ 'is-active': thumbView }" v-on:click="setThumbView">
-                        <a >
-                            <v-icon>view_module</v-icon>
-                        </a>
-                    </li>
-                </ul>
-            </div>
+        <div class="tabs is-toggle">
+            <ul class="tabList">
+                <li :class="{ 'is-active': listView }" v-on:click="setListView">
+                    <a>
+                        <v-icon>list</v-icon>
+                    </a>
+                </li>
+                <li :class="{ 'is-active': thumbView }" v-on:click="setThumbView">
+                    <a >
+                        <v-icon>view_module</v-icon>
+                    </a>
+                </li>
+            </ul>
+        </div>
 
     </div>
 </template>
@@ -32,7 +32,7 @@ export default {
 <style scoped>
 
 .tabs {
-    margin-left: 16%;
+    margin-left: 15%;
 }
 
 .tabs.is-toggle{

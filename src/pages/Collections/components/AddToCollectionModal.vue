@@ -3,20 +3,16 @@
     <div class="modal is-active">
       <div class="modal-background"></div>
       <div :class="{ 'slideOutDown': active }" class="animated slideInUp modal-card">
-        <header class="modal-card-head">
-          <p class="modal-card-title"><strong>Add to Collection:</strong></p>
-          <button @click="changeBack" class="delete"></button>
-        </header>
         <section class="modal-card-body">
+          <h1>Add to Collection:</h1>
               <ul>
                   <li v-for="collection in collections">
                       <span @click="addToCollection(collection)" type="submit" class="button is-outlined is-danger">{{collection.name}}</span>
                   </li>
               </ul>
         </section>
-        <footer class="modal-card-foot">
-        </footer>
       </div>
+            <button @click="changeBack" class="modal-close"></button>
     </div>
   </div>
 </template>
@@ -88,16 +84,10 @@ export default {
 
 <style scoped>
 
-.image {
-    width: auto;
-}
-
-.media-left {
-    width: 50%;
-}
-
-small {
-    font-size: 16px;
+h1 {
+    font-size: 33px;
+    margin-bottom: 40px;
+    margin-top: 30px;
 }
 
 .modal-card {
@@ -123,6 +113,7 @@ small {
     float: right;
     width: 100%;
     height: 50px;
+    font-size: 22px;
 }
 
 .button.is-danger.is-outlined:hover, .button.is-danger.is-outlined.is-hovered {

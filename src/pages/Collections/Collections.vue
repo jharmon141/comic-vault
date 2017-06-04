@@ -11,10 +11,8 @@
             <tabs :setListView="setListView" :setThumbView="setThumbView" :thumbView="thumbView" :listView="listView"></tabs>
 
             <transition name="slide-fade"  mode="out-in">
-            <keep-alive>
-                <list :setLoading="setLoading" :collection="collection" :comics="comics" v-if="listView && !thumbView"></list>
-                <thumbs :comics="comics" v-else-if="thumbView && !listView"></thumbs>
-            </keep-alive>
+            <list :setLoading="setLoading" :collection="collection" :comics="comics" v-if="listView && !thumbView"></list>
+            <thumbs :comics="comics" v-else-if="thumbView && !listView"></thumbs>
             </transition>
 
         </template>
@@ -112,7 +110,7 @@ export default {
 
     },
 
-    mounted() {
+    beforeMount() {
         this.queryCollection()
     },
 

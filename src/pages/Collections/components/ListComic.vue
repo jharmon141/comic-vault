@@ -35,10 +35,10 @@
                 </div>
 
                 <div v-if="!showMore" class="column is-2">
-                    <span @click="toggleView()" class=" button edit is-outlined"><v-icon>expand_more</v-icon></span>
+                    <span @click="toggleView" class=" button edit is-outlined"><v-icon>expand_more</v-icon></span>
                 </div>
                 <div v-else="showMore" class="column is-2">
-                    <span @click="handleToggleView()" class="button edit is-outlined"><v-icon>expand_less</v-icon></span>
+                    <span @click="handleToggleView" class="button edit is-outlined"><v-icon>expand_less</v-icon></span>
                     <br>
                     <router-link :comic="comic" :to="{name: 'EditComic', params: {comic: comic.id}}"><span  class="button is-danger is-outlined"><v-icon>edit</v-icon></span></router-link>
                     <br>
@@ -132,6 +132,7 @@ export default {
 </script>
 
 <style scoped>
+
 
 img {
     cursor: pointer;

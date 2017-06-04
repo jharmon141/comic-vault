@@ -4,7 +4,7 @@
     <cover-modal :toggleCoverModal="toggleCoverModal" v-if="showIssueModal" :response="volume"></cover-modal>
     <info-modal v-if="showInfoIssueModal" :response="volume"></info-modal>
 
-      <div class="box">
+      <div @click="toggleInfoModal" class="box">
         <article class="media">
           <div class="media-left">
             <figure @click="toggleCoverModal" class="image">
@@ -25,7 +25,7 @@
             </div>
             <nav class="level is-mobile">
               <div class="level-left">
-                <a @click="toggleInfoModal" class="button is-small is-primary is-outlined">{{volume.name}}</a>
+                <a  class="button is-small is-primary is-outlined">More Info</a>
               </div>
             </nav>
           </div>
@@ -82,6 +82,11 @@
 
 .box:hover {
   border: 1px solid dodgerblue;
+  cursor: pointer;
+}
+
+.box {
+    font-size: 18px;
 }
 
 .image{

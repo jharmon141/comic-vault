@@ -1,5 +1,6 @@
 <template>
   <div>
+
     <div v-if="response.resource_type === 'volume'" :class="{ 'slideOutDown': active }" class="animated slideInUp modal is-active">
       <div class="modal-background"></div>
       <div class="modal-card">
@@ -10,32 +11,31 @@
         <section class="modal-card-body">
           <article class="media">
             <div class="media-left">
-              <p class="image">
                 <img :src="response.image.small_url" alt="">
                 <small></small>
-              </p>
             </div>
             <div class="media-content">
-              <div class="content">
-                <p>
-                  <strong v-if="response.name">{{response.name}}</strong> <small>Published by</small> <small v-if="response.publisher.name"><strong>{{response.publisher.name}}</strong></small>
+                  <strong v-if="response.name">{{response.name}}</strong> 
+                  <br>
+                  <em>Published by:</em> <small v-if="response.publisher.name"><strong>{{response.publisher.name}}</strong></small>
                   <br>
                   <div>
-                    <small v-if="response.start_year">Released: <strong>{{response.start_year}}</strong></small>
+                      <em v-if="response.start_year">Released: </em><strong>{{response.start_year}}</strong>
                     <br>
-                    <small v-if="response.count_of_issues">Issues: <strong>{{response.count_of_issues}}</strong></small>
-                  </div>
-                </p>
+                    <em v-if="response.count_of_issues">Issues: </em><strong>{{response.count_of_issues}}</strong>
+                    <br>
+                    <em>Description: </em>
+                    <div class="description" v-html="response.description"></div>
               </div>
             </div>
           </article>
-          <div v-html="response.description"></div>
         </section>
         <footer class="modal-card-foot">
-          <a class="button is-danger">Save</a>
+            <a class="button is-danger">Search issues in {{response.name}}</a>
         </footer>
       </div>
     </div>
+
     <div v-if="response.resource_type === 'issue'" :class="{ 'slideOutUp': active }" class="animated slideInUp modal is-active">
       <div class="modal-background"></div>
       <div class="modal-card">
@@ -46,10 +46,8 @@
         <section class="modal-card-body">
           <article class="media">
             <div class="media-left">
-              <p class="image">
                 <img :src="response.image.small_url" alt="">
                 <small></small>
-              </p>
             </div>
             <div class="media-content">
               <div class="content">
@@ -139,12 +137,16 @@ export default {
 
 <style scoped>
 
+.description {
+    margin-top: 15px;
+}
+
 .image {
     width: auto;
 }
 
 .media-left {
-    width: 50%;
+    width: 30%;
 }
 
 
@@ -153,7 +155,7 @@ small {
 }
 
 .modal-card {
-    height: 85%;
+    height: 80%;
 }
 
 .modal-card-head {
@@ -184,4 +186,11 @@ small {
     justify-content: flex-end;
 }
 
+header {
+    height: 55px;
+}
+
+footer {
+    height: 55px;
+}
 </style>

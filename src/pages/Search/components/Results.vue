@@ -1,29 +1,11 @@
 <template>
-  <div>
-    <div v-for="response in responses">
-      <div v-if="response.resource_type == 'issue'">
-        <div class="column is-12">
-          <div class="individual">
-            <issues :issue="response"/>
-          </div>
+    <div>
+        <div v-for="response in responses">
+                <issues v-if="response.resource_type == 'issue'" :issue="response"/>
+                <volumes v-if="response.resource_type == 'volume'" :volume="response"/>
+                <characters v-if="response.resource_type == 'character'" :character="response"/>
         </div>
-      </div>
-      <div v-if="response.resource_type == 'volume'">
-        <div class="column is-12">
-          <div class="individual">
-            <volumes :volume="response"/>
-          </div>
-        </div>
-      </div>
-      <div v-if="response.resource_type == 'character'">
-        <div class="column is-12">
-          <div class="individual">
-            <characters :character="response"/>
-          </div>
-        </div>
-      </div>
     </div>
-  </div>
 </template>
 
 <script>

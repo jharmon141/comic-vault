@@ -13,16 +13,16 @@
                     <tabs>
 
                     <tab name="Series" :selected="true">
-                            <input  @keyup.enter="clicked" type="text" placeholder="Series Name" v-model="seriesName">
+                    <input  @keyup.enter="clicked" type="text" placeholder="Series Name" v-model="seriesName">
                     </tab>
 
                     <tab name="Issue">
-                            <input @keyup.enter="clicked" type="text" placeholder="Issue Name" v-model="issueName">
-                            <input @keyup.enter="clicked" type="text" placeholder="Issue Number" v-model="volumeNumber">
+                    <input @keyup.enter="clicked" type="text" placeholder="Issue Name" v-model="issueName">
+                    <input @keyup.enter="clicked" type="text" placeholder="Issue Number" v-model="volumeNumber">
                     </tab>
 
                     <tab name="Character">
-                            <input @keyup.enter="clicked" type="text" placeholder="Character Name" v-model="characterName">
+                    <input @keyup.enter="clicked" type="text" placeholder="Character Name" v-model="characterName">
                     </tab>
 
                     <br>
@@ -34,7 +34,7 @@
                     <br>
 
                     <div id="results">
-                    <results :responses="queryResponse"></results>
+                        <results :responses="queryResponse"></results>
                     </div>
 
                 </div>

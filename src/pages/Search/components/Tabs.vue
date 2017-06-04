@@ -14,7 +14,7 @@
     </div>
 
     <div>
-      <slot></slot>
+        <slot></slot>
     </div>
 
   </div>
@@ -58,6 +58,7 @@
 .tabs li {
     width: 33.3%;
     margin-bottom: 50px;
+    font-size: 18px;
 }
 
 .tabs.is-toggle li a {

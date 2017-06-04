@@ -1,10 +1,14 @@
 <template>
     <div id="app" style="height:100%">
+
         <template v-if="loadingStatus">
             <loading></loading>
         </template>
+
         <template v-else>
+
             <NavBar></NavBar>
+
             <div style="min-height:100vh" class="columns">
                 <div  class="column is-2">
                     <transition name="component-fade" mode="out-in">
@@ -17,19 +21,21 @@
                     </keep-alive>
                 </div>
             </div>
+
             <footer class="footer">
                 <a target="blank" href="https://github.com/jharmon141/comic-vault">
                     <img src="./assets/github_icon.png">
                 </a> 
             </footer>
+
             <v-snackbar 
-                         :timeout="timeout"
                          :bottom="bottom"
                          v-model="snackbar"
                          >
                          {{snackMessage}} 
                          <v-btn flat class="pink--text" @click.native="snackbar = false">OK</v-btn>
             </v-snackbar>
+
         </template>
     </div>
 </template>
@@ -66,13 +72,14 @@ const userQuery = gql`
 export default {
     name: 'app',
     store,
+
     data: () => ({
         snackbar: false,
         bottom: true,
-        timeout: 5000,
         snackMessage: '',
         loadingStatus: false,
     }),
+
     computed: {
         authenticated() {
             return this.$store.state.authenticated
@@ -106,17 +113,21 @@ export default {
             this.$apollo.query({
                 query: userQuery,
             }).then((response) => {
-                // Result
+
                 let params = {}
+
                 params.id = response.data.user.id
                 params.firstName = response.data.user.firstName
                 params.lastName = response.data.user.lastName
                 params.email = response.data.user.emailAddress
                 params.emailSubscription = response.data.user.emailSubscription
                 params.collections = response.data.user.collections
+
                 this.loadingStatus = false
+
                 let snack = window.localStorage.getItem("Snackbar")
                 this.snackMessage = window.localStorage.getItem("snackMessage")
+
                 if (response.data.user.id) {
                     this.$store.dispatch('handleSetUser',params) 
                     this.$store.dispatch('handleLogin')
@@ -144,7 +155,7 @@ export default {
 <style>
 
 .is-10 {
-    margin-left: 4%;
+    margin-left: 5%;
     margin-top: 100px;
     min-height: 100%;
 }
@@ -172,6 +183,7 @@ input {
     background-color: whitesmoke;
     color: black;
     text-align: center;
+    justify-content: center;
 }
 
 .footer p {

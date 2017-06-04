@@ -1,11 +1,7 @@
 <template>
     <div>
 
-        <div v-for="comic in comics" class="comicList">
-
-            <list-comic :handleDelete="handleDelete" :collection="collection" :comic="comic"></list-comic>
-
-        </div>
+        <list-comic v-for="comic in comics" :key="comic.id" :handleDelete="handleDelete" :collection="collection" :comic="comic"></list-comic>
 
     </div>
 
@@ -47,7 +43,6 @@ export default {
     methods: {
 
         handleDelete(comic) {
-            this.setLoading(true) 
             
             if (this.collection.name === "All"){
 

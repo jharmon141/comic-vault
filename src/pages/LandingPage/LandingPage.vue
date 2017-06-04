@@ -18,7 +18,7 @@
 
 img {
     max-height: 400px;
-    margin-left: -5%;
+    margin-left: -8%;
 }
 
 .img {

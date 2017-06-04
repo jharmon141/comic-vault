@@ -1,14 +1,18 @@
 <template>
   <div>
+
     <cover-modal :toggleCoverModal="toggleCoverModal" v-if="showIssueModal" :response="issue"></cover-modal>
-    <info-modal v-if="showInfoIssueModal" :response="issue"></info-modal>
+    <info-modal v-if="showInfoIssueModal" :handleCreate="handleCreate" :response="issue"></info-modal>
+
       <div class="box">
         <article class="media">
+
           <div class="media-left">
             <figure @click="toggleCoverModal" class="image">
               <img v-if="issue.image" :src="issue.image.small_url" alt="cover">
             </figure>
           </div>
+
           <div class="media-content">
             <div class="content">
               <p v-if="issue.name">
@@ -25,15 +29,18 @@
                   <small v-if="issue.issue_number">Issue in Volume: <strong>{{issue.issue_number}}</strong></small>
                 </div>
             </div>
+
             <nav class="level is-mobile">
               <div class="level-left">
                 <a v-if="issue.name" @click="toggleInfoModal" class="button is-small is-primary is-outlined">{{issue.name}}</a>
                 <a v-else @click="toggleInfoModal" class="button is-small is-primary is-outlined">{{issue.volume.name}}</a>
               </div>
             </nav>
+
           </div>
         </article>
       </div>
+
   </div>
 </template>
 
@@ -49,41 +56,39 @@ export default {
         'info-modal': InfoModal
     },
 
-    props: {
-        issue: {}
-    },
+    props: ['issue'] ,
 
     data: () => ({
         showIssueModal: false,
         showInfoIssueModal: false
     }),
 
-      methods: {
-          handleCreate(){
-              let comic = this.issue
-              console.log(comic)
-              this.$store.dispatch('handleSetNewComic', comic)
-              this.$router.push('/new')
-          },
+    methods: {
+        handleCreate(){
+            let comic = this.issue
+            console.log(comic)
+            this.$store.dispatch('handleSetNewComic', comic)
+            this.$router.push('/new')
+        },
 
-          toggleCoverModal() {
-              if (this.showIssueModal == false) {
-                  this.showIssueModal = true
-              } else {
-                  this.showIssueModal = false
-              }
-          },
+        toggleCoverModal() {
+            if (this.showIssueModal == false) {
+                this.showIssueModal = true
+            } else {
+                this.showIssueModal = false
+            }
+        },
 
-          toggleInfoModal() {
-              if (this.showInfoIssueModal == false) {
-                  this.showInfoIssueModal = true
-              } else {
-                  this.showInfoIssueModal = false
-              }
-          }
-      }
-  }
-    </script>
+        toggleInfoModal() {
+            if (this.showInfoIssueModal == false) {
+                this.showInfoIssueModal = true
+            } else {
+                this.showInfoIssueModal = false
+            }
+        }
+    }
+}
+</script>
 
 
 <style scoped>
