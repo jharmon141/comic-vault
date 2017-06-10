@@ -6,6 +6,8 @@ var router = express.Router();
 var app = express();
 var path = require('path');
 var requestify = require('requestify');
+var history = require('connect-history-api-fallback');
+app.use(history());
 app.use(serveStatic(__dirname));
 var port = process.env.PORT || 5000;
 
@@ -57,5 +59,6 @@ https://comicvine.gamespot.com/api/volumes/?api_key=276d60fcc927f730c4acdca149b5
         res.send(data);
     });
 });
+
 app.listen(port);
 console.log('server started '+port);

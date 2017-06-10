@@ -37,7 +37,7 @@
     </div>
 
 
-    <div v-else-if="response.resource_type === 'character'" :class="{ 'slideOutUp': active }" class="animated slideInUp modal is-active">
+    <div v-else-if="response.resource_type === 'character'" :class="{ 'slideOutDown': active }" class="animated slideInUp modal is-active">
       <div class="modal-background"></div>
       <div class="modal-card">
         <header class="modal-card-head">
@@ -75,7 +75,7 @@
       </div>
     </div>
 
-    <div v-else :class="{ 'slideOutUp': active }" class="animated slideInUp modal is-active">
+    <div v-else :class="{ 'slideOutDown': active }" class="animated slideInUp modal is-active">
       <div class="modal-background"></div>
       <div class="modal-card">
         <header class="modal-card-head">
