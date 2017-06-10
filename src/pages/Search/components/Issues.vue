@@ -2,7 +2,7 @@
   <div>
 
     <cover-modal :toggleCoverModal="toggleCoverModal" v-if="showIssueModal" :response="issue"></cover-modal>
-    <info-modal v-if="showInfoIssueModal" :handleCreate="handleCreate" :response="issue"></info-modal>
+    <info-modal v-if="showInfoIssueModal" :toggleInfoModal="toggleInfoModal" :handleCreate="handleCreate" :response="issue"></info-modal>
 
       <div class="box">
         <article class="media">
