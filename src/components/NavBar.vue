@@ -17,7 +17,7 @@
                     <span></span>
                 </span>
                 <div class="nav-right nav-menu" :class="menuActive">
-                    <img class="userImg" :src="userPic">
+                    <img v-if="authenticated" class="userImg" :src="userPic">
                     <router-link  :key="$route.path" to="/profile"><a :class="{ 'active': profileActive } "class="nav-item is-tab" v-if="authenticated">{{firstName}}</a></router-link>
                     <a class="nav-item is-tab">
                         <login></login>
