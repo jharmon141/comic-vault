@@ -16,7 +16,7 @@
                     </transition>
                 </div>
                 <div class="column is-10">
-                    <keep-alive include="Collections,Search">
+                    <keep-alive include="Search,Collections">
                         <router-view :key="$route.path"></router-view>
                     </keep-alive>
                 </div>
@@ -102,6 +102,7 @@ export default {
     },
 
     methods: {
+        
         toggleSnackbar(message){
             this.snackbar = true
             this.snackMessage = message
@@ -197,6 +198,7 @@ input {
 .component-fade-enter-active, .component-fade-leave-active {
   transition: opacity .3s;
 }
+
 .component-fade-enter, .component-fade-leave-to
 /* .component-fade-leave-active for <2.1.8 */ {
   opacity: 0;

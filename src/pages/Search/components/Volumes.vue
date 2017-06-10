@@ -2,7 +2,7 @@
   <div>
 
     <cover-modal :toggleCoverModal="toggleCoverModal" v-if="showIssueModal" :response="volume"></cover-modal>
-    <info-modal v-if="showInfoIssueModal" :response="volume"></info-modal>
+    <info-modal v-if="showInfoIssueModal" :toggleInfoModal="toggleInfoModal" :search="search" :response="volume"></info-modal>
 
       <div @click="toggleInfoModal" class="box">
         <article class="media">
@@ -46,9 +46,7 @@
       'info-modal': InfoModal
     },
 
-    props: {
-      volume: {}
-    },
+    props: ['volume','search'],
 
     data: () => ({
       showIssueModal: false,

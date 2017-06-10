@@ -22,7 +22,8 @@
 
 
 <script>
-  import Tab from './Tab.vue'
+import Tab from './Tab.vue'
+import store from '../../../store/index.js'
 
   export default {
     name: 'tabs',
@@ -44,8 +45,10 @@
 
     methods: {
       selectTab(selectedTab){
+          console.log(selectedTab)
+        this.$store.dispatch('handleSetSearchTab', selectedTab.name)
         this.tabs.map(tab => {
-          tab.isActive = (tab.name === selectedTab.name)
+          tab.isActive = (tab.name === this.$store.state.searchTab)
         })
       }
     }

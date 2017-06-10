@@ -10,6 +10,7 @@ const store = new Vuex.Store({
         user: {},
         collections: [],
         newComic: {},
+        searchTab: 'Series'
     },
 
     mutations: {
@@ -38,6 +39,10 @@ const store = new Vuex.Store({
             state.newComic = params
         },
 
+        setSearchTab: (state, params) => {
+            state.searchTab = params
+        },
+
     },
 
     actions: {
@@ -56,6 +61,10 @@ const store = new Vuex.Store({
 
         handleSetNewComic: ({state, commit}, params)=> {
             commit('setNewComic', params)
+        },
+
+        handleSetSearchTab: ({state, commit}, params)=> {
+            commit('setSearchTab', params)
         },
 
     }

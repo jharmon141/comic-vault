@@ -1,9 +1,9 @@
 <template>
     <div>
         <div v-for="response in responses">
-                <issues v-if="response.resource_type == 'issue'" :issue="response"/>
-                <volumes v-if="response.resource_type == 'volume'" :volume="response"/>
-                <characters v-if="response.resource_type == 'character'" :character="response"/>
+                <volumes v-if="response.resource_type == 'volume' || response.count_of_issues" :search="search" :volume="response"/>
+                <characters v-else-if="response.resource_type == 'character'" :search="search" :character="response"/>
+                <issues v-else :issue="response"/>
         </div>
     </div>
 </template>
@@ -19,7 +19,7 @@
       'issues': Issues,
       'characters': Characters
     },
-    props: ['responses']
+    props: ['search','responses']
   }
 
 </script>

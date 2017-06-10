@@ -6,6 +6,7 @@
 
 
 <script>
+import store from '../../../store/index.js'
   export default {
     name: 'tab',
 
@@ -21,7 +22,7 @@
     },
 
     mounted() {
-      this.isActive = this.selected
+      this.isActive = (this.$store.state.searchTab === this.name)
     }
   }
 </script>

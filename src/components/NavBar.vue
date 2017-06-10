@@ -17,6 +17,7 @@
                     <span></span>
                 </span>
                 <div class="nav-right nav-menu" :class="menuActive">
+                    <img class="userImg" :src="userPic">
                     <router-link  :key="$route.path" to="/profile"><a :class="{ 'active': profileActive } "class="nav-item is-tab" v-if="authenticated">{{firstName}}</a></router-link>
                     <a class="nav-item is-tab">
                         <login></login>
@@ -51,6 +52,14 @@ export default {
         },
         loginActive(){
             return this.$store.state.authenticated === false
+        },
+        userPic(){
+            if (window.localStorage.profile) {
+                let temp = JSON.parse(window.localStorage.profile)
+                return temp.picture
+            } else {
+                return "https://www.1plusx.com/app/mu-plugins/all-in-one-seo-pack-pro/images/default-user-image.png"
+            }
         }
     },
 
@@ -76,6 +85,11 @@ export default {
 
 img {
     height: 50px;
+}
+
+.userImg {
+    border-radius: 50%;
+    margin-right: 15px;
 }
 
 .nav {
@@ -119,6 +133,12 @@ a.nav-item.active {
 
 @media screen and (max-width: 768px){
     .nav-menu {
+        background-color: slategrey;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .nav-menu.nav-right {
         background-color: slategrey;
     }
 }

@@ -38,5 +38,15 @@ https://comicvine.gamespot.com/api/search/?api_key=276d60fcc927f730c4acdca149b54
     });
 });
 
+app.route('/series/:id').get(function(req,res) {
+    let queryUrl = `
+https://comicvine.gamespot.com/api/issues/?api_key=276d60fcc927f730c4acdca149b5411bac84023c&filter=volume:${req.params.id}&format=json
+`
+    requestify.get(queryUrl).then(function(response) {
+        var data = (response.getBody());
+        res.send(data);
+    });
+});
+
 app.listen(port);
 console.log('server started '+port);

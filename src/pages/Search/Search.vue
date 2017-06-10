@@ -12,29 +12,29 @@
                 <div class="container column is-8">
                     <tabs>
 
-                    <tab name="Series" :selected="true">
-                    <input  @keyup.enter="clicked" type="text" placeholder="Series Name" v-model="seriesName">
+                    <tab name="Series">
+                    <input  @keyup.enter="search('series')" type="text" placeholder="Series Name" v-model="seriesName">
                     </tab>
 
                     <tab name="Issue">
-                    <input @keyup.enter="clicked" type="text" placeholder="Issue Name" v-model="issueName">
-                    <input @keyup.enter="clicked" type="text" placeholder="Issue Number" v-model="volumeNumber">
+                    <input @keyup.enter="search('general')" type="text" placeholder="Issue Name" v-model="issueName">
+                    <input @keyup.enter="search('general')" type="text" placeholder="Issue Number" v-model="volumeNumber">
                     </tab>
 
                     <tab name="Character">
-                    <input @keyup.enter="clicked" type="text" placeholder="Character Name" v-model="characterName">
+                    <input @keyup.enter="search('general')" type="text" placeholder="Character Name" v-model="characterName">
                     </tab>
 
                     <br>
 
-                    <span  class="button is-danger is-outlined" @click="clicked">Search</span>
+                    <span  class="button is-danger is-outlined" @click="search('general')">Search</span>
 
                     </tabs>
 
                     <br>
 
                     <div id="results">
-                        <results :responses="queryResponse"></results>
+                        <results :search="search" :responses="queryResponse"></results>
                     </div>
 
                 </div>
@@ -76,8 +76,9 @@ export default {
 
     methods: {
 
-        clicked() {
+        search(type, id) {
             this.loadingStatus = true
+            window.scrollTo(0,0)
 
             this.queryParams.field = ''
             this.queryParams.name = ''
@@ -85,35 +86,53 @@ export default {
             this.queryParams.issue = this.issueName
             this.queryParams.character = this.characterName
 
-            if (this.queryParams.series !== ''){
-                this.queryParams.field = 'volume'
-                this.queryParams.name = this.seriesName
-            } else if (this.queryParams.issue !== ''){
-                this.queryParams.field = 'issue,volume'
-                this.queryParams.name = this.issueName
-                this.queryParams.volume = this.volumeNumber
-            } else if (this.queryParams.character !== ''){
-                this.queryParams.field = 'character'
-                this.queryParams.name = this.characterName
-            } else {
-                alert('error')
+            if (type === 'general') {
+
+                if (this.queryParams.series !== ''){
+                    this.queryParams.field = 'volume'
+                    this.queryParams.name = this.seriesName
+                } else if (this.queryParams.issue !== ''){
+                    this.queryParams.field = 'issue,volume'
+                    this.queryParams.name = this.issueName
+                    this.queryParams.volume = this.volumeNumber
+                } else if (this.queryParams.character !== ''){
+                    this.queryParams.field = 'character'
+                    this.queryParams.name = this.characterName
+                } else {
+                    alert('error')
+                }
+
+                let that = this.queryParams.field
+            
+                axios.get(`/api/${this.queryParams.name}/${this.queryParams.volume}/${this.queryParams.field}`).then((response) => {
+                    let filteredResponse = []
+                    for (let i = 0; i < response.data.results.length; i++) {
+                        if (that == 'issue,volume') {
+                            that = 'issue'
+                        }
+                        if (response.data.results[i].resource_type == that) {
+                            filteredResponse.push(response.data.results[i])
+                        }
+                    }
+                    this.queryResponse = response.data.results 
+                    this.loadingStatus = false
+                })
             }
 
-            let that = this.queryParams.field
+            else if (type === 'issues') {
+                axios.get(`/issues/${id}`).then((response) => {
+                    this.queryResponse = response.data.results
+                    this.loadingStatus = false
+                })
+            }
 
-            axios.get(`/api/${this.queryParams.name}/${this.queryParams.volume}/${this.queryParams.field}`).then((response) => {
-                let filteredResponse = []
-                for (let i = 0; i < response.data.results.length; i++) {
-                    if (that == 'issue,volume') {
-                        that = 'issue'
-                    }
-                    if (response.data.results[i].resource_type == that) {
-                        filteredResponse.push(response.data.results[i])
-                    }
-                }
-                this.queryResponse = filteredResponse
-                this.loadingStatus = false
-            })
+            else if (type === 'series') {
+                let name = this.seriesName.trim().split(' ').join('+')
+                axios.get(`/series/${name}`).then((response) => {
+                    this.queryResponse = response.data.results
+                    this.loadingStatus = false
+                })
+            }
 
             this.queryParams = {}
             this.seriesName = ''

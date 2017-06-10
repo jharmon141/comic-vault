@@ -1,7 +1,7 @@
 <template>
   <div>
 
-    <div v-if="response.resource_type === 'volume'" :class="{ 'slideOutDown': active }" class="animated slideInUp modal is-active">
+    <div v-if="response.resource_type === 'volume' || response.count_of_issues" :class="{ 'slideOutDown': active }" class="animated slideInUp modal is-active">
       <div class="modal-background"></div>
       <div class="modal-card">
         <header class="modal-card-head">
@@ -31,12 +31,51 @@
           </article>
         </section>
         <footer class="modal-card-foot">
-            <a class="button is-danger">Search issues in {{response.name}}</a>
+            <a class="button is-danger" @click="search('issues', response.id)">Search issues in {{response.name}}</a>
         </footer>
       </div>
     </div>
 
-    <div v-if="response.resource_type === 'issue'" :class="{ 'slideOutUp': active }" class="animated slideInUp modal is-active">
+
+    <div v-else-if="response.resource_type === 'character'" :class="{ 'slideOutUp': active }" class="animated slideInUp modal is-active">
+      <div class="modal-background"></div>
+      <div class="modal-card">
+        <header class="modal-card-head">
+          <p class="modal-card-title"><strong>{{response.name}}</strong></p>
+          <button @click="changeBack" class="delete"></button>
+        </header>
+        <section class="modal-card-body">
+          <article class="media">
+            <div class="media-left">
+              <p class="image">
+                <img :src="response.image.small_url" alt="">
+                <small></small>
+              </p>
+            </div>
+            <div class="media-content">
+              <div class="content">
+                <p>
+                  <div>
+                    <small v-if="response.real_name">Real Name: <strong>{{response.real_name}}</strong></small>
+                    <br>
+                    <small v-if="response.aliases">Aliases: <strong>{{response.aliases}}</strong></small>
+                    <br>
+                    <small v-if="response.birth">Birth: <strong>{{response.birth}}</strong></small>
+                    <br>
+                    <small v-if="response.publisher.name">Creator: <strong>{{response.publisher.name}}</strong></small>
+                  </div>
+                </p>
+              </div>
+            </div>
+          </article>
+          <div v-html="response.description"></div>
+        </section>
+        <footer class="modal-card-foot">
+        </footer>
+      </div>
+    </div>
+
+    <div v-else :class="{ 'slideOutUp': active }" class="animated slideInUp modal is-active">
       <div class="modal-background"></div>
       <div class="modal-card">
         <header class="modal-card-head">
@@ -70,42 +109,7 @@
         </footer>
       </div>
     </div>
-    <div v-if="response.resource_type === 'character'" :class="{ 'slideOutUp': active }" class="animated slideInUp modal is-active">
-      <div class="modal-background"></div>
-      <div class="modal-card">
-        <header class="modal-card-head">
-          <p class="modal-card-title"><strong>{{response.name}}</strong></p>
-          <button @click="changeBack" class="delete"></button>
-        </header>
-        <section class="modal-card-body">
-          <article class="media">
-            <div class="media-left">
-              <p class="image">
-                <img :src="response.image.small_url" alt="">
-                <small></small>
-              </p>
-            </div>
-            <div class="media-content">
-              <div class="content">
-                <p>
-                  <div>
-                    <small v-if="response.real_name">Real Name: <strong>{{response.real_name}}</strong></small>
-                    <br>
-                    <small v-if="response.birth">Birth: <strong>{{response.birth}}</strong></small>
-                    <br>
-                    <small v-if="response.publisher.name">Creator: <strong>{{response.publisher.name}}</strong></small>
-                  </div>
-                </p>
-              </div>
-            </div>
-          </article>
-          <div v-html="response.description"></div>
-        </section>
-        <footer class="modal-card-foot">
-          <a class="button is-danger">Save</a>
-        </footer>
-      </div>
-    </div>
+
   </div>
 </template>
 
@@ -118,7 +122,7 @@ export default {
         active: false,
     }),
 
-    props: ['toggleInfoModal', 'handleCreate', 'response'],
+    props: ['search', 'toggleInfoModal', 'handleCreate', 'response'],
 
     methods: {
 
@@ -143,10 +147,11 @@ export default {
 
 .image {
     width: auto;
+    overflow: auto;
 }
 
 .media-left {
-    width: 30%;
+    width: 25%;
 }
 
 
@@ -155,7 +160,8 @@ small {
 }
 
 .modal-card {
-    height: 80%;
+    height: 90%;
+    width: 85%;
 }
 
 .modal-card-head {
