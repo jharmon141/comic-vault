@@ -1,5 +1,5 @@
-<p align="center"><img align="center" height="350px" src="http://i.imgur.com/HTsD17J.png"/></p>
 # Comic Vault
+<p align="center"><img align="center" height="350px" src="http://i.imgur.com/HTsD17J.png"/></p>
 > A Vue.js project
 
 ## Build Setup
