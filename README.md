@@ -1,12 +1,10 @@
 <p align="center"><img align="center" height="300px" src="http://i.imgur.com/HTsD17J.png"/></p>
 
-<p align="center"><img align="center" width="600px" src="http://i.imgur.com/fyIBIeC.png"/></p>
-
 # Comic Vault
 
 Comic Vault uses a [Vue.js](https://vuejs.org/) UI and a [Graph.cool](https://www.graph.cool/) backend to store users' personal comic book collections
 
-
+<p align="center"><img align="center" width="600px" src="http://i.imgur.com/fyIBIeC.png"/></p>
 > A Vue.js project
 
 ## Build Setup
