@@ -1,4 +1,4 @@
-<p align="center"><img align="center" height="350px" src="http://i.imgur.com/HTsD17J.png"/></p>
+<p align="center"><img align="center" height="275px" src="http://i.imgur.com/HTsD17J.png"/></p>
 
 # Comic Vault
 
