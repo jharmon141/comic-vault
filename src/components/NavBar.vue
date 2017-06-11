@@ -17,8 +17,8 @@
                     <span></span>
                 </span>
                 <div class="nav-right nav-menu" :class="menuActive">
-                    <img v-if="authenticated" class="userImg" :src="userPic">
-                    <router-link  :key="$route.path" to="/profile"><a :class="{ 'active': profileActive } "class="nav-item is-tab" v-if="authenticated">{{firstName}}</a></router-link>
+                    <router-link  v-if="authenticated" :key="$route.path" to="/profile" tag="img" :src="userPic" class="userImg"></router-link>
+                    <router-link  v-if="authenticated" :key="$route.path" to="/profile"><a :class="{ 'active': profileActive } "class="nav-item is-tab">{{firstName}}</a></router-link>
                     <a class="nav-item is-tab">
                         <login></login>
                     </a>
@@ -90,6 +90,7 @@ img {
 .userImg {
     border-radius: 50%;
     margin-right: 15px;
+    cursor: pointer;
 }
 
 .nav {

@@ -1,5 +1,5 @@
-# comic-vault
-
+# Comic Vault
+<p align="center"><img align="center" src="http://imgur.com/a/6I225"/></p>
 > A Vue.js project
 
 ## Build Setup
