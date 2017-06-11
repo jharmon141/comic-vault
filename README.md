@@ -1,6 +1,6 @@
 <p align="center"><img align="center" height="300px" src="http://i.imgur.com/HTsD17J.png"/></p>
 
-<p align="center"><img align="center" height="300px" src="http://i.imgur.com/fyIBIeC.png"/></p>
+<p align="center"><img align="center" width="500px" src="http://i.imgur.com/fyIBIeC.png"/></p>
 
 # Comic Vault
 
