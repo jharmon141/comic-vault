@@ -1,6 +1,8 @@
-<p align="center"><img align="center" height="275px" src="http://i.imgur.com/HTsD17J.png"/></p>
+<p align="center"><img align="center" height="300px" src="http://i.imgur.com/HTsD17J.png"/></p>
 
 # Comic Vault
+
+Comic Vault is a search and archival web app that uses a [Vue.js](https://vuejs.org/) UI and a [Graph.cool](https://www.graph.cool/) backend to store users' personal comic collections
 
 > A Vue.js project
 
