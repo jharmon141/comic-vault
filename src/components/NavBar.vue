@@ -89,8 +89,10 @@ img {
 
 .userImg {
     border-radius: 50%;
-    margin-right: 15px;
+    margin-right: 17px;
     cursor: pointer;
+    height: 35px;
+    margin-top: 7.5px;
 }
 
 .nav {
@@ -101,6 +103,10 @@ img {
     position: fixed;
     padding-top: 13px;
     width: 100%;
+}
+
+.nav-left {
+    overflow: inherit;
 }
 
 .nav-item {

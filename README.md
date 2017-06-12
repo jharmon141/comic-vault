@@ -2,7 +2,7 @@
 
 # Comic Vault
 
-Comic Vault uses a [Vue.js](https://vuejs.org/) UI and a [Graph.cool](https://www.graph.cool/) backend to store users' comic book collections
+Comic Vault uses a [Vue.js](https://vuejs.org/) UI and a [Graph.cool](https://www.graph.cool/) backend to store personal comic book collections
 
 <p align="center"><img align="center" width="550px" src="http://i.imgur.com/0FGw85F.png"/></p>
 > A Vue.js project
