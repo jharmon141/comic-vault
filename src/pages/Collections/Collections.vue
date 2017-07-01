@@ -11,8 +11,10 @@
             <tabs :setListView="setListView" :setThumbView="setThumbView" :thumbView="thumbView" :listView="listView"></tabs>
 
             <transition name="slide-fade"  mode="out-in">
-            <list :setLoading="setLoading" :collection="collection" :comics="comics" v-if="listView && !thumbView"></list>
-            <thumbs :comics="comics" v-else-if="thumbView && !listView"></thumbs>
+            <keep-alive>
+            <list v-if="listView" :setLoading="setLoading" :collection="collection" :comics="comics"></list>
+            <thumbs v-else :comics="comics"></thumbs>
+            </keep-alive>
             </transition>
 
         </template>
@@ -63,11 +65,12 @@ export default {
         comics: [],
         viewType: 'list',
         loading: false,
+        listView: true,
         thumbView: false,
-        listView: true
     }),
 
     computed: {
+
         collection() {
             return  this.$store.state.collections.find(obj => {
                 let params = this.$route.params.id.toLowerCase()
@@ -77,6 +80,7 @@ export default {
     },
 
     methods: {
+
         queryCollection(){
             this.loading = true
             let id = this.collection.id
@@ -95,13 +99,13 @@ export default {
         },
 
         setListView(){
-            this.listView = true
             this.thumbView = false
+            this.listView = true
         },
 
         setThumbView(){
-            this.thumbView = true
             this.listView = false
+            this.thumbView = true
         },
 
         setLoading(state){

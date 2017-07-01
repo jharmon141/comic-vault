@@ -45,8 +45,6 @@ import store from './store/index.js'
 import SideNav from './components/SideNav.vue'
 import NavBar from './components/NavBar.vue'
 import Loading from './components/Loading.vue'
-import Collections from './pages/Collections/Collections.vue'
-import Search from './pages/Search/Search.vue'
 import gql from 'graphql-tag'
 
 const userQuery = gql`
@@ -90,8 +88,6 @@ export default {
         'SideNav': SideNav,
         'NavBar': NavBar,
         'loading': Loading,
-        'Collections': Collections,
-        'Search': Search,
     },
 
     apollo: {
@@ -150,15 +146,35 @@ export default {
     created() {
         this.queryUser()
     }
+
 }
 </script>
 
 <style>
 
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    margin: 0 0 195px; /* bottom = footer height */
+}
+
+main {
+    margin-top: 10%;
+}
+
+footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+}
+
 .is-10 {
     margin-left: 5%;
     margin-top: 100px;
-    min-height: 100%;
 }
 
 input:focus {
@@ -180,7 +196,8 @@ input {
 }
 
 .footer {
-    height: 75px;
+    padding: 30px 0px !important;
+    padding-top: 30px !important;
     background-color: whitesmoke;
     color: black;
     text-align: center;

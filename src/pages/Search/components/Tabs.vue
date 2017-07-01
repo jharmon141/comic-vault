@@ -44,11 +44,10 @@ import store from '../../../store/index.js'
     },
 
     methods: {
-      selectTab(selectedTab){
-          console.log(selectedTab)
-        this.$store.dispatch('handleSetSearchTab', selectedTab.name)
-        this.tabs.map(tab => {
-          tab.isActive = (tab.name === this.$store.state.searchTab)
+        selectTab(selectedTab){
+            this.$store.dispatch('handleSetSearchTab', selectedTab.name)
+            this.tabs.map(tab => {
+                tab.isActive = (tab.name === this.$store.state.searchTab)
         })
       }
     }

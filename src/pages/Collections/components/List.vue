@@ -46,21 +46,21 @@ export default {
             
             if (this.collection.name === "All"){
 
-            let id = comic.id
+                let id = comic.id
 
-            // Mutation
-            this.$apollo.mutate({
-                mutation: deleteComic,
-                variables: {
-                    id
-                },
-            }).then((data) => {
-                window.localStorage.setItem("Snackbar", true)
-                window.localStorage.setItem("snackMessage", "Comic deleted")
-                location.reload()
-            }).catch((error) => {
-                console.error(error)
-            })
+                // Mutation
+                this.$apollo.mutate({
+                    mutation: deleteComic,
+                    variables: {
+                        id
+                    },
+                }).then((data) => {
+                    window.localStorage.setItem("Snackbar", true)
+                    window.localStorage.setItem("snackMessage", "Comic deleted")
+                    location.reload()
+                }).catch((error) => {
+                    console.error(error)
+                })
 
             } else {
 

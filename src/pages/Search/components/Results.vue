@@ -12,13 +12,16 @@
   import Volumes from './Volumes.vue'
   import Issues from './Issues.vue'
   import Characters from './Characters.vue'
+
   export default {
     name: 'results',
+
     components: {
       'volumes': Volumes,
       'issues': Issues,
       'characters': Characters
     },
+
     props: ['search','responses']
   }
 
