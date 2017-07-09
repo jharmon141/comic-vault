@@ -3,7 +3,7 @@
 
         <confirm-modal text="Delete comic from this collection?" :actionFunction="deleteComic" :toggleConfirmModal="toggleConfirmModal" v-if="showConfirmModal"></confirm-modal>
         <cover-modal :toggleCoverModal="toggleCoverModal" :comic="true" v-if="showCoverModal" :response="comic"></cover-modal>
-        <add-to-collection-modal :toggleAddCollectionModal="toggleAddCollectionModal" :comic="comic" v-if="showAddCollectionModal"></add-to-collection-modal>
+        <add-to-collection-modal v-bind="{toggleAddCollectionModal, comic}" v-if="showAddCollectionModal"></add-to-collection-modal>
 
         <div class="comic" >
             <div class="columns">

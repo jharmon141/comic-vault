@@ -77,6 +77,7 @@ export default {
     methods: {
 
         search(type, id) {
+
             this.loadingStatus = true
             window.scrollTo(0,0)
 
@@ -140,6 +141,7 @@ export default {
             this.characterName = ''
             this.volumeNumber = ''
             this.queryResponse = []
+
         }
     }
 }

@@ -8,11 +8,11 @@
         <template  v-else>
             <h1>Collection: {{collection.name}} </h1>
 
-            <tabs :setListView="setListView" :setThumbView="setThumbView" :thumbView="thumbView" :listView="listView"></tabs>
+            <tabs v-bind="{setListView, setThumbView, thumbView, listView}"></tabs>
 
             <transition name="slide-fade"  mode="out-in">
             <keep-alive>
-            <list v-if="listView" :setLoading="setLoading" :collection="collection" :comics="comics"></list>
+                <list v-if="listView" v-bind="{setLoading, collection, comics}"></list>
             <thumbs v-else :comics="comics"></thumbs>
             </keep-alive>
             </transition>
