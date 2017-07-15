@@ -16,9 +16,11 @@
                     </transition>
                 </div>
                 <div class="column is-10">
+                    <main>
                     <keep-alive include="Search,Collections">
                         <router-view :key="$route.path"></router-view>
                     </keep-alive>
+                    </main>
                 </div>
             </div>
 
@@ -162,7 +164,8 @@ body {
 }
 
 main {
-    margin-top: 10%;
+    margin-top: 2%;
+    margin-bottom: 5%;
 }
 
 footer {
