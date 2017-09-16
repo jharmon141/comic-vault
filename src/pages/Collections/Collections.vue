@@ -12,8 +12,8 @@
 
             <transition name="slide-fade"  mode="out-in">
             <keep-alive>
-                <list v-if="listView" v-bind="{setLoading, collection, comics}"></list>
-            <thumbs v-else :comics="comics"></thumbs>
+              <list-view v-if="listView" v-bind="{setLoading, collection, comics}"></list-view>
+              <thumbs-view v-else :comics="comics"></thumbs-view>
             </keep-alive>
             </transition>
 
@@ -55,8 +55,8 @@ export default {
     name: 'Collections',
 
     components: {
-        'thumbs': Thumbs,
-        'list': List,
+        'thumbs-view': Thumbs,
+        'list-view': List,
         'loading': Loading,
         'tabs': Tabs
     },

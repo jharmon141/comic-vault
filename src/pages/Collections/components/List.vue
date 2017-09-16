@@ -1,10 +1,12 @@
 <template>
     <div>
-
-        <list-comic v-for="comic in comics" :key="comic.id" :handleDelete="handleDelete" :collection="collection" :comic="comic"></list-comic>
-
+        <list-comic v-for="comic in comics" 
+           :key="comic.id" 
+           :handleDelete="handleDelete" 
+           :collection="collection" 
+           :comic="comic">
+        </list-comic>
     </div>
-
 </template>
 
 <script>
@@ -33,19 +35,14 @@ const deleteCollectionOnComic = gql`
 `
 export default {
     name: 'list',
-
     props: ['setLoading', 'comics', 'collection'],
-    
     components: {
         "list-comic": ListComic
     },
 
     methods: {
-
         handleDelete(comic) {
-            
             if (this.collection.name === "All"){
-
                 let id = comic.id
 
                 // Mutation
@@ -63,7 +60,6 @@ export default {
                 })
 
             } else {
-
                 let comicId = comic.id
                 let collectionId = this.collection.id
 
@@ -91,9 +87,7 @@ export default {
                 })
             }
         },
-
     }
-
 }
 
 </script>

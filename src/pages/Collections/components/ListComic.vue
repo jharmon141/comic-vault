@@ -10,7 +10,7 @@
                 <div class="column is-3">
                     <img @click="toggleCoverModal" :src="comic.artUrl">
                 </div>
-                <div class="column is-7">
+                <div class="column is-8">
                     <div class="columns">
                         <div class="column is-6">
                             <p><em>Title</em>: {{comic.title}}</p>

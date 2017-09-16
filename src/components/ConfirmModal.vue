@@ -5,41 +5,46 @@
       <div :class="{ 'slideOutDown': active }" class="animated slideInUp modal-card">
         <section class="modal-card-body">
             <h1>{{text}}</h1>
-            <span @click="changeBack" class="button is-danger is-outlined"><v-icon>clear</v-icon></span>
-            <span  @click="actionFunction" class="button is-confirm is-outlined"><v-icon>check</v-icon></span>
+            <span 
+               @click="changeBack" 
+               class="button is-danger is-outlined">
+               <v-icon>clear</v-icon>
+            </span>
+            <span  
+               @click="actionFunction" 
+               class="button is-confirm is-outlined">
+               <v-icon>check</v-icon>
+            </span>
         </section>
       </div>
-            <button @click="changeBack" class="modal-close"></button>
+            <button 
+               @click="changeBack" 
+               class="modal-close">
+            </button>
     </div>
   </div>
 </template>
-
 
 <script>
 
 export default {
     name: 'ConfirmModal',
-
     data: () => ({
         active: false,
     }),
-
     props: ['toggleConfirmModal', 'text', 'actionFunction'],
 
     computed: {
     },
 
     methods: {
-
         changeBack() {
             this.active = true
             setTimeout(this.toggleConfirmModal, 800)
         },
-
     }
 }
 </script>
-
 
 <style scoped>
 
