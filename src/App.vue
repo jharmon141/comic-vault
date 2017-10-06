@@ -199,8 +199,8 @@ input {
 }
 
 .footer {
-  padding: 5px 0px !important;
-  padding-top: 5px !important;
+  padding: 7px 0px !important;
+  padding-top: 7px !important;
   background-color: whitesmoke;
   color: black;
   text-align: center;
