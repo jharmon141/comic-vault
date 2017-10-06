@@ -97,27 +97,15 @@ export default {
         },
 
         toggleCoverModal(){
-            if (this.showCoverModal == false) {
-                this.showCoverModal = true
-            } else {
-                this.showCoverModal = false
-            }
+            this.showCoverModal = !this.showCoverModal
         },
 
         toggleConfirmModal(){
-            if (this.showConfirmModal == false) {
-                this.showConfirmModal = true
-            } else {
-                this.showConfirmModal = false
-            }
+            this.showConfirmModal = !this.showConfirmModal
         },
 
         toggleAddCollectionModal(){
-            if (this.showAddCollectionModal == false) {
-                this.showAddCollectionModal = true
-            } else {
-                this.showAddCollectionModal = false
-            }
+            this.showAddCollectionModal = !this.showAddCollectionModal
         },
 
         deleteComic(){

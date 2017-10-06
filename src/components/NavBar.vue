@@ -1,30 +1,30 @@
 <template>
-    <div>
-        <nav id="nav" class="nav has-shadow">
-                <div class="nav-left">
-                    <router-link to="/">
-                    <img src="../assets/comicvault_icon.png">
-                    </router-link>
-                    <router-link to="/">
-                    <a :class="{ 'active': landingActive } " class="nav-item is-tab">
-                        Comic Vault
-                    </a>
-                    </router-link>
-                </div>
-                <span @click="toggleMenu" class="nav-toggle">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </span>
-                <div class="nav-right nav-menu" :class="menuActive">
-                    <router-link  v-if="authenticated" :key="$route.path" to="/profile" tag="img" :src="userPic" class="userImg"></router-link>
-                    <router-link  v-if="authenticated" :key="$route.path" to="/profile"><a :class="{ 'active': profileActive } "class="nav-item is-tab">{{firstName}}</a></router-link>
-                    <a class="nav-item is-tab">
-                        <login></login>
-                    </a>
-                </div>
-        </nav>
-    </div>
+  <div>
+    <nav id="nav" class="nav has-shadow">
+      <div class="nav-left">
+        <router-link to="/">
+          <img src="../assets/comicvault_icon.png">
+        </router-link>
+        <router-link to="/">
+          <a :class="{ 'active': landingActive } " class="nav-item is-tab">
+            Comic Vault
+          </a>
+        </router-link>
+      </div>
+      <span @click="toggleMenu" class="nav-toggle">
+        <span></span>
+        <span></span>
+        <span></span>
+      </span>
+      <div class="nav-right nav-menu" :class="menuActive">
+        <router-link  v-if="authenticated" :key="$route.path" to="/profile" tag="img" :src="userPic" class="userImg"></router-link>
+        <router-link  v-if="authenticated" :key="$route.path" to="/profile"><a :class="{ 'active': profileActive } "class="nav-item is-tab">{{firstName}}</a></router-link>
+        <a class="nav-item is-tab">
+          <login></login>
+        </a>
+      </div>
+    </nav>
+  </div>
 </template>
 
 <script>
@@ -68,7 +68,7 @@ export default {
     },
 
     methods: {
-        
+
         toggleMenu() {
             if (this.menuActive === '') {
                 this.menuActive = 'is-active'
@@ -84,74 +84,74 @@ export default {
 <style scoped>
 
 img {
-    height: 50px;
+  height: 50px;
 }
 
 .userImg {
-    border-radius: 50%;
-    margin-right: 17px;
-    cursor: pointer;
-    height: 35px;
-    margin-top: 7.5px;
+  border-radius: 50%;
+  margin-right: 17px;
+  cursor: pointer;
+  height: 35px;
+  margin-top: 7.5px;
 }
 
 .nav {
-    background-color: #D9D9D9;
-    font-weight: 500;
-    margin-bottom: 75px;
-    height: 64px;
-    position: fixed;
-    padding-top: 13px;
-    width: 100%;
+  background-color: #D9D9D9;
+  font-weight: 500;
+  margin-bottom: 75px;
+  height: 64px;
+  position: fixed;
+  padding-top: 13px;
+  width: 100%;
 }
 
 .nav-left {
-    overflow: inherit;
+  overflow: inherit;
 }
 
 .nav-item {
-    color: white;
-    font-size: 18px;
-    padding-top: 10px;
+  color: white;
+  font-size: 18px;
+  padding-top: 10px;
 }
 
 a.nav-item.active {
-    border-bottom-color: #1E90FF;
-    border-width: 3px;
-    color: #fe0000;
+  border-bottom-color: #1E90FF;
+  border-width: 3px;
+  color: #fe0000;
 }
 
 .is-tab {
-    height: 100%;
+  height: 100%;
 }
 
 .nav-item a.is-tab:hover, a.nav-item.is-tab:hover{
-    border-bottom-color: #1E90FF;
-    border-width: 3px;
-    color: #fe0000;
+  border-bottom-color: #1E90FF;
+  border-width: 3px;
+  color: #fe0000;
 }
 
 .container{
-    width: 100%;
-    padding-left: 5px;
-    padding-right: 5px;
-    margin: 0;
+  width: 100%;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 0;
 }
 
 @media screen and (max-width: 768px){
-    .nav-menu {
-        background-color: slategrey;
-    }
+  .nav-menu {
+    background-color: slategrey;
+  }
 }
 
 @media screen and (max-width: 768px) {
-    .nav-menu.nav-right {
-        background-color: slategrey;
-    }
+  .nav-menu.nav-right {
+    background-color: slategrey;
+  }
 }
 
 .nav-toggle {
-    height: 50px;
-    width: 50px;
+  height: 50px;
+  width: 50px;
 }
 </style>
