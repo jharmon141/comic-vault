@@ -1,28 +1,56 @@
 <template>
   <div>
     <nav id="nav" class="nav has-shadow">
+
       <div class="nav-left">
+
         <router-link to="/">
           <img src="../assets/comicvault_icon.png">
         </router-link>
+
         <router-link to="/">
-          <a :class="{ 'active': landingActive } " class="nav-item is-tab">
+            <a :class="{ 'active': landingActive } " 
+                class="nav-item is-tab">
             Comic Vault
           </a>
         </router-link>
       </div>
-      <span @click="toggleMenu" class="nav-toggle">
+
+      <span 
+          @click="toggleMenu" 
+          class="nav-toggle">
         <span></span>
         <span></span>
         <span></span>
       </span>
-      <div class="nav-right nav-menu" :class="menuActive">
-        <router-link  v-if="authenticated" :key="$route.path" to="/profile" tag="img" :src="userPic" class="userImg"></router-link>
-        <router-link  v-if="authenticated" :key="$route.path" to="/profile"><a :class="{ 'active': profileActive } "class="nav-item is-tab">{{firstName}}</a></router-link>
+
+      <div 
+          class="nav-right nav-menu" 
+          :class="menuActive">
+
+          <router-link  
+              v-if="authenticated" 
+              :key="$route.path" 
+              to="/profile" 
+              tag="img" 
+              :src="userPic" 
+              class="userImg">
+          </router-link>
+
+          <router-link  
+              v-if="authenticated" 
+              :key="$route.path" 
+              to="/profile">
+              <a :class="{ 'active': profileActive } "class="nav-item is-tab">
+                  {{firstName}}
+              </a>
+          </router-link>
+
         <a class="nav-item is-tab">
           <login></login>
         </a>
       </div>
+
     </nav>
   </div>
 </template>
