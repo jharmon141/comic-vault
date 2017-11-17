@@ -1,25 +1,25 @@
 <template>
-    <div class="collections">
+  <div class="collections">
 
-        <template v-if="loading">
-            <loading></loading>
-        </template>
+    <template v-if="loading">
+      <loading></loading>
+    </template>
 
-        <template  v-else>
-            <h1>Collection: {{collection.name}} </h1>
+    <template v-else>
+      <h1>Collection: {{collection.name}} </h1>
 
-            <tabs v-bind="{setListView, setThumbView, thumbView, listView}"></tabs>
+      <tabs v-bind="{toggleView, thumbView, listView}"></tabs>
 
-            <transition name="slide-fade"  mode="out-in">
-                <keep-alive>
-                    <list-view v-if="listView" v-bind="{setLoading, collection, comics}"></list-view>
-                    <thumbs-view v-else :comics="comics"></thumbs-view>
-                </keep-alive>
-            </transition>
+      <transition name="slide-fade" mode="out-in">
+        <keep-alive>
+          <list-view v-if="listView" v-bind="{setLoading, collection, comics}"></list-view>
+          <thumbs-view v-else-if="thumbView" :comics="comics"></thumbs-view>
+        </keep-alive>
+      </transition>
 
-        </template>
+    </template>
 
-    </div>
+  </div>
 </template>
 
 <script>
@@ -51,105 +51,100 @@ query currectCollection($id: ID) {
 `
 
 export default {
-    store,
-    name: 'Collections',
+  store,
+  name: 'Collections',
 
-    components: {
-        'thumbs-view': Thumbs,
-        'list-view': List,
-        'loading': Loading,
-        'tabs': Tabs
-    },
+  components: {
+    'thumbs-view': Thumbs,
+    'list-view': List,
+    'loading': Loading,
+    'tabs': Tabs
+  },
 
-    data: () => ({
-        comics: [],
-        viewType: 'list',
-        loading: false,
-        listView: true,
-        thumbView: false,
-    }),
+  data: () => ({
+    comics: [],
+    viewType: 'list',
+    loading: false,
+    listView: true,
+    thumbView: false,
+  }),
 
-    computed: {
+  computed: {
 
-        collection() {
-            return  this.$store.state.collections.find(obj => {
-                let params = this.$route.params.id.toLowerCase()
-                return obj.name.toLowerCase() === params.replace(/\+/g, ' ') 
-            })
+    collection() {
+      return this.$store.state.collections.find(obj => {
+        let params = this.$route.params.id.toLowerCase()
+        return obj.name.toLowerCase() === params.replace(/\+/g, ' ')
+      })
+    }
+  },
+
+  methods: {
+
+    queryCollection() {
+      this.loading = true
+      let id = this.collection.id
+      this.$apollo.query({
+        query: collectionQuery,
+        variables: {
+          id
         }
+      }).then((response) => {
+        this.comics = response.data.Collection.comics
+        this.loading = false
+      }).catch((error) => {
+        console.error(error)
+        this.loading = false
+      })
     },
 
-    methods: {
-
-        queryCollection(){
-            this.loading = true
-            let id = this.collection.id
-            this.$apollo.query({
-                query: collectionQuery,
-                variables:{
-                    id
-                }
-            }).then((response) => {
-                this.comics = response.data.Collection.comics
-                this.loading = false
-            }).catch((error) => {
-                console.error(error)
-                this.loading = false
-            })
-        },
-
-        setListView(){
-            this.thumbView = false
-            this.listView = true
-        },
-
-        setThumbView(){
-            this.listView = false
-            this.thumbView = true
-        },
-
-        setLoading(state){
-            this.loading = state
-        },
-
+    toggleView() {
+      this.listView = !this.listView
+      this.thumbView = !this.thumbView
     },
 
-    beforeMount() {
-        this.queryCollection()
+    setLoading(state) {
+      this.loading = state
     },
+
+  },
+
+  beforeMount() {
+    this.queryCollection()
+  },
 
 }
 </script>
 
 <style scoped>
-
-.collections{
-    display: flex;
-    justify-content: flex-start;
-    flex-direction: column;
-    width: 75%;
+.collections {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  width: 75%;
 }
 
 h1 {
-    font-size: 24px;
-    margin-bottom: 50px;
-    margin-top: 10px;
+  font-size: 24px;
+  margin-bottom: 50px;
+  margin-top: 10px;
 }
 
 img {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .slide-fade-enter-active {
-    transition: all .3s ease;
+  transition: all .3s ease;
 }
 
 .slide-fade-leave-active {
-    transition: all .3s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+  transition: all .3s cubic-bezier(1.0, 0.5, 0.8, 1.0);
 }
 
-.slide-fade-enter, .slide-fade-leave-to {
-    transform: translateX(10px);
-    opacity: 0;
+.slide-fade-enter,
+.slide-fade-leave-to {
+  transform: translateX(10px);
+  opacity: 0;
 }
 </style>

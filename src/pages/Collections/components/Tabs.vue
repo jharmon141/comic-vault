@@ -3,12 +3,12 @@
 
         <div class="tabs is-toggle">
             <ul class="tabList">
-                <li :class="{ 'is-active': listView }" v-on:click="setListView">
+                <li :class="{ 'is-active': listView }" v-on:click="toggleView">
                     <a>
                         <v-icon>list</v-icon>
                     </a>
                 </li>
-                <li :class="{ 'is-active': thumbView }" v-on:click="setThumbView">
+                <li :class="{ 'is-active': thumbView }" v-on:click="toggleView">
                     <a >
                         <v-icon>view_module</v-icon>
                     </a>
@@ -23,7 +23,7 @@
 
 export default {
 
-    props: ['thumbView','listView', 'setListView', 'setThumbView'],
+    props: ['thumbView','listView', 'toggleView'],
 
 }
 
