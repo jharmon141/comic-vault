@@ -50,22 +50,22 @@ import Loading from './components/Loading.vue'
 import gql from 'graphql-tag'
 
 const userQuery = gql`
-query {
-  user {
-    id
-    firstName
-    lastName
-    emailAddress
-    emailSubscription
-    collections(orderBy: name_ASC ) {
-name
+  query {
+    user {
       id
-      path
-comics {
-    title
-}
-}
-}
+      firstName
+      lastName
+      emailAddress
+      emailSubscription
+      collections(orderBy: name_ASC ) {
+        name
+        id
+        path
+        comics {
+          title
+        }
+    }
+  }
 }
 `
 

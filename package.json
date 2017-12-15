@@ -6,7 +6,6 @@
   "private": true,
   "scripts": {
     "//": "heroku buildpacks:set heroku/nodejs",
-    "start": "webpack-dev-server --inline --hot --port 3000",
     "dev": "node build/dev-server.js",
     "build": "node build/build.js",
     "deploy": "git subtree push --prefix dist heroku master",
