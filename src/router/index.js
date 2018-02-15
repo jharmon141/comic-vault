@@ -12,7 +12,7 @@ import EditComic from '@/pages/EditComic/EditComic'
 
 Vue.use(Router)
 
-const router =   new Router({
+const router = new Router({
     mode: 'history',
     scrollBehavior (to, from, savedPosition) {
         if (savedPosition) {

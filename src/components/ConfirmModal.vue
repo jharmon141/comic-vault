@@ -3,24 +3,31 @@
     <div class="modal is-active">
       <div class="modal-background"></div>
       <div :class="{ 'slideOutDown': active }" class="animated slideInUp modal-card">
+
         <section class="modal-card-body">
           <h1>{{text}}</h1>
+
           <span 
-            @click="changeBack" 
+            @click="closeModal" 
             class="button is-danger is-outlined">
             <v-icon>clear</v-icon>
           </span>
+
           <span  
             @click="actionFunction" 
             class="button is-confirm is-outlined">
             <v-icon>check</v-icon>
           </span>
+
         </section>
+
       </div>
+
       <button 
-        @click="changeBack" 
+        @click="closeModal" 
         class="modal-close">
       </button>
+
     </div>
   </div>
 </template>
@@ -38,7 +45,7 @@ export default {
   },
 
   methods: {
-    changeBack() {
+    closeModal() {
       this.active = true
       setTimeout(this.toggleConfirmModal, 800)
     },

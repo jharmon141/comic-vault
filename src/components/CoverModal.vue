@@ -8,13 +8,14 @@
           <img v-else :src="response.image.small_url" alt="">
         </div>
       </div>
-      <button @click="changeBack" class="modal-close"></button>
+      <button @click="closeModal" class="modal-close"></button>
     </div>
   </div>
 </template>
 
 
 <script>
+
 export default {
   name: 'cover-modal',
 
@@ -25,7 +26,7 @@ export default {
   props: ['toggleCoverModal', 'response', 'comic'],
 
   methods: {
-    changeBack() {
+    closeModal() {
       this.active = true
       setTimeout(this.toggleCoverModal, 1000)
     }

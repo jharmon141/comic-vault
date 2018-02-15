@@ -32,11 +32,12 @@ export default {
 <style scoped>
 
 .tabs {
-    margin-left: 15%;
+    margin-left: 12%;
 }
 
 .tabs.is-toggle{
     margin-bottom: 100px;
+    width: 100%;
 }
 
 .tabs.is-toggle li a{
@@ -51,7 +52,7 @@ export default {
 }
 
 .tabs li {
-    width: 20%;
+    width: 30%;
 }
 
 v-icon {
