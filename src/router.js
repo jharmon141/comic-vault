@@ -1,9 +1,19 @@
 import Vue from 'vue'
+import store from './store.js'
 import Router from 'vue-router'
 import Home from './views/Home.vue'
-import About from './views/About.vue'
+import UserProfile from './views/UserProfile.vue'
 
 Vue.use(Router)
+
+function requireAuth(to, from, next) {
+  if (!store.getters.authenticated) {
+    return next({ path: '/' })
+  }
+  else {
+    return next()
+  }
+}
 
 export default new Router({
   routes: [
@@ -13,9 +23,10 @@ export default new Router({
       component: Home
     },
     {
-      path: '/about',
-      name: 'about',
-      component: About
+      path: '/profile',
+      name: 'profile',
+      component: UserProfile,
+      beforeEnter: requireAuth
     }
   ]
 })
