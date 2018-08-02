@@ -10,7 +10,7 @@ export default new Vuex.Store({
 
   getters: {
     authenticated: state => {
-      return !!state.user.id && !!state.user.name && !!state.user.email
+      return !!state.user.id && !!state.user.email
     }
   },
 
@@ -21,6 +21,10 @@ export default new Vuex.Store({
 
     logoutUser: (state) => {
       state.user = Object.assign({})
+    },
+
+    updateUser: (state, params) => {
+      state.user = Object.assign({}, params)
     }
   },
 
@@ -31,6 +35,10 @@ export default new Vuex.Store({
 
     handleLogoutUser: ({ commit }) => {
       commit('logoutUser')
+    },
+
+    handleUpdateUser: ({ commit }, params) => {
+      commit('updateUser', params)
     }
   }
 })

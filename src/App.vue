@@ -1,12 +1,9 @@
 <template>
   <v-app>
 
-    <NavBar v-on:toggleNav="toggleNav"
-      v-on:logout="logout" />
+    <NavBar v-on:toggleNav="toggleNav" v-on:logout="logout" />
 
-    <v-navigation-drawer clipped
-      v-model="navDrawer"
-      app>
+    <v-navigation-drawer clipped v-model="navDrawer" app>
     </v-navigation-drawer>
 
     <v-content app>
@@ -18,11 +15,11 @@
 
 
 <script>
-import NavBar from '@/components/NavBar.vue'
-import { USER_QUERY } from '@/graphql/queries.js'
+import NavBar from "@/components/NavBar.vue";
+import { USER_QUERY } from "@/graphql/queries.js";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
     NavBar
   },
@@ -34,43 +31,45 @@ export default {
   }),
 
   watch: {
-    user: function (newUser) {
+    user: function(newUser) {
       const user = {
         id: newUser.id,
         email: newUser.email,
-        name: newUser.name
-      }
+        firstName: newUser.firstName,
+        lastName: newUser.lastName,
+        username: newUser.username,
+        profilePic: newUser.profilePic
+      };
 
-      this.$store.dispatch('handleSigninUser', user)
+      this.$store.dispatch("handleSigninUser", user);
     }
   },
 
   computed: {
     authenticated() {
-      return this.$store.getters.authenticated
+      return this.$store.getters.authenticated;
     }
   },
 
   apollo: {
     user: {
       query: USER_QUERY,
-      loadingKey: 'loading'
+      loadingKey: "loading"
     }
   },
 
   methods: {
     toggleNav() {
-      this.navDrawer = !this.navDrawer
+      this.navDrawer = !this.navDrawer;
     },
 
     logout() {
-      localStorage.removeItem('comicvault-auth-token')
-      this.$store.dispatch('handleLogoutUser')
-      this.$router.push('/')
+      localStorage.removeItem("comicvault-auth-token");
+      this.$store.dispatch("handleLogoutUser");
+      this.$router.push("/");
     }
-
   }
-}
+};
 </script>
 
 

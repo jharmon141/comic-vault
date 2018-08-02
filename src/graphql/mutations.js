@@ -1,13 +1,23 @@
 import gql from "graphql-tag";
 
 export const CREATE_USER_MUTATION = gql`
-  mutation CreateUserMutation($name: String!, $email: String!, $password: String!) {
+  mutation CreateUserMutation(
+    $firstName: String!
+    $lastName: String!
+    $username: String!
+    $email: String!
+    $password: String!
+  ) {
     createUser(
-      name: $name
+      firstName: $firstName
+      lastName: $lastName
+      username: $username
       authProvider: { email: { email: $email, password: $password } }
     ) {
       id
-      name
+      firstName
+      lastName
+      username
       email
     }
 
@@ -20,13 +30,38 @@ export const CREATE_USER_MUTATION = gql`
   }
 `;
 
+export const UPDATE_USER_MUTATION = gql`
+  mutation(
+    $id: ID!
+    $firstName: String!
+    $lastName: String!
+    $username: String!
+  ) {
+    updateUser(
+      id: $id
+      firstName: $firstName
+      lastName: $lastName
+      username: $username
+    ) {
+      id
+      firstName
+      lastName
+      username
+      email
+      profilePic
+    }
+  }
+`;
+
 export const SIGNIN_USER_MUTATION = gql`
   mutation SigninUserMutation($email: String!, $password: String!) {
     signinUser(email: { email: $email, password: $password }) {
       token
       user {
         id
-        name
+        firstName
+        lastName
+        username
         email
       }
     }
