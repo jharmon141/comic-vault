@@ -92,7 +92,8 @@ export default {
     updateProfilePic() {
       this.loading = true;
 
-      let profilePic = this.profilePicURL;
+      const profilePic = this.profilePicURL;
+      const id = this.$store.state.user.id;
 
       this.$apollo
         .mutate({
@@ -103,7 +104,7 @@ export default {
           }
         })
         .then(payload => {
-          let user = {
+          const user = {
             id: payload.data.updateUser.id,
             firstName: payload.data.updateUser.firstName,
             lastName: payload.data.updateUser.lastName,
@@ -129,10 +130,10 @@ export default {
     updateUser() {
       this.loading = true;
 
-      let id = this.$store.state.user.id;
-      let firstName = this.updateFirstName;
-      let lastName = this.updateLastName;
-      let username = this.updateUsername;
+      const id = this.$store.state.user.id;
+      const firstName = this.updateFirstName;
+      const lastName = this.updateLastName;
+      const username = this.updateUsername;
 
       this.$apollo
         .mutate({
@@ -145,7 +146,7 @@ export default {
           }
         })
         .then(payload => {
-          let user = {
+          const user = {
             id: payload.data.updateUser.id,
             firstName: payload.data.updateUser.firstName,
             lastName: payload.data.updateUser.lastName,
