@@ -4,7 +4,6 @@ import { ApolloClient } from "apollo-client";
 import { HttpLink } from "apollo-link-http";
 import { InMemoryCache } from "apollo-cache-inmemory";
 import { ApolloLink, concat } from "apollo-link";
-import VueSweetalert2 from "vue-sweetalert2";
 import VueApollo from "vue-apollo";
 import router from "./router";
 import store from "./store";
@@ -12,7 +11,6 @@ import "./registerServiceWorker";
 import Vuetify from "vuetify";
 import "vuetify/dist/vuetify.min.css";
 
-Vue.use(VueSweetalert2);
 Vue.use(Vuetify);
 
 Vue.config.productionTip = false;

@@ -1,14 +1,13 @@
 <template>
   <div class="home">
-   <img src="@/assets/comicvault.png"> 
+    <img src="@/assets/comicvault.png">
   </div>
 </template>
 
 <script>
-
 export default {
-  name: 'home',
-}
+  name: "home"
+};
 </script>
 
 <style lang="scss" scoped>
@@ -19,5 +18,4 @@ img {
   margin-left: auto;
   margin-right: auto;
 }
-
 </style>

@@ -21,10 +21,6 @@ export default new Vuex.Store({
 
     logoutUser: (state) => {
       state.user = Object.assign({})
-    },
-
-    updateUser: (state, params) => {
-      state.user = Object.assign({}, params)
     }
   },
 
@@ -35,10 +31,6 @@ export default new Vuex.Store({
 
     handleLogoutUser: ({ commit }) => {
       commit('logoutUser')
-    },
-
-    handleUpdateUser: ({ commit }, params) => {
-      commit('updateUser', params)
     }
   }
 })

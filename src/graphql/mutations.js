@@ -53,6 +53,25 @@ export const UPDATE_USER_MUTATION = gql`
   }
 `;
 
+export const UPDATE_USER_PROFILE_PIC_MUTATION = gql`
+  mutation(
+    $id: ID!
+    $profilePic: String!
+  ) {
+    updateUser(
+      id: $id
+      profilePic: $profilePic
+    ) {
+      id
+      firstName
+      lastName
+      username
+      email
+      profilePic
+    }
+  }
+`;
+
 export const SIGNIN_USER_MUTATION = gql`
   mutation SigninUserMutation($email: String!, $password: String!) {
     signinUser(email: { email: $email, password: $password }) {
